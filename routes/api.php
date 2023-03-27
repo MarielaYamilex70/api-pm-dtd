@@ -16,4 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+    
+
 });
+Route::get('/events','App\Http\Controllers\EventController@index');
+Route::post('/events','App\Http\Controllers\EventController@store');
+Route::get('/events/{event}','App\Http\Controllers\EventController@show');
+Route::put('/events/{event}','App\Http\Controllers\EventController@update');
+Route::delete('/events/{event}','App\Http\Controllers\EventController@destroy');
