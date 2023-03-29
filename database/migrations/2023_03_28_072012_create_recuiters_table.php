@@ -19,10 +19,9 @@ return new class extends Migration
             $table->string('linkedin');
             $table->string('email');
             $table->string('phone');
-                  
+                              
             $table->boolean('remote');
-            
-            
+                    
 
             $table->timestamps();
         });
