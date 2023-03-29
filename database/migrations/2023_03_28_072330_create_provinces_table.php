@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('provinces', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->real('lat');
-            $table->real('long');
+            $table->float('lat',9,6);
+            $table->float('long',9,6);
             $table->string('iso');
             $table->timestamps();
         });

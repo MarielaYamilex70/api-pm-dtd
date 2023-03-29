@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Recuiter;
+use App\Models\Recruiter;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class RecuiterController extends Controller
+class RecruiterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class RecuiterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Recuiter $recuiter)
+    public function show(Recruiter $recruiter)
     {
         //
     }
@@ -35,7 +35,7 @@ class RecuiterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Recuiter $recuiter)
+    public function update(Request $request, Recruiter $recruiter)
     {
         //
     }
@@ -43,7 +43,7 @@ class RecuiterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Recuiter $recuiter)
+    public function destroy(Recruiter $recruiter)
     {
         //
     }

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Companie;
+use App\Models\Company;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class CompanieController extends Controller
+class CompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class CompanieController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Companie $companie)
+    public function show(Company $company)
     {
         //
     }
@@ -35,7 +35,7 @@ class CompanieController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Companie $companie)
+    public function update(Request $request, Company $company)
     {
         //
     }
@@ -43,7 +43,7 @@ class CompanieController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Companie $companie)
+    public function destroy(Company $company)
     {
         //
     }

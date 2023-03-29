@@ -30,7 +30,7 @@ class EventController extends Controller
         $event->min=$request->min;
         $event->save();
         $data =[
-            'message'=> 'Event created successfuly',
+            'message'=> 'Event created successfully',
             'service'=>$event        
         ];
         return response()->json($data);
@@ -63,7 +63,7 @@ class EventController extends Controller
         $event->min=$request->min;
         $event->save();
         $data =[
-            'message'=> 'Event updated successfuly',
+            'message'=> 'Event updated successfully',
             'service'=>$event        
         ];
         return response()->json($data);
@@ -76,7 +76,7 @@ class EventController extends Controller
     {
         $event->delete();
         $data =[
-            'message'=> 'Event delete successfuly',
+            'message'=> 'Event delete successfully',
             'service'=>$event        
         ];
         return response()->json($data);
