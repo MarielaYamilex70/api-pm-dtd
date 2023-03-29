@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('regions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('lat');
-            $table->string('long');
+            $table->real('lat');
+            $table->real('long');
             $table->string('iso');
             $table->timestamps();
         });
