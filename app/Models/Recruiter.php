@@ -11,4 +11,12 @@ class Recruiter extends Model
     public function event(){
         return $this->belongsTo(Event::class);
     }
+
+    public function company(){
+        return $this->belongsTo(Company::class);
+    }
+
+    public function province(){
+        return $this->belongsTo(province::class);
+    }
 }
