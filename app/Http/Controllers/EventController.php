@@ -23,9 +23,9 @@ class EventController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|alpha_num',
+            'name' => 'required',
             'date' => 'required|date',
-            'url' => 'required|alpha_num',
+            'url' => 'required',
             'max' => 'required|integer',
             'min' => 'required|integer',
          ]);
@@ -65,9 +65,9 @@ class EventController extends Controller
     public function update(Request $request, Event $event)
     {
         $request->validate([
-            'name' => 'required|alpha_num',
+            'name' => 'required',
             'date' => 'required|date',
-            'url' => 'required|alpha_num',
+            'url' => 'required',
             'max' => 'required|integer',
             'min' => 'required|integer',
          ]);

@@ -23,18 +23,18 @@ class CoderController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'event_id' => 'required|integer|exits:events,id',
-            'promo_id' => 'required|integer',
-            'province_id' => 'required|integer',
-            'name' => 'required|alpha_num',
-            'gender' => 'required|alpha_num',
+            'event_id' => 'required',
+            'promo_id' => 'required',
+            'province_id' => 'required',
+            'name' => 'required',
+            'gender' => 'required',
             'years' => 'required|integer',
-            'avaliability' => 'required|alpha_num',
-            'remote' => 'required|integer',
+            'avaliability' => 'required',
+            'remote' => 'required|boolean',
             'email' => 'required|email',
-            'phone' => 'required|alpha_num',
-            'linkedin' => 'required|alpha_num',
-            'github' => 'required|alpha_num'
+            'phone' => 'required',
+            'linkedin' => 'required',
+            'github' => 'required'
 
          ]);
 
@@ -77,18 +77,18 @@ class CoderController extends Controller
     public function update(Request $request, Coder $coder)
     {
         $request->validate([
-            'event_id' => 'required|integer|exits:events,id',
-            'promo_id' => 'required|integer',
-            'province_id' => 'required|integer',
-            'name' => 'required|alpha_num',
-            'gender' => 'required|alpha_num',
+            'event_id' => 'required',
+            'promo_id' => 'required',
+            'province_id' => 'required',
+            'name' => 'required',
+            'gender' => 'required',
             'years' => 'required|integer',
-            'avaliability' => 'required|alpha_num',
+            'avaliability' => 'required',
             'remote' => 'required|integer',
             'email' => 'required|email',
-            'phone' => 'required|alpha_num',
-            'linkedin' => 'required|alpha_num',
-            'github' => 'required|alpha_num'
+            'phone' => 'required',
+            'linkedin' => 'required',
+            'github' => 'required'
 
          ]);
 
