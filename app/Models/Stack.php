@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Stack extends Model
 {
     use HasFactory;
+    public function recruiter()
+    {
+    return $this->belongsToMany(Recruiter::class, 'recruiters_stacks');
+}
 }

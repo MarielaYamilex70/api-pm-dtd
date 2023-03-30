@@ -24,4 +24,9 @@ class Recruiter extends Model
         {
         return $this->belongsToMany(Language::class, 'recruiters_languages');
     }
+
+    public function stack()
+        {
+        return $this->belongsToMany(Stack::class, 'recruiters_stacks');
+    }
 }
