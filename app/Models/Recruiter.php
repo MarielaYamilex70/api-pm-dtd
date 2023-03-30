@@ -19,4 +19,9 @@ class Recruiter extends Model
     public function province(){
         return $this->belongsTo(province::class);
     }
+
+    public function language()
+        {
+        return $this->belongsToMany(Language::class, 'recruiters_languages');
+    }
 }

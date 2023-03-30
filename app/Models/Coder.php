@@ -18,6 +18,11 @@ class Coder extends Model
     }
 
     public function province(){
-        return $this->belongsTo(province::class);
+        return $this->belongsTo(Province::class);
+    }
+    
+    public function language()
+        {
+        return $this->belongsToMany(Language::class, 'coders_languages');
     }
 }
