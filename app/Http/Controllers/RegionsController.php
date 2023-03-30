@@ -13,7 +13,8 @@ class RegionsController extends Controller
      */
     public function index()
     {
-        //
+        $regions=Regions::all();
+        return response()->json($regions);
     }
 
     /**
@@ -21,7 +22,17 @@ class RegionsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $region=new Regions();
+        $region->name=$request->name;
+        $region->lat=$request->lat;
+        $region->long=$request->long;
+        $region->iso=$request->iso;
+        $region->save();
+        $data =[
+            'message'=> 'Region created successfully',
+            'service'=>$region        
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -29,7 +40,12 @@ class RegionsController extends Controller
      */
     public function show(Regions $regions)
     {
-        //
+        // return response()->json($region);
+        $data =[
+            'message'=> 'Region details',
+            'service'=>$regions       
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -37,7 +53,16 @@ class RegionsController extends Controller
      */
     public function update(Request $request, Regions $regions)
     {
-        //
+        $regions->name=$request->name;
+        $regions->lat=$request->lat;
+        $regions->long=$request->long;
+        $regions->iso=$request->iso;
+        $regions->save();
+        $data =[
+            'message'=> 'Region updated successfully',
+            'service'=>$regions        
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -45,6 +70,11 @@ class RegionsController extends Controller
      */
     public function destroy(Regions $regions)
     {
-        //
+        $regions->delete();
+        $data =[
+            'message'=> 'Region delete successfully',
+            'service'=>$regions        
+        ];
+        return response()->json($data);
     }
 }

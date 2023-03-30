@@ -13,7 +13,8 @@ class LanguageController extends Controller
      */
     public function index()
     {
-        //
+        $languages = Language::all();
+        return response()->json($languages);
     }
 
     /**
@@ -21,7 +22,14 @@ class LanguageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $language = new Language();
+        $language->name = $request->name;
+        $language->save();
+        $data = [
+            'message' => 'Language created successfully',
+            'service' => $language
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -29,7 +37,12 @@ class LanguageController extends Controller
      */
     public function show(Language $language)
     {
-        //
+         // return response()->json($language);
+         $data =[
+            'message'=> 'Language details',
+            'service'=>$language        
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -37,7 +50,13 @@ class LanguageController extends Controller
      */
     public function update(Request $request, Language $language)
     {
-        //
+        $language->name=$request->name;
+        $language->save();
+        $data =[
+            'message'=> 'Language updated successfully',
+            'service'=>$language        
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -45,6 +64,11 @@ class LanguageController extends Controller
      */
     public function destroy(Language $language)
     {
-        //
+        $language->delete();
+        $data =[
+            'message'=> 'Language delete successfully',
+            'service'=>$language        
+        ];
+        return response()->json($data);
     }
 }

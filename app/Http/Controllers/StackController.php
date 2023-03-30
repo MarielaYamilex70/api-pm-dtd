@@ -13,7 +13,8 @@ class StackController extends Controller
      */
     public function index()
     {
-        //
+        $stacks = Stack::all();
+        return response()->json($stacks);
     }
 
     /**
@@ -21,7 +22,14 @@ class StackController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $stack = new Stack();
+        $stack->name = $request->name;
+        $stack->save();
+        $data = [
+            'message' => 'Stack created successfully',
+            'service' => $stack
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -29,7 +37,12 @@ class StackController extends Controller
      */
     public function show(Stack $stack)
     {
-        //
+        // return response()->json($stack);
+        $data =[
+            'message'=> 'Stack details',
+            'service'=>$stack        
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -37,7 +50,13 @@ class StackController extends Controller
      */
     public function update(Request $request, Stack $stack)
     {
-        //
+        $stack->name=$request->name;
+        $stack->save();
+        $data =[
+            'message'=> 'Stack updated successfully',
+            'service'=>$stack        
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -45,6 +64,11 @@ class StackController extends Controller
      */
     public function destroy(Stack $stack)
     {
-        //
+        $stack->delete();
+        $data =[
+            'message'=> 'Stack delete successfully',
+            'service'=>$stack        
+        ];
+        return response()->json($data);
     }
 }
