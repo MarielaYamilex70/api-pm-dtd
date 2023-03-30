@@ -13,7 +13,8 @@ class CoderController extends Controller
      */
     public function index()
     {
-        //
+        $coders=Coder::all();
+        return response()->json($coders);
     }
 
     /**
@@ -21,7 +22,41 @@ class CoderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'event_id' => 'required|integer|exits:events,id',
+            'promo_id' => 'required|integer',
+            'province_id' => 'required|integer',
+            'name' => 'required|alpha_num',
+            'gender' => 'required|alpha_num',
+            'years' => 'required|integer',
+            'avaliability' => 'required|alpha_num',
+            'remote' => 'required|integer',
+            'email' => 'required|email',
+            'phone' => 'required|alpha_num',
+            'linkedin' => 'required|alpha_num',
+            'github' => 'required|alpha_num'
+
+         ]);
+
+        $coder=new Coder;
+        $coder->event_id=$request->event_id;
+        $coder->promo_id=$request->promo_id;
+        $coder->province_id=$request->province_id;
+        $coder->name=$request->name;
+        $coder->gender=$request->gender;
+        $coder->years=$request->years;
+        $coder->avaliability=$request->avaliability;
+        $coder->remote=$request->remote;
+        $coder->email=$request->email;
+        $coder->phone=$request->phone;
+        $coder->linkedin=$request->linkedin;
+        $coder->github=$request->github;
+        $coder->save();
+        $data =[
+            'message'=> 'Coder created successfully',
+            'coder'=>$coder        
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -29,7 +64,11 @@ class CoderController extends Controller
      */
     public function show(Coder $coder)
     {
-        //
+        $data =[
+            'message'=> 'Coder details',
+            'coder'=>$coder        
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -37,7 +76,40 @@ class CoderController extends Controller
      */
     public function update(Request $request, Coder $coder)
     {
-        //
+        $request->validate([
+            'event_id' => 'required|integer|exits:events,id',
+            'promo_id' => 'required|integer',
+            'province_id' => 'required|integer',
+            'name' => 'required|alpha_num',
+            'gender' => 'required|alpha_num',
+            'years' => 'required|integer',
+            'avaliability' => 'required|alpha_num',
+            'remote' => 'required|integer',
+            'email' => 'required|email',
+            'phone' => 'required|alpha_num',
+            'linkedin' => 'required|alpha_num',
+            'github' => 'required|alpha_num'
+
+         ]);
+
+        $coder->event_id=$request->event_id;
+        $coder->promo_id=$request->promo_id;
+        $coder->province_id=$request->province_id;
+        $coder->name=$request->name;
+        $coder->gender=$request->gender;
+        $coder->years=$request->years;
+        $coder->avaliability=$request->avaliability;
+        $coder->remote=$request->remote;
+        $coder->email=$request->email;
+        $coder->phone=$request->phone;
+        $coder->linkedin=$request->linkedin;
+        $coder->github=$request->github;
+        $coder->save();
+        $data =[
+            'message'=> 'Coder updated successfully',
+            'coder'=>$coder        
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -45,6 +117,11 @@ class CoderController extends Controller
      */
     public function destroy(Coder $coder)
     {
-        //
+        $coder->delete();
+        $data =[
+            'message'=> 'Coder deleted successfully',
+            'coder'=>$coder        
+        ];
+        return response()->json($data);
     }
 }

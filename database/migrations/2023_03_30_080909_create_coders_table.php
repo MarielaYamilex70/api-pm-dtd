@@ -16,8 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('event_id');
             $table->foreign('event_id')->references('id')->on('events');
 
-            $table->unsignedBigInteger('promotion_id');
-            $table->foreign('promotion_id')->references('id')->on('promotions');
+            $table->unsignedBigInteger('promo_id');
+            $table->foreign('promo_id')->references('id')->on('promotions');
 
             $table->unsignedBigInteger('province_id');
             $table->foreign('province_id')->references('id')->on('provinces');

@@ -22,6 +22,14 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|alpha_num',
+            'date' => 'required|date',
+            'url' => 'required|alpha_num',
+            'max' => 'required|integer',
+            'min' => 'required|integer',
+         ]);
+
         $event=new Event;
         $event->name=$request->name;
         $event->date=$request->date;
@@ -31,7 +39,7 @@ class EventController extends Controller
         $event->save();
         $data =[
             'message'=> 'Event created successfully',
-            'service'=>$event        
+            'event'=>$event        
         ];
         return response()->json($data);
        
@@ -46,7 +54,7 @@ class EventController extends Controller
         // return response()->json($event);
         $data =[
             'message'=> 'Event details',
-            'service'=>$event        
+            'event'=>$event        
         ];
         return response()->json($data);
     }
@@ -56,6 +64,14 @@ class EventController extends Controller
      */
     public function update(Request $request, Event $event)
     {
+        $request->validate([
+            'name' => 'required|alpha_num',
+            'date' => 'required|date',
+            'url' => 'required|alpha_num',
+            'max' => 'required|integer',
+            'min' => 'required|integer',
+         ]);
+
         $event->name=$request->name;
         $event->date=$request->date;
         $event->url=$request->url;
@@ -64,7 +80,7 @@ class EventController extends Controller
         $event->save();
         $data =[
             'message'=> 'Event updated successfully',
-            'service'=>$event        
+            'event'=>$event        
         ];
         return response()->json($data);
     }
@@ -76,8 +92,8 @@ class EventController extends Controller
     {
         $event->delete();
         $data =[
-            'message'=> 'Event delete successfully',
-            'service'=>$event        
+            'message'=> 'Event deleted successfully',
+            'event'=>$event        
         ];
         return response()->json($data);
     }

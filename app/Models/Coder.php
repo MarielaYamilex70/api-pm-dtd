@@ -13,8 +13,8 @@ class Coder extends Model
         return $this->belongsTo(Event::class);
     }
 
-    public function promotion(){
-        return $this->belongsTo(Promotion::class);
+    public function promo(){
+        return $this->belongsTo(Promo::class);
     }
 
     public function province(){
