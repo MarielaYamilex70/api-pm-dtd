@@ -21,7 +21,15 @@ class RegionsController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {   
+        $request->validate([
+            'name' => 'required',
+            'lat' => 'required|float',
+            'long' => 'required|float',
+            'iso'=> 'required',
+            
+         ]);
+
         $region=new Regions();
         $region->name=$request->name;
         $region->lat=$request->lat;
@@ -53,6 +61,13 @@ class RegionsController extends Controller
      */
     public function update(Request $request, Regions $regions)
     {
+        $request->validate([
+            'name' => 'required',
+            'lat' => 'required|float',
+            'long' => 'required|float',
+            'iso'=> 'required',
+            
+         ]);
         $regions->name=$request->name;
         $regions->lat=$request->lat;
         $regions->long=$request->long;

@@ -22,6 +22,11 @@ class StackController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            
+         ]);
+
         $stack = new Stack();
         $stack->name = $request->name;
         $stack->save();
@@ -50,6 +55,12 @@ class StackController extends Controller
      */
     public function update(Request $request, Stack $stack)
     {
+         $request->validate([
+            'name' => 'required',
+            
+         ]);
+
+
         $stack->name=$request->name;
         $stack->save();
         $data =[

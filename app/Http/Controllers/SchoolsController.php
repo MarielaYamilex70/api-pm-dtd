@@ -13,7 +13,8 @@ class SchoolsController extends Controller
      */
     public function index()
     {
-        //
+        $schools = Schools::all();
+        return response()->json($schools);
     }
 
     /**
@@ -21,7 +22,24 @@ class SchoolsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'lat' => 'required|float',
+            'long' => 'required|float',
+
+        ]);
+
+        $schools = new Schools;
+        $schools->name = $request->name;
+        $schools->lat = $request->lat;
+        $schools->long = $request->long;
+
+        $schools->save();
+        $data = [
+            'message' => 'School created successfully',
+            'schools' => $schools
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -29,7 +47,12 @@ class SchoolsController extends Controller
      */
     public function show(Schools $schools)
     {
-        //
+        // return response()->json($schools);
+        $data = [
+            'message' => 'Schools details',
+            'schools' => $schools
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -37,7 +60,20 @@ class SchoolsController extends Controller
      */
     public function update(Request $request, Schools $schools)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'lat' => 'required|float',
+            'long' => 'required|float',
+        ]);
+        $schools->name = $request->name;
+        $schools->lat = $request->lat;
+        $schools->long = $request->long;
+        $schools->save();
+        $data = [
+            'message' => 'School updated successfully',
+            'schools' => $schools
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -45,6 +81,11 @@ class SchoolsController extends Controller
      */
     public function destroy(Schools $schools)
     {
-        //
+        $schools->delete();
+        $data =[
+            'message'=> 'School deleted successfully',
+            'schools'=>$schools        
+        ];
+        return response()->json($data);
     }
 }
