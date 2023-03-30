@@ -8,8 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Coder extends Model
 {
     use HasFactory;
-    public function recruiters()
+
+    public function event(){
+        return $this->belongsTo(Event::class);
+    }
+
+    public function promotion(){
+        return $this->belongsTo(Promotion::class);
+    }
+
+    public function province(){
+        return $this->belongsTo(Province::class);
+    }
+    
+    public function language()
         {
-        return $this->belongsToMany(Recruiter::class, 'matches');
+        return $this->belongsToMany(Language::class, 'coders_languages');
     }
 }

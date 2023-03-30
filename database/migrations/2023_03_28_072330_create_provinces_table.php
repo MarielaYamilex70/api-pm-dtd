@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('provinces', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('region_id');
+            $table->foreign('region_id')->references('id')->on('regions');
+
             $table->string('name');
             $table->float('lat',9,6);
             $table->float('long',9,6);

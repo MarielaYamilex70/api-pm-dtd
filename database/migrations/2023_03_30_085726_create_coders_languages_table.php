@@ -11,17 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('recuiters', function (Blueprint $table) {
+        Schema::create('coders_languages', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name');
-            $table->string('charge');
-            $table->string('linkedin');
-            $table->string('email');
-            $table->string('phone');
-                              
-            $table->boolean('remote');
-                    
+            $table->unsignedBigInteger('coder_id');
+            $table->foreign('coder_id')->references('id')->on('coders');
+
+            $table->unsignedBigInteger('language_id');
+            $table->foreign('language_id')->references('id')->on('languages');
 
             $table->timestamps();
         });
@@ -32,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('recuiters');
+        Schema::dropIfExists('coders_languages');
     }
 };

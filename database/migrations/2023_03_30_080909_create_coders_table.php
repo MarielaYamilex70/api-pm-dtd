@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('coders', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('event_id');
+            $table->foreign('event_id')->references('id')->on('events');
+
+            $table->unsignedBigInteger('promotion_id');
+            $table->foreign('promotion_id')->references('id')->on('promotions');
+
+            $table->unsignedBigInteger('province_id');
+            $table->foreign('province_id')->references('id')->on('provinces');
 
             $table->string('name');
             $table->string('gender');
@@ -23,7 +31,7 @@ return new class extends Migration
             $table->string('phone');
             $table->string('linkedin');
             $table->string('github');
-            
+
             $table->timestamps();
         });
     }
