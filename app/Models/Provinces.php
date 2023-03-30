@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Provinces extends Model
 {
     use HasFactory;
+    public function region(){
+        return $this->belongsTo(Regions::class);
+    }
 }
+
