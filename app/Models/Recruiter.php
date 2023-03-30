@@ -29,4 +29,9 @@ class Recruiter extends Model
         {
         return $this->belongsToMany(Coder::class, 'matches');
     }
+
+    public function stack()
+        {
+        return $this->belongsToMany(Stack::class, 'recruiters_stacks');
+    }
 }
