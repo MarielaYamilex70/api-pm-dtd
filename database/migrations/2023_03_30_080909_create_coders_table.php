@@ -11,26 +11,27 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('recruiters', function (Blueprint $table) {
+        Schema::create('coders', function (Blueprint $table) {
             $table->id();
-
             $table->unsignedBigInteger('event_id');
             $table->foreign('event_id')->references('id')->on('events');
 
-            /*$table->unsignedBigInteger('company_id');
-            $table->foreign('company_id')->references('id')->on('companies');
+            $table->unsignedBigInteger('promotion_id');
+            $table->foreign('promotion_id')->references('id')->on('promotions');
 
             $table->unsignedBigInteger('province_id');
-            $table->foreign('province_id')->references('id')->on('provinces');*/
+            $table->foreign('province_id')->references('id')->on('provinces');
 
             $table->string('name');
-            $table->string('charge');
-            $table->string('linkedin');
+            $table->string('gender');
+            $table->integer('years');
+            $table->string('avaliability');
+            $table->boolean('remote');
             $table->string('email');
             $table->string('phone');
-                              
-            $table->boolean('remote');
-                 
+            $table->string('linkedin');
+            $table->string('github');
+
             $table->timestamps();
         });
     }
@@ -40,6 +41,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('recruiters');
+        Schema::dropIfExists('coders');
     }
 };
