@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Promotions extends Model
 {
     use HasFactory;
-    public function school(){
-    return $this->belongsTo(Schools::class);
-     }
+    public function school()
+    {
+        return $this->belongsTo(Schools::class);
+    }
 }
