@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Stack extends Model
 {
     use HasFactory;
+    public function coder()
+        {
+        return $this->belongsToMany(Coder::class, 'coders_stacks');
+    }
 }

@@ -24,4 +24,9 @@ class Recruiter extends Model
         {
         return $this->belongsToMany(Language::class, 'recruiters_languages');
     }
+
+    public function coder()
+        {
+        return $this->belongsToMany(Coder::class, 'matches');
+    }
 }

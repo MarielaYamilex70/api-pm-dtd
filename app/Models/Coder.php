@@ -25,4 +25,14 @@ class Coder extends Model
         {
         return $this->belongsToMany(Language::class, 'coders_languages');
     }
+
+    public function recruiter()
+        {
+        return $this->belongsToMany(Recruiter::class, 'matches');
+    }
+
+    public function stack()
+        {
+        return $this->belongsToMany(Stack::class, 'coders_stacks');
+    }
 }
