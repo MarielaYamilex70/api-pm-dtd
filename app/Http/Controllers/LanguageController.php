@@ -22,6 +22,11 @@ class LanguageController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate([
+            'name' => 'required',
+            
+         ]);
         $language = new Language();
         $language->name = $request->name;
         $language->save();
@@ -50,6 +55,11 @@ class LanguageController extends Controller
      */
     public function update(Request $request, Language $language)
     {
+        $request->validate([
+            'name' => 'required',
+            
+         ]);
+         
         $language->name=$request->name;
         $language->save();
         $data =[
