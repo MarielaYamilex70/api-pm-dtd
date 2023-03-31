@@ -32,7 +32,7 @@ class StackController extends Controller
         $stack->save();
         $data = [
             'message' => 'Stack created successfully',
-            'service' => $stack
+            'stack' => $stack
         ];
         return response()->json($data);
     }
@@ -45,7 +45,7 @@ class StackController extends Controller
         // return response()->json($stack);
         $data =[
             'message'=> 'Stack details',
-            'service'=>$stack        
+            'stack'=>$stack        
         ];
         return response()->json($data);
     }
@@ -65,7 +65,7 @@ class StackController extends Controller
         $stack->save();
         $data =[
             'message'=> 'Stack updated successfully',
-            'service'=>$stack        
+            'stack'=>$stack        
         ];
         return response()->json($data);
     }
@@ -78,7 +78,7 @@ class StackController extends Controller
         $stack->delete();
         $data =[
             'message'=> 'Stack delete successfully',
-            'service'=>$stack        
+            'stack'=>$stack        
         ];
         return response()->json($data);
     }

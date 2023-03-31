@@ -38,7 +38,7 @@ class RegionsController extends Controller
         $region->save();
         $data =[
             'message'=> 'Region created successfully',
-            'service'=>$region        
+            'region'=>$region        
         ];
         return response()->json($data);
     }

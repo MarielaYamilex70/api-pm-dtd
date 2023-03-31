@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Provinces;
+use App\Models\Province;
 use App\Http\Controllers\Controller;
+use App\Models\Promotions;
 use Illuminate\Http\Request;
 
 class ProvincesController extends Controller
@@ -13,7 +14,8 @@ class ProvincesController extends Controller
      */
     public function index()
     {
-        //
+        $provinces = Province::all();
+        return response()->json($provinces);
     }
 
     /**
@@ -21,30 +23,79 @@ class ProvincesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'regions_id' => 'required|integer',
+            'name' => 'required',
+            'lat' => 'required|float',
+            'long' => 'required|float',
+            'iso' => 'required',
+
+        ]);
+
+        $province = new Province;
+        $province->regions_id=$request->regions_id;
+        $province->name = $request->name;
+        $province->lat = $request->lat;
+        $province->long = $request->long;
+        $province->iso = $request->iso;
+        $province->save();
+        $data = [
+            'message' => 'Province created successfully',
+            'province' => $province
+        ];
+        return response()->json($data);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Provinces $provinces)
+    public function show(Province $province)
     {
-        //
+        // return response()->json($provinces);
+        $data = [
+            'message' => 'Province details',
+            'province' => $province
+        ];
+        return response()->json($data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Provinces $provinces)
+    public function update(Request $request, Province $province)
     {
-        //
+        $request->validate([
+            'regions_id' => 'required|integer',
+            'name' => 'required',
+            'lat' => 'required|float',
+            'long' => 'required|float',
+            'iso' => 'required',
+
+        ]);
+        $province->regions_id=$request->regions_id;
+        $province->name = $request->name;
+        $province->lat = $request->lat;
+        $province->long = $request->long;
+        $province->iso = $request->iso;
+        $province->save();
+        $data = [
+            'message' => 'Province updated successfully',
+            'province' => $province
+        ];
+        return response()->json($data);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Provinces $provinces)
+    public function destroy(Province $province)
     {
-        //
+        $province->delete();
+        $data =[
+            'message'=> 'Province deleted successfully',
+            'province'=>$province        
+        ];
+        return response()->json($data);
     }
 }
