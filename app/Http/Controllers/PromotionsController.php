@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Promotions;
+use App\Models\Promotion;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class PromotionsController extends Controller
      */
     public function index()
     {
-        $promotions = Promotions::all();
+        $promotions = Promotion::all();
         return response()->json($promotions);
     }
 
@@ -30,7 +30,7 @@ class PromotionsController extends Controller
 
         ]);
 
-        $promo = new Promotions;
+        $promo = new Promotion;
         $promo->school_id = $request->school_id;
         $promo->name = $request->name;
         $promo->nick = $request->nick;
@@ -39,7 +39,7 @@ class PromotionsController extends Controller
         $promo->save();
         $data = [
             'message' => 'Promotion created successfully',
-            'promotions' => $promo
+            'promotion' => $promo
         ];
         return response()->json($data);
     }
@@ -47,11 +47,11 @@ class PromotionsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Promotions $promotions)
+    public function show(Promotion $promotion)
     {
         $data = [
             'message' => 'Promotion details',
-            'promotions' => $promotions
+            'promotion' => $promotion
         ];
         return response()->json($data);
     }
@@ -59,7 +59,7 @@ class PromotionsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Promotions $promotions)
+    public function update(Request $request, Promotion $promotion)
     {
         $request->validate([
             'school_id' => 'required',
@@ -69,15 +69,15 @@ class PromotionsController extends Controller
 
         ]);
 
-        $promotions->school_id = $request->school_id;
-        $promotions->name = $request->name;
-        $promotions->nick = $request->nick;
-        $promotions->quantity = $request->quantity;
+        $promotion->school_id = $request->school_id;
+        $promotion->name = $request->name;
+        $promotion->nick = $request->nick;
+        $promotion->quantity = $request->quantity;
 
-        $promotions->save();
+        $promotion->save();
         $data = [
             'message' => 'Promotion updated successfully',
-            'promotions' => $promotions
+            'promotion' => $promotion
         ];
         return response()->json($data);
     }
@@ -85,12 +85,12 @@ class PromotionsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Promotions $promotions)
+    public function destroy(Promotion $promotion)
     {
-        $promotions->delete();
+        $promotion->delete();
         $data = [
             'message' => 'Promotion deleted successfully',
-            'promotion' => $promotions
+            'promotion' => $promotion
         ];
         return response()->json($data);
     }

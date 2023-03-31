@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Regions;
+use App\Models\Region;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class RegionsController extends Controller
      */
     public function index()
     {
-        $regions=Regions::all();
+        $regions=Region::all();
         return response()->json($regions);
     }
 
@@ -30,7 +30,7 @@ class RegionsController extends Controller
             
          ]);
 
-        $region=new Regions();
+        $region=new Region();
         $region->name=$request->name;
         $region->lat=$request->lat;
         $region->long=$request->long;
@@ -46,12 +46,12 @@ class RegionsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Regions $regions)
+    public function show(Region $region)
     {
         // return response()->json($region);
         $data =[
             'message'=> 'Region details',
-            'service'=>$regions       
+            'service'=>$region      
         ];
         return response()->json($data);
     }
@@ -59,7 +59,7 @@ class RegionsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Regions $regions)
+    public function update(Request $request, Region $region)
     {
         $request->validate([
             'name' => 'required',
@@ -68,14 +68,14 @@ class RegionsController extends Controller
             'iso'=> 'required',
             
          ]);
-        $regions->name=$request->name;
-        $regions->lat=$request->lat;
-        $regions->long=$request->long;
-        $regions->iso=$request->iso;
-        $regions->save();
+        $region->name=$request->name;
+        $region->lat=$request->lat;
+        $region->long=$request->long;
+        $region->iso=$request->iso;
+        $region->save();
         $data =[
             'message'=> 'Region updated successfully',
-            'service'=>$regions        
+            'service'=>$region        
         ];
         return response()->json($data);
     }
@@ -83,12 +83,12 @@ class RegionsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Regions $regions)
+    public function destroy(Region $region)
     {
-        $regions->delete();
+        $region->delete();
         $data =[
             'message'=> 'Region delete successfully',
-            'service'=>$regions        
+            'service'=>$region        
         ];
         return response()->json($data);
     }

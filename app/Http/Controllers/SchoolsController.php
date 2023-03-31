@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Schools;
+use App\Models\School;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class SchoolsController extends Controller
      */
     public function index()
     {
-        $schools = Schools::all();
+        $schools = School::all();
         return response()->json($schools);
     }
 
@@ -23,21 +23,23 @@ class SchoolsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'province_id' => 'required',
             'name' => 'required',
             'lat' => 'required|float',
             'long' => 'required|float',
 
         ]);
 
-        $schools = new Schools;
-        $schools->name = $request->name;
-        $schools->lat = $request->lat;
-        $schools->long = $request->long;
+        $school = new School;
+        $school->province_id = $request->province_id;
+        $school->name = $request->name;
+        $school->lat = $request->lat;
+        $school->long = $request->long;
 
-        $schools->save();
+        $school->save();
         $data = [
             'message' => 'School created successfully',
-            'schools' => $schools
+            'schools' => $school
         ];
         return response()->json($data);
     }
@@ -45,12 +47,12 @@ class SchoolsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Schools $schools)
+    public function show(School $school)
     {
         // return response()->json($schools);
         $data = [
             'message' => 'Schools details',
-            'schools' => $schools
+            'schools' => $school
         ];
         return response()->json($data);
     }
@@ -58,20 +60,20 @@ class SchoolsController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Schools $schools)
+    public function update(Request $request, School $school)
     {
         $request->validate([
             'name' => 'required',
             'lat' => 'required|float',
             'long' => 'required|float',
         ]);
-        $schools->name = $request->name;
-        $schools->lat = $request->lat;
-        $schools->long = $request->long;
-        $schools->save();
+        $school->name = $request->name;
+        $school->lat = $request->lat;
+        $school->long = $request->long;
+        $school->save();
         $data = [
             'message' => 'School updated successfully',
-            'schools' => $schools
+            'schools' => $school
         ];
         return response()->json($data);
     }
@@ -79,12 +81,12 @@ class SchoolsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Schools $schools)
+    public function destroy(School $school)
     {
-        $schools->delete();
+        $school->delete();
         $data =[
             'message'=> 'School deleted successfully',
-            'schools'=>$schools        
+            'schools'=>$school        
         ];
         return response()->json($data);
     }
