@@ -38,7 +38,7 @@ class RegionsController extends Controller
         $region->save();
         $data =[
             'message'=> 'Region created successfully',
-            'service'=>$region        
+            'region'=>$region        
         ];
         return response()->json($data);
     }
@@ -51,7 +51,7 @@ class RegionsController extends Controller
         // return response()->json($region);
         $data =[
             'message'=> 'Region details',
-            'service'=>$regions       
+            'regions'=>$regions       
         ];
         return response()->json($data);
     }
@@ -75,7 +75,7 @@ class RegionsController extends Controller
         $regions->save();
         $data =[
             'message'=> 'Region updated successfully',
-            'service'=>$regions        
+            'regions'=>$regions        
         ];
         return response()->json($data);
     }
@@ -88,7 +88,7 @@ class RegionsController extends Controller
         $regions->delete();
         $data =[
             'message'=> 'Region delete successfully',
-            'service'=>$regions        
+            'regions'=>$regions        
         ];
         return response()->json($data);
     }
