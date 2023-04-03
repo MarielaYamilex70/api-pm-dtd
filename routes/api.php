@@ -37,6 +37,11 @@ Route::get('/coders/{coder}','App\Http\Controllers\CoderController@show');
 Route::put('/coders/{coder}','App\Http\Controllers\CoderController@update');
 Route::delete('/coders/{coder}','App\Http\Controllers\CoderController@destroy');
 
+Route::post('/matches/recruiters','App\Http\Controllers\RecruiterController@attach');
+Route::post('/matches/recruiters/detach','App\Http\Controllers\RecruiterController@detach');
+
+Route::post('/matches/coders','App\Http\Controllers\CoderController@recruiters');
+
 Route::get('/companies','App\Http\Controllers\CompanyController@index');
 Route::post('/companies','App\Http\Controllers\CompanyController@store');
 Route::get('/companies/{company}','App\Http\Controllers\CompanyController@show');

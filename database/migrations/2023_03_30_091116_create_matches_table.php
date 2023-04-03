@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('recruiter_id');
             $table->foreign('recruiter_id')->references('id')->on('recruiters');
 
-            $table->float('afinity',3,2);    
+            $table->decimal('afinity',5,2);    
 
             $table->timestamps();
         });
