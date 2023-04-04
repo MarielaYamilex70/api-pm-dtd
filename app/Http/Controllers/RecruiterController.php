@@ -118,4 +118,35 @@ class RecruiterController extends Controller
         ];
         return response()->json($data);
     }
+
+    public function attach(Request $request)
+    {
+        //
+        $request->validate([
+            'recruiter_id' => 'required|integer',
+            'coder_id' => 'required|integer',
+            'afinity' => 'required|numeric|decimal:0,2'
+
+         ]);
+        $recruiter = Recruiter::find($request->recruiter_id);
+        $recruiter->coder()->attach($request->coder_id, ['afinity' => $request->afinity]);
+        
+        $data =[
+            'message'=> 'Coder attached successfuly',
+            'recruiter'=>$recruiter        
+        ];
+        return response()->json($data);
+    }
+
+    public function detach(Request $request)
+    {
+        //
+        $recruiter = Recruiter::find($request->recruiter_id);
+        $recruiter->coder()->detach($request->coder_id);
+        $data =[
+            'message'=> 'Coder detached successfuly',
+            'recruiter'=>$recruiter        
+        ];
+        return response()->json($data);
+    }
 }
