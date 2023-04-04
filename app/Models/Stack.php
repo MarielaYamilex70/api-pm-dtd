@@ -13,7 +13,7 @@ class Stack extends Model
         return $this->belongsToMany(Recruiter::class, 'recruiters_stacks');
     }
 
-    public function coder(){
-        return $this->belongsToMany(Coder::class, 'coders_stacks');
+    public function coders(){
+        return $this->belongsToMany(Stack::class, 'coders_stacks');
     }
 }
