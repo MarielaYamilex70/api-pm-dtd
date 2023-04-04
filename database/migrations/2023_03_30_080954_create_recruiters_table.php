@@ -31,6 +31,8 @@ return new class extends Migration
                               
             $table->boolean('remote');
 
+            $table->unsignedTinyInteger('interviews_quantity');
+            
             $table->timestamps();
         });
     }

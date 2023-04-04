@@ -24,7 +24,7 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('gender');
-            $table->integer('years');
+            $table->unsignedTinyInteger('years');
             $table->string('avaliability');
             $table->boolean('remote');
             $table->string('email');

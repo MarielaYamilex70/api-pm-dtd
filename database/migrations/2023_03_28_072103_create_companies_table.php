@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('ubication');
             $table->string('email');
             $table->string('phone');
-            $table->integer('priority');
+            $table->unsignedTinyInteger('priority');
 
             $table->timestamps();
         });

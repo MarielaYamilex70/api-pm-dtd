@@ -84,6 +84,10 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Company::factory(10)->create();
 
+        \App\Models\Event::factory(1)->create();
 
+        \App\Models\Coder::factory(59)->create();
+
+        \App\Models\Recruiter::factory(20)->create();
     }
 }

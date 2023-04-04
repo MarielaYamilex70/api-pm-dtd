@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('name');
             $table->date('date');
             $table->string('url');
-            $table->integer('max');
-            $table->integer('min');
+            $table->unsignedTinyInteger('max');
+            $table->unsignedTinyInteger('min');
             $table->timestamps();
         });
     }
