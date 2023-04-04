@@ -25,8 +25,13 @@ class SchoolsController extends Controller
         $request->validate([
             'province_id' => 'required',
             'name' => 'required',
-            'lat' => 'required|float',
-            'long' => 'required|float',
+            // 'lat' => 'required|float',
+            // 'long' => 'required|float',
+
+            'lat' => ['required', 'numeric', 'regex:/^-?\d*(\.\d+)?$/'],
+            'long' => ['required', 'numeric', 'regex:/^-?\d*(\.\d+)?$/'],
+
+
 
         ]);
 
@@ -64,8 +69,10 @@ class SchoolsController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'lat' => 'required|float',
-            'long' => 'required|float',
+            // 'lat' => 'required|float',
+            // 'long' => 'required|float',
+            'lat' => ['required', 'numeric', 'regex:/^-?\d*(\.\d+)?$/'],
+            'long' => ['required', 'numeric', 'regex:/^-?\d*(\.\d+)?$/'],
         ]);
         $school->name = $request->name;
         $school->lat = $request->lat;
@@ -84,9 +91,9 @@ class SchoolsController extends Controller
     public function destroy(School $school)
     {
         $school->delete();
-        $data =[
-            'message'=> 'School deleted successfully',
-            'schools'=>$school        
+        $data = [
+            'message' => 'School deleted successfully',
+            'schools' => $school
         ];
         return response()->json($data);
     }

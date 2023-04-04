@@ -27,8 +27,8 @@ class ProvincesController extends Controller
         $request->validate([
             'regions_id' => 'required|integer',
             'name' => 'required',
-            'lat' => 'required|float',
-            'long' => 'required|float',
+            'lat' => 'required',
+            'long' => 'required',
             'iso' => 'required',
 
         ]);
@@ -68,8 +68,8 @@ class ProvincesController extends Controller
         $request->validate([
             'regions_id' => 'required|integer',
             'name' => 'required',
-            'lat' => 'required|float',
-            'long' => 'required|float',
+            'lat' => 'required',
+            'long' => 'required',
             'iso' => 'required',
 
         ]);

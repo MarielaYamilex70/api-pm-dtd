@@ -24,8 +24,8 @@ class RegionsController extends Controller
     {   
         $request->validate([
             'name' => 'required',
-            'lat' => 'required|float',
-            'long' => 'required|float',
+            'lat' => 'required',
+            'long' => 'required',
             'iso'=> 'required',
             
          ]);
@@ -51,7 +51,7 @@ class RegionsController extends Controller
         // return response()->json($region);
         $data =[
             'message'=> 'Region details',
-            'service'=>$region      
+            'region'=>$region      
         ];
         return response()->json($data);
     }
@@ -63,8 +63,8 @@ class RegionsController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'lat' => 'required|float',
-            'long' => 'required|float',
+            'lat' => 'required',
+            'long' => 'required',
             'iso'=> 'required',
             
          ]);
@@ -75,7 +75,7 @@ class RegionsController extends Controller
         $region->save();
         $data =[
             'message'=> 'Region updated successfully',
-            'service'=>$region        
+            'region'=>$region        
         ];
         return response()->json($data);
     }
@@ -88,7 +88,7 @@ class RegionsController extends Controller
         $region->delete();
         $data =[
             'message'=> 'Region delete successfully',
-            'service'=>$region        
+            'region'=>$region        
         ];
         return response()->json($data);
     }

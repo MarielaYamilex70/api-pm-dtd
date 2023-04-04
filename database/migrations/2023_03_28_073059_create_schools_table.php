@@ -14,9 +14,11 @@ return new class extends Migration
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('province_id');
-            $table->foreign('province_id')->references('id')->on('provinces');
+            $table->foreign('province_id')->references('id')->on('provinces')->onDelete('cascade');
 
             $table->string('name');
+            $table->float('lat',9,6);
+            $table->float('long',9,6);
             $table->timestamps();
         });
     }
