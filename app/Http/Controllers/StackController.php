@@ -92,9 +92,29 @@ class StackController extends Controller
         $stacks = Stack::find($request->stack_id);
         $recruiters = $stacks->recruiter;
         $data =[
-            'message'=> 'Recuiters fetched successfuly',
+            'message'=> 'Recuiters fetched successfully',
             'recruiters'=>$recruiters        
         ];
         return response()->json($data);
     }
+
+    public function coders(Request $request)
+    {
+        $request->validate([
+            'stack_id' => 'required|integer'
+            
+         ]);
+        $stacks = Stack::find($request->stack_id);
+        $coders = $stacks->coders;
+        $data =[
+            'message'=> 'Coders fetched successfully',
+            'coders'=>$coders        
+        ];
+        return response()->json($data);
+    }
+
+
+
+
+
 }

@@ -132,11 +132,83 @@ class CoderController extends Controller
         $coders = Coder::find($request->coder_id);
         $recruiters = $coders->recruiter;
         $data =[
-            'message'=> 'Recuiters fetched successfuly',
+            'message'=> 'Recuiters fetched successfully',
             'recruiters'=>$recruiters        
         ];
         return response()->json($data);
     }
 
     
+    public function attachStack(Request $request)
+    {
+        //
+        $request->validate([
+            'coder_id' => 'required|integer',
+            'stack_id' => 'required|integer'
+            
+         ]);
+        $coder = Coder::find($request->coder_id);
+        $coder->stack()->attach($request->stack_id);
+        
+        $data =[
+            'message'=> 'Stack attached successfully',
+            'coder'=>$coder        
+        ];
+        return response()->json($data);
+    }
+
+    public function detachStack(Request $request)
+    {
+        //
+        $request->validate([
+            'coder_id' => 'required|integer',
+            'stack_id' => 'required|integer'
+            
+         ]);
+        $coder = Coder::find($request->coder_id);
+        $coder->stack()->detach($request->stack_id);
+        $data =[
+            'message'=> 'Stack detached successfully',
+            'coder'=>$coder        
+        ];
+        return response()->json($data);
+    }
+
+    public function attachLanguage(Request $request)
+    {
+        //
+        $request->validate([
+            'coder_id' => 'required|integer',
+            'language_id' => 'required|integer'
+            
+         ]);
+        $coder = Coder::find($request->coder_id);
+        $coder->language()->attach($request->language_id);
+        
+        $data =[
+            'message'=> 'Languages attached successfully',
+            'coder'=>$coder        
+        ];
+        return response()->json($data);
+    }
+
+    public function detachLanguage(Request $request) 
+    {
+        //
+        $request->validate([
+            'coder_id' => 'required|integer',
+            'language_id' => 'required|integer',
+            
+         ]);
+        $coder = Coder::find($request->coder_id);
+        $coder->language()->detach($request->language_id);
+        $data =[
+            'message'=> 'Languages detached successfully',
+            'coder'=>$coder        
+        ];
+        return response()->json($data);
+    }
+
+
 }
+

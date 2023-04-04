@@ -93,4 +93,25 @@ class LanguageController extends Controller
         ];
         return response()->json($data);
     }
+    
+    public function coders(Request $request)
+    {
+        
+        $languages = Language::find($request->language_id);
+        $coders = $languages->coders;
+        $data =[
+            'message'=> 'Coders fetched successfully',
+            'coders'=>$coders        
+        ];
+        return response()->json($data);
+    }
+
+
+
+
+
+
+
+
+
 }
