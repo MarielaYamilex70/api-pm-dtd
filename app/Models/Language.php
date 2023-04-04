@@ -10,10 +10,11 @@ class Language extends Model
     use HasFactory;
     public function coder()
     {
-    return $this->belongsToMany(Coder::class, 'coders_languages');
-}
+        return $this->belongsToMany(Coder::class, 'coders_languages');
+    }
     public function recruiter()
     {
-    return $this->belongsToMany(Recruiter::class, 'recruiters_languages');
-}
+        return $this->belongsToMany(Recruiter::class, 'recruiters_languages');
+        
+    }
 }

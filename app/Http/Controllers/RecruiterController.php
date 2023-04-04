@@ -141,6 +141,11 @@ class RecruiterController extends Controller
     public function detach(Request $request)
     {
         //
+        $request->validate([
+            'recruiter_id' => 'required|integer',
+            'coder_id' => 'required|integer',
+           
+         ]);
         $recruiter = Recruiter::find($request->recruiter_id);
         $recruiter->coder()->detach($request->coder_id);
         $data =[
@@ -149,4 +154,76 @@ class RecruiterController extends Controller
         ];
         return response()->json($data);
     }
+
+    public function attachStack(Request $request)
+    {
+        //
+        $request->validate([
+            'recruiter_id' => 'required|integer',
+            'stack_id' => 'required|integer'
+            
+         ]);
+        $recruiter = Recruiter::find($request->recruiter_id);
+        $recruiter->stack()->attach($request->stack_id);
+        
+        $data =[
+            'message'=> 'Stack attached successfuly',
+            'recruiter'=>$recruiter        
+        ];
+        return response()->json($data);
+    }
+
+    public function detachStack(Request $request)
+    {
+        //
+        $request->validate([
+            'recruiter_id' => 'required|integer',
+            'stack_id' => 'required|integer'
+            
+         ]);
+        $recruiter = Recruiter::find($request->recruiter_id);
+        $recruiter->stack()->detach($request->stack_id);
+        $data =[
+            'message'=> 'Stack detached successfuly',
+            'recruiter'=>$recruiter        
+        ];
+        return response()->json($data);
+    }
+
+    public function attachLanguage(Request $request)
+    {
+        //
+        $request->validate([
+            'recruiter_id' => 'required|integer',
+            'language_id' => 'required|integer'
+            
+         ]);
+        $recruiter = Recruiter::find($request->recruiter_id);
+        $recruiter->language()->attach($request->language_id);
+        
+        $data =[
+            'message'=> 'Languages attached successfuly',
+            'recruiter'=>$recruiter        
+        ];
+        return response()->json($data);
+    }
+
+    public function detachLanguage(Request $request) 
+    {
+        //
+        $request->validate([
+            'recruiter_id' => 'required|integer',
+            'language_id' => 'required|integer',
+            
+         ]);
+        $recruiter = Recruiter::find($request->recruiter_id);
+        $recruiter->language()->detach($request->language_id);
+        $data =[
+            'message'=> 'Languages detached successfuly',
+            'recruiter'=>$recruiter        
+        ];
+        return response()->json($data);
+    }
+
+
 }

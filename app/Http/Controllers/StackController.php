@@ -82,4 +82,19 @@ class StackController extends Controller
         ];
         return response()->json($data);
     }
+
+    public function recruiters(Request $request)
+    {
+        $request->validate([
+            'stack_id' => 'required|integer'
+            
+         ]);
+        $stacks = Stack::find($request->stack_id);
+        $recruiters = $stacks->recruiter;
+        $data =[
+            'message'=> 'Recuiters fetched successfuly',
+            'recruiters'=>$recruiters        
+        ];
+        return response()->json($data);
+    }
 }

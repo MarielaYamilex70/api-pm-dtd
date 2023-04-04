@@ -84,6 +84,16 @@ Route::get('/stacks/{stack}','App\Http\Controllers\StackController@show');
 Route::put('/stacks/{stack}','App\Http\Controllers\StackController@update');
 Route::delete('/stacks/{stack}','App\Http\Controllers\StackController@destroy');
 
+Route::post('/recruiters/stacks','App\Http\Controllers\RecruiterController@attachStack');
+Route::post('/recruiters/stacks/detach','App\Http\Controllers\RecruiterController@detachStack');
+
+Route::post('/stacks/recruiters','App\Http\Controllers\StackController@recruiters');
+
+Route::post('/recruiters/languages','App\Http\Controllers\RecruiterController@attachLanguage');
+Route::post('/recruiters/languages/detach','App\Http\Controllers\RecruiterController@detachLanguage');
+
+Route::post('/languages/recruiters','App\Http\Controllers\LanguageController@recruiters');
+
 
 
 
