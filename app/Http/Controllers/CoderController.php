@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Coder;
 use App\Http\Controllers\Controller;
+use App\Models\Recruiter;
 use Illuminate\Http\Request;
 
 class CoderController extends Controller
@@ -124,4 +125,18 @@ class CoderController extends Controller
         ];
         return response()->json($data);
     }
+
+    public function recruiters(Request $request)
+    {
+        
+        $coders = Coder::find($request->coder_id);
+        $recruiters = $coders->recruiter;
+        $data =[
+            'message'=> 'Recuiters fetched successfuly',
+            'recruiters'=>$recruiters        
+        ];
+        return response()->json($data);
+    }
+
+    
 }

@@ -37,6 +37,11 @@ Route::get('/coders/{coder}','App\Http\Controllers\CoderController@show');
 Route::put('/coders/{coder}','App\Http\Controllers\CoderController@update');
 Route::delete('/coders/{coder}','App\Http\Controllers\CoderController@destroy');
 
+Route::post('/matches/recruiters','App\Http\Controllers\RecruiterController@attach');
+Route::post('/matches/recruiters/detach','App\Http\Controllers\RecruiterController@detach');
+
+Route::post('/matches/coders','App\Http\Controllers\CoderController@recruiters');
+
 Route::get('/companies','App\Http\Controllers\CompanyController@index');
 Route::post('/companies','App\Http\Controllers\CompanyController@store');
 Route::get('/companies/{company}','App\Http\Controllers\CompanyController@show');
@@ -78,6 +83,16 @@ Route::post('/stacks','App\Http\Controllers\StackController@store');
 Route::get('/stacks/{stack}','App\Http\Controllers\StackController@show');
 Route::put('/stacks/{stack}','App\Http\Controllers\StackController@update');
 Route::delete('/stacks/{stack}','App\Http\Controllers\StackController@destroy');
+
+Route::post('/recruiters/stacks','App\Http\Controllers\RecruiterController@attachStack');
+Route::post('/recruiters/stacks/detach','App\Http\Controllers\RecruiterController@detachStack');
+
+Route::post('/stacks/recruiters','App\Http\Controllers\StackController@recruiters');
+
+Route::post('/recruiters/languages','App\Http\Controllers\RecruiterController@attachLanguage');
+Route::post('/recruiters/languages/detach','App\Http\Controllers\RecruiterController@detachLanguage');
+
+Route::post('/languages/recruiters','App\Http\Controllers\LanguageController@recruiters');
 
 
 

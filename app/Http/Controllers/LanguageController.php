@@ -81,4 +81,16 @@ class LanguageController extends Controller
         ];
         return response()->json($data);
     }
+
+    public function recruiters(Request $request)
+    {
+        
+        $languages = Language::find($request->language_id);
+        $recruiters = $languages->recruiter;
+        $data =[
+            'message'=> 'Recuiters fetched successfuly',
+            'recruiters'=>$recruiters        
+        ];
+        return response()->json($data);
+    }
 }
