@@ -25,7 +25,7 @@ class ProvincesController extends Controller
     {
 
         $request->validate([
-            'regions_id' => 'required|integer',
+            'region_id' => 'required|integer',
             'name' => 'required',
             'lat' => 'required',
             'long' => 'required',
@@ -34,7 +34,7 @@ class ProvincesController extends Controller
         ]);
 
         $province = new Province;
-        $province->regions_id=$request->regions_id;
+        $province->region_id=$request->region_id;
         $province->name = $request->name;
         $province->lat = $request->lat;
         $province->long = $request->long;
@@ -66,14 +66,14 @@ class ProvincesController extends Controller
     public function update(Request $request, Province $province)
     {
         $request->validate([
-            'regions_id' => 'required|integer',
+            'region_id' => 'required|integer',
             'name' => 'required',
             'lat' => 'required',
             'long' => 'required',
             'iso' => 'required',
 
         ]);
-        $province->regions_id=$request->regions_id;
+        $province->region_id=$request->region_id;
         $province->name = $request->name;
         $province->lat = $request->lat;
         $province->long = $request->long;
