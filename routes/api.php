@@ -95,6 +95,17 @@ Route::post('/recruiters/languages/detach','App\Http\Controllers\RecruiterContro
 Route::post('/languages/recruiters','App\Http\Controllers\LanguageController@recruiters');
 
 
+Route::post('/coders/stacks','App\Http\Controllers\CoderController@attachStack');
+Route::post('/coders/stacks/detach','App\Http\Controllers\CoderController@detachStack');
+
+Route::post('/stacks/coders','App\Http\Controllers\StackController@coders');
+
+Route::post('/coders/languages','App\Http\Controllers\CoderController@attachLanguage');
+Route::post('/coders/languages/detach','App\Http\Controllers\CoderController@detachLanguage');
+
+Route::post('/languages/coders','App\Http\Controllers\LanguageController@coders');
+
+
 
 
 
