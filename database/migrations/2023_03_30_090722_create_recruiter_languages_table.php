@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('recruiters_languages', function (Blueprint $table) {
             $table->id();
+            
             $table->unsignedBigInteger('recruiter_id');
             $table->foreign('recruiter_id')
                 ->references('id')

@@ -25,6 +25,7 @@ return new class extends Migration
                 ->references('id')
                 ->on('languages')
                 ->onDelete('cascade');
+                
             $table->timestamps();
         });
     }

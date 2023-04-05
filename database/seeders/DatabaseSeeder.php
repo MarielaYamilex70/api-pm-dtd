@@ -12,6 +12,7 @@ use App\Models\Region;
 use App\Models\School;
 use App\Models\Stack;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -86,8 +87,84 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\Event::factory(1)->create();
 
-        \App\Models\Coder::factory(59)->create();
+        \App\Models\Coder::factory(59)
+            ->create()
+            ->each(function($coder){
+                
+                $numStacks=random_int(1,2);
+                $stacks=Stack::select('id')
+                    ->inRandomOrder()
+                    ->limit($numStacks)
+                    ->distinct()
+                    ->get();
+                foreach($stacks as $stack){
+                    DB::table('coders_stacks')->insert([
+                        [
+                            'coder_id'=> $coder->id,
+                            'stack_id'=> $stack->id,
+                            'created_at'=> now(),
+                            'updated_at'=> now()
+                        ]
+                    ]);
+                }
 
-        \App\Models\Recruiter::factory(20)->create();
+                $numLanguages=random_int(1,2);
+                $languages=Language::select('id')
+                    ->inRandomOrder()
+                    ->limit($numLanguages)
+                    ->distinct()
+                    ->get();
+                foreach($languages as $language){
+                    DB::table('coders_languages')->insert([
+                        [
+                            'coder_id'=> $coder->id,
+                            'language_id'=> $language->id,
+                            'created_at'=> now(),
+                            'updated_at'=> now()
+                        ]
+                    ]);
+                }
+
+            });
+
+        \App\Models\Recruiter::factory(20)
+            ->create()
+            ->each(function($recruiter){
+                
+                $numStacks=random_int(1,2);
+                $stacks=Stack::select('id')
+                    ->inRandomOrder()
+                    ->limit($numStacks)
+                    ->distinct()
+                    ->get();
+                foreach($stacks as $stack){
+                    DB::table('recruiters_stacks')->insert([
+                        [
+                            'recruiter_id'=> $recruiter->id,
+                            'stack_id'=> $stack->id,
+                            'created_at'=> now(),
+                            'updated_at'=> now()
+                        ]
+                    ]);
+                }
+
+                $numLanguages=random_int(1,2);
+                $languages=Language::select('id')
+                    ->inRandomOrder()
+                    ->limit($numLanguages)
+                    ->distinct()
+                    ->get();
+                foreach($languages as $language){
+                    DB::table('recruiters_languages')->insert([
+                        [
+                            'recruiter_id'=> $recruiter->id,
+                            'language_id'=> $language->id,
+                            'created_at'=> now(),
+                            'updated_at'=> now()
+                        ]
+                    ]);
+                }
+
+            });
     }
 }

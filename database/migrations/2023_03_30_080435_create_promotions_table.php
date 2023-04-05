@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('nick');
             $table->string('quantity');
+            
             $table->timestamps();
         });
     }
