@@ -15,10 +15,16 @@ return new class extends Migration
             $table->id();
 
             $table->unsignedBigInteger('coder_id');
-            $table->foreign('coder_id')->references('id')->on('coders');
+            $table->foreign('coder_id')
+                ->references('id')
+                ->on('coders')
+                ->onDelete('cascade');
 
             $table->unsignedBigInteger('recruiter_id');
-            $table->foreign('recruiter_id')->references('id')->on('recruiters');
+            $table->foreign('recruiter_id')
+                ->references('id')
+                ->on('recruiters')
+                ->onDelete('cascade');
 
             $table->decimal('afinity',5,2);    
 

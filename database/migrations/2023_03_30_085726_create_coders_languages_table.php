@@ -15,11 +15,16 @@ return new class extends Migration
             $table->id();
 
             $table->unsignedBigInteger('coder_id');
-            $table->foreign('coder_id')->references('id')->on('coders');
+            $table->foreign('coder_id')
+                ->references('id')
+                ->on('coders')
+                ->onDelete('cascade');
 
             $table->unsignedBigInteger('language_id');
-            $table->foreign('language_id')->references('id')->on('languages');
-
+            $table->foreign('language_id')
+                ->references('id')
+                ->on('languages')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -14,13 +14,22 @@ return new class extends Migration
         Schema::create('coders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('event_id');
-            $table->foreign('event_id')->references('id')->on('events');
+            $table->foreign('event_id')
+                ->references('id')
+                ->on('events')
+                ->onDelete('cascade');
 
             $table->unsignedBigInteger('promo_id');
-            $table->foreign('promo_id')->references('id')->on('promotions');
+            $table->foreign('promo_id')
+                ->references('id')
+                ->on('promotions')
+                ->onDelete('cascade');
 
             $table->unsignedBigInteger('province_id');
-            $table->foreign('province_id')->references('id')->on('provinces');
+            $table->foreign('province_id')
+                ->references('id')
+                ->on('provinces')
+                ->onDelete('cascade');
 
             $table->string('name');
             $table->string('gender');

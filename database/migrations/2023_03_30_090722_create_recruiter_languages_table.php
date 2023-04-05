@@ -14,10 +14,16 @@ return new class extends Migration
         Schema::create('recruiters_languages', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('recruiter_id');
-            $table->foreign('recruiter_id')->references('id')->on('recruiters');
+            $table->foreign('recruiter_id')
+                ->references('id')
+                ->on('recruiters')
+                ->onDelete('cascade');
 
             $table->unsignedBigInteger('language_id');
-            $table->foreign('language_id')->references('id')->on('languages');
+            $table->foreign('language_id')
+                ->references('id')
+                ->on('languages')
+                ->onDelete('cascade');
 
             $table->timestamps();
         });

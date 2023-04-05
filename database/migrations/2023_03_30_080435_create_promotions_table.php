@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
 
             $table->unsignedBigInteger('school_id');
-            $table->foreign('school_id')->references('id')->on('schools');
+            $table->foreign('school_id')
+                ->references('id')
+                ->on('schools')
+                ->onDelete('cascade');
 
             $table->string('name');
             $table->string('nick');

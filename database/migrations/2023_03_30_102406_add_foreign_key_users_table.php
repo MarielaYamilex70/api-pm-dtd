@@ -13,11 +13,16 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->unsignedBigInteger('rol_id');
-            $table->foreign('rol_id')->references('id')->on('roles');
-            
+            $table->foreign('rol_id')
+                ->references('id')
+                ->on('roles')
+                ->onDelete('cascade');
+                
             $table->unsignedBigInteger('promo_id');
-            $table->foreign('promo_id')->references('id')->on('promotions');
-        
+            $table->foreign('promo_id')
+                ->references('id')
+                ->on('promotions')
+                ->onDelete('cascade');
         });
     }
 
