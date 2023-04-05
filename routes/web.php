@@ -14,7 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // return view('welcome');
+    //return view('welcome');
     echo "API-PM-DTD";
     
 });
+
+Route::get('/match','App\Http\Controllers\MatchController@index');
