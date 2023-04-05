@@ -106,15 +106,10 @@ class StackController extends Controller
          ]);
         $stacks = Stack::find($request->stack_id);
         $coders = $stacks->coder;
-        $data =[
+                $data =[
             'message'=> 'Coders fetched successfully',
             'coders'=>$coders        
         ];
         return response()->json($data);
     }
-
-
-
-
-
 }
