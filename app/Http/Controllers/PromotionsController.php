@@ -37,11 +37,23 @@ class PromotionsController extends Controller
         $promo->quantity = $request->quantity;
 
         $promo->save();
-        $data = [
-            'message' => 'Promotion created successfully',
-            'promotion' => $promo
-        ];
-        return response()->json($data);
+
+        if ($promo) {
+            $data =[
+                'message'=> 'Promotion created successfully',
+                'promo'=>$promo        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error to create promo'], 500);
+
+        // $data = [
+        //     'message' => 'Promotion created successfully',
+        //     'promotion' => $promo
+        // ];
+        // return response()->json($data);
     }
 
     /**
@@ -49,11 +61,22 @@ class PromotionsController extends Controller
      */
     public function show(Promotion $promotion)
     {
-        $data = [
-            'message' => 'Promotion details',
-            'promotion' => $promotion
-        ];
-        return response()->json($data);
+        if ($promotion) {
+            $data =[
+                'message'=> 'Promotion details',
+                'promo'=>$promotion        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error'], 500);
+
+        // $data = [
+        //     'message' => 'Promotion details',
+        //     'promotion' => $promotion
+        // ];
+        // return response()->json($data);
     }
 
     /**
@@ -75,11 +98,22 @@ class PromotionsController extends Controller
         $promotion->quantity = $request->quantity;
 
         $promotion->save();
-        $data = [
-            'message' => 'Promotion updated successfully',
-            'promotion' => $promotion
-        ];
-        return response()->json($data);
+
+        if ($promotion) {
+            $data =[
+                'message'=> 'Promotion updated successfully',
+                'promotion'=>$promotion        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error to updated promo'], 500);
+        // $data = [
+        //     'message' => 'Promotion updated successfully',
+        //     'promotion' => $promotion
+        // ];
+        // return response()->json($data);
     }
 
     /**
@@ -88,10 +122,22 @@ class PromotionsController extends Controller
     public function destroy(Promotion $promotion)
     {
         $promotion->delete();
-        $data = [
-            'message' => 'Promotion deleted successfully',
-            'promotion' => $promotion
-        ];
-        return response()->json($data);
+
+        if ($promotion) {
+            $data =[
+                'message'=> 'Promotion deleted successfully',
+                'promotion'=>$promotion        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error to deleted promo'], 500);
+
+        // $data = [
+        //     'message' => 'Promotion deleted successfully',
+        //     'promotion' => $promotion
+        // ];
+        // return response()->json($data);
     }
 }

@@ -25,6 +25,7 @@ class SchoolsController extends Controller
         $request->validate([
             'province_id' => 'required',
             'name' => 'required',
+
             // 'lat' => 'required|float',
             // 'long' => 'required|float',
 
@@ -42,11 +43,22 @@ class SchoolsController extends Controller
         $school->long = $request->long;
 
         $school->save();
-        $data = [
-            'message' => 'School created successfully',
-            'schools' => $school
-        ];
-        return response()->json($data);
+        if ($school) {
+            $data =[
+                'message'=> 'School created successfully',
+                'school'=>$school        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error to create school'], 500);
+
+        // $data = [
+        //     'message' => 'School created successfully',
+        //     'schools' => $school
+        // ];
+        // return response()->json($data);
     }
 
     /**
@@ -55,11 +67,24 @@ class SchoolsController extends Controller
     public function show(School $school)
     {
         // return response()->json($schools);
-        $data = [
-            'message' => 'Schools details',
-            'schools' => $school
-        ];
-        return response()->json($data);
+
+        if ($school) {
+            $data =[
+                'message'=> 'School details',
+                'school'=>$school        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error'], 500);
+
+
+        // $data = [
+        //     'message' => 'Schools details',
+        //     'schools' => $school
+        // ];
+        // return response()->json($data);
     }
 
     /**
@@ -78,11 +103,26 @@ class SchoolsController extends Controller
         $school->lat = $request->lat;
         $school->long = $request->long;
         $school->save();
-        $data = [
-            'message' => 'School updated successfully',
-            'schools' => $school
-        ];
-        return response()->json($data);
+
+        if ($school) {
+            $data =[
+                'message'=> 'School update successfully',
+                'school'=>$school        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error to update school'], 500);
+
+
+
+
+        // $data = [
+        //     'message' => 'School updated successfully',
+        //     'schools' => $school
+        // ];
+        // return response()->json($data);
     }
 
     /**
@@ -91,10 +131,22 @@ class SchoolsController extends Controller
     public function destroy(School $school)
     {
         $school->delete();
-        $data = [
-            'message' => 'School deleted successfully',
-            'schools' => $school
-        ];
-        return response()->json($data);
+
+        if ($school) {
+            $data =[
+                'message'=> 'School deleted successfully',
+                'school'=>$school        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error to delete school'], 500);
+
+        // $data = [
+        //     'message' => 'School deleted successfully',
+        //     'schools' => $school
+        // ];
+        // return response()->json($data);
     }
 }

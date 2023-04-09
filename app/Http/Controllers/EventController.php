@@ -37,11 +37,23 @@ class EventController extends Controller
         $event->max=$request->max;
         $event->min=$request->min;
         $event->save();
-        $data =[
-            'message'=> 'Event created successfully',
-            'event'=>$event        
-        ];
-        return response()->json($data);
+
+        if ($event) {
+            $data =[
+                'message'=> 'Event created successfully',
+                'event'=>$event        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error to created event'], 500);
+
+        // $data =[
+        //     'message'=> 'Event created successfully',
+        //     'event'=>$event        
+        // ];
+        // return response()->json($data);
        
 
     }
@@ -52,11 +64,22 @@ class EventController extends Controller
     public function show(Event $event)
     {
         // return response()->json($event);
-        $data =[
-            'message'=> 'Event details',
-            'event'=>$event        
-        ];
-        return response()->json($data);
+        if ($event) {
+            $data =[
+                'message'=> 'Event details',
+                'event'=>$event        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error'], 500);
+
+        // $data =[
+        //     'message'=> 'Event details',
+        //     'event'=>$event        
+        // ];
+        // return response()->json($data);
     }
 
     /**
@@ -78,11 +101,21 @@ class EventController extends Controller
         $event->max=$request->max;
         $event->min=$request->min;
         $event->save();
-        $data =[
-            'message'=> 'Event updated successfully',
-            'event'=>$event        
-        ];
-        return response()->json($data);
+        if ($event) {
+            $data =[
+                'message'=> 'Event updated successfully',
+                'event'=>$event        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error to updated event'], 500);
+        // $data =[
+        //     'message'=> 'Event updated successfully',
+        //     'event'=>$event        
+        // ];
+        // return response()->json($data);
     }
 
     /**
@@ -91,10 +124,21 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         $event->delete();
-        $data =[
-            'message'=> 'Event deleted successfully',
-            'event'=>$event        
-        ];
-        return response()->json($data);
+
+        if ($event) {
+            $data =[
+                'message'=> 'Event deleted successfully',
+                'event'=>$event        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error to deleted event'], 500);
+        // $data =[
+        //     'message'=> 'Event deleted successfully',
+        //     'event'=>$event        
+        // ];
+        // return response()->json($data);
     }
 }
