@@ -36,11 +36,25 @@ class RegionsController extends Controller
         $region->long=$request->long;
         $region->iso=$request->iso;
         $region->save();
-        $data =[
-            'message'=> 'Region created successfully',
-            'region'=>$region        
-        ];
-        return response()->json($data);
+
+        if ($region) {
+            $data =[
+                'message'=> 'Region created successfully',
+                'region'=>$region        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error to create region'], 500);
+
+
+
+        // $data =[
+        //     'message'=> 'Region created successfully',
+        //     'region'=>$region        
+        // ];
+        // return response()->json($data);
     }
 
     /**
@@ -49,11 +63,23 @@ class RegionsController extends Controller
     public function show(Region $region)
     {
         // return response()->json($region);
-        $data =[
-            'message'=> 'Region details',
-            'region'=>$region      
-        ];
-        return response()->json($data);
+
+        if ($region) {
+            $data =[
+                'message'=> 'Region details',
+                'region'=>$region        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error'], 500);
+
+        // $data =[
+        //     'message'=> 'Region details',
+        //     'region'=>$region      
+        // ];
+        // return response()->json($data);
     }
 
     /**
@@ -73,11 +99,23 @@ class RegionsController extends Controller
         $region->long=$request->long;
         $region->iso=$request->iso;
         $region->save();
-        $data =[
-            'message'=> 'Region updated successfully',
-            'region'=>$region        
-        ];
-        return response()->json($data);
+
+        if ($region) {
+            $data =[
+                'message'=> 'Region updated successfully',
+                'region'=>$region        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error to update region'], 500);
+
+        // $data =[
+        //     'message'=> 'Region updated successfully',
+        //     'region'=>$region        
+        // ];
+        // return response()->json($data);
     }
 
     /**
@@ -86,10 +124,24 @@ class RegionsController extends Controller
     public function destroy(Region $region)
     {
         $region->delete();
-        $data =[
-            'message'=> 'Region delete successfully',
-            'region'=>$region        
-        ];
-        return response()->json($data);
+
+        if ($region) {
+            $data =[
+                'message'=> 'Region deleted successfully',
+                'region'=>$region        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error to delete region'], 500);
+
+
+
+        // $data =[
+        //     'message'=> 'Region delete successfully',
+        //     'region'=>$region        
+        // ];
+        // return response()->json($data);
     }
 }

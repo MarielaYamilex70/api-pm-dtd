@@ -40,11 +40,23 @@ class ProvincesController extends Controller
         $province->long = $request->long;
         $province->iso = $request->iso;
         $province->save();
-        $data = [
-            'message' => 'Province created successfully',
-            'province' => $province
-        ];
-        return response()->json($data);
+
+        if ($province) {
+            $data =[
+                'message'=> 'Province created successfully',
+                'province'=>$province        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error to create province'], 500);
+
+        // $data = [
+        //     'message' => 'Province created successfully',
+        //     'province' => $province
+        // ];
+        // return response()->json($data);
     }
 
     /**
@@ -53,11 +65,22 @@ class ProvincesController extends Controller
     public function show(Province $province)
     {
         // return response()->json($provinces);
-        $data = [
-            'message' => 'Province details',
-            'province' => $province
-        ];
-        return response()->json($data);
+        if ($province) {
+            $data =[
+                'message'=> 'Province details',
+                'province'=>$province        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error '], 500);
+
+        // $data = [
+        //     'message' => 'Province details',
+        //     'province' => $province
+        // ];
+        // return response()->json($data);
     }
 
     /**
@@ -79,11 +102,23 @@ class ProvincesController extends Controller
         $province->long = $request->long;
         $province->iso = $request->iso;
         $province->save();
-        $data = [
-            'message' => 'Province updated successfully',
-            'province' => $province
-        ];
-        return response()->json($data);
+
+        if ($province) {
+            $data =[
+                'message'=> 'Province updated successfully',
+                'province'=>$province        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error to update province'], 500);
+
+        // $data = [
+        //     'message' => 'Province updated successfully',
+        //     'province' => $province
+        // ];
+        // return response()->json($data);
     }
 
     /**
@@ -92,10 +127,23 @@ class ProvincesController extends Controller
     public function destroy(Province $province)
     {
         $province->delete();
-        $data =[
-            'message'=> 'Province deleted successfully',
-            'province'=>$province        
-        ];
-        return response()->json($data);
+
+        if ($province) {
+            $data =[
+                'message'=> 'Province deleted successfully',
+                'province'=>$province        
+            ];
+            return response()->json($data);
+        }
+           
+
+        return response()->json(['message' => 'Error to deleted province'], 500);
+
+
+        // $data =[
+        //     'message'=> 'Province deleted successfully',
+        //     'province'=>$province        
+        // ];
+        // return response()->json($data);
     }
 }
