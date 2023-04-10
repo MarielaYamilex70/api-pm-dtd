@@ -78,6 +78,7 @@ class MatchController extends Controller
                                         echo '<br>'; 
                                     }
                                     else{
+                                        echo "Noooo COINCIDE STACK:$recruiterStack->stack_id DEL CODER: $recruiter->name  CON EL RECLUITER: $coder->name  ";
                                         $stacks[$recruiterStack->stack_id] = 0;
                                     }
 
@@ -91,15 +92,23 @@ class MatchController extends Controller
                             }
 
                             echo "SUMA: ".$sumCoin ;
-                            echo '<br>'; 
                             
+                            $cantStacks =count($stacks);
+                            echo "     LONGITUD ARRAY: ".$cantStacks;;
+                            echo '<br>'; 
+
+                            $afinity = $sumCoin/$cantStacks;
+                            
+                            echo "AFINIDAD <$afinity> DEL CODER: $recruiter->name  CON EL RECLUITER: $coder->name  ";
+                            echo '=========================================================================<br>'; 
+
                             //print_r($stacks) ;
                             //echo '<br>'; 
 
                         }else{
 
-                            echo "AFINIDAD 0 DEL CODER: $recruiter->name  CON EL RECLUITER: $coder->name  ";
-                            echo '<br>'; 
+                            echo "AFINIDAD <0> DEL CODER: $recruiter->name  CON EL RECLUITER: $coder->name  ";
+                            echo '=========================================================================<br>'; 
                                 
                         }
                         
