@@ -26,7 +26,29 @@ return new class extends Migration
         DB::unprepared('
             CREATE PROCEDURE countRecruiters()
             BEGIN
-                SELECT COUNT(id) FROM recruiters;
+                SELECT COUNT(id) AS total FROM recruiters;
+            END;
+        ');
+
+        DB::unprepared('DROP PROCEDURE IF EXISTS getRecruitersStacks;');
+
+        DB::unprepared('
+            CREATE PROCEDURE getRecruitersStacks(
+                IN id_recruiter INT
+            )
+            BEGIN
+                SELECT stack_id FROM recruiters_stacks WHERE recruiter_id = id_recruiter ;
+            END;
+        ');
+
+        DB::unprepared('DROP PROCEDURE IF EXISTS getRecruitersLanguages;');
+
+        DB::unprepared('
+            CREATE PROCEDURE getRecruitersLanguages(
+                IN id_recruiter INT
+            )
+            BEGIN
+                SELECT language_id FROM recruiters_languages WHERE recruiter_id = id_recruiter ;
             END;
         ');
     }
