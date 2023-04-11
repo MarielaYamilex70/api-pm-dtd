@@ -36,10 +36,10 @@ return new class extends Migration
             $table->unsignedTinyInteger('years');
             $table->string('avaliability');
             $table->boolean('remote');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('linkedin');
-            $table->string('github');
+            $table->string('email')->unique();
+            $table->string('phone')->unique();
+            $table->string('linkedin')->unique();
+            $table->string('github')->unique();
 
             $table->timestamps();
         });

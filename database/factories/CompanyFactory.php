@@ -22,7 +22,7 @@ class CompanyFactory extends Factory
             'ubication' => $this->faker->address(),
             'email' => $this->faker->email(),
             'phone' => $this->faker->phoneNumber(),
-            'priority' => random_int(1,10)
+            'priority' => random_int(1,3)
         ];
     }
 }

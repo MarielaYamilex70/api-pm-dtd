@@ -34,9 +34,9 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('charge');
-            $table->string('linkedin');
-            $table->string('email');
-            $table->string('phone');
+            $table->string('linkedin')->unique();
+            $table->string('email')->unique();
+            $table->string('phone')->unique();
             $table->boolean('remote');
             $table->unsignedTinyInteger('interviews_quantity');
             

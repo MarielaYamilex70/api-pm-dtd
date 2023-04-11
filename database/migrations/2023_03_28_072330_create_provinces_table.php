@@ -20,7 +20,7 @@ return new class extends Migration
                 ->on('regions')
                 ->onDelete('cascade');
 
-            $table->string('name');
+            $table->string('name')->unique();
             $table->float('lat',9,6);
             $table->float('long',9,6);
             $table->string('iso');
