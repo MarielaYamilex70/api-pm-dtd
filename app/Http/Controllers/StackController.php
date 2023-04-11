@@ -41,6 +41,7 @@ class StackController extends Controller
            
 
         return response()->json(['message' => 'Error to create stack'], 500);
+        // return response()->json(['message' => 'ERROOOR'] );
 
 
         // $data = [

@@ -20,8 +20,8 @@ return new class extends Migration
                 ->on('schools')
                 ->onDelete('cascade');
 
-            $table->string('name');
-            $table->string('nick');
+            $table->string('name')->unique();
+            $table->string('nick')->unique();
             $table->string('quantity');
             
             $table->timestamps();
