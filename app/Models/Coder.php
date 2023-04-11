@@ -35,4 +35,9 @@ class Coder extends Model
         {
         return $this->belongsToMany(Stack::class, 'coders_stacks');
     }
+
+    public function location()
+    {
+    return $this->belongsToMany(Province::class, 'coders_locations');
+}
 }

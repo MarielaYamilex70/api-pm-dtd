@@ -11,5 +11,15 @@ class Province extends Model
     public function region(){
         return $this->belongsTo(Regions::class);
     }
+
+    public function coder()
+    {
+        return $this->belongsToMany(Coder::class, 'coders_locations');
+    }
+
+    public function recruiter()
+    {
+        return $this->belongsToMany(Recruiter::class, 'recruiters_locations');
+    }
 }
 

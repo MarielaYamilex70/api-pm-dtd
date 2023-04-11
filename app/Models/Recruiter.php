@@ -34,4 +34,9 @@ class Recruiter extends Model
         {
         return $this->belongsToMany(Stack::class, 'recruiters_stacks');
     }
+
+    public function location()
+    {
+        return $this->belongsToMany(Province::class, 'recruiters_locations');
+    }
 }

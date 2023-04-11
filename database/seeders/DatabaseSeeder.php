@@ -38,8 +38,9 @@ class DatabaseSeeder extends Seeder
         }
 
         $languages = [
-            ['name' => 'Inglés'],
-            ['name' => 'Francés']
+            ['name' => 'Inglés/Alto'],
+            ['name' => 'Inglés/Medio'],
+            ['name' => 'Inglés/Bajo']
             
         ];
         foreach ($languages as $language) {
@@ -108,7 +109,7 @@ class DatabaseSeeder extends Seeder
                     ]);
                 }
 
-                $numLanguages=random_int(1,2);
+                $numLanguages=random_int(1,3);
                 $languages=Language::select('id')
                     ->inRandomOrder()
                     ->limit($numLanguages)
@@ -119,6 +120,23 @@ class DatabaseSeeder extends Seeder
                         [
                             'coder_id'=> $coder->id,
                             'language_id'=> $language->id,
+                            'created_at'=> now(),
+                            'updated_at'=> now()
+                        ]
+                    ]);
+                }
+
+                $numlocations=random_int(1,3);
+                $locations=Province::select('id')
+                    ->inRandomOrder()
+                    ->limit($numlocations)
+                    ->distinct()
+                    ->get();
+                foreach($locations as $location){
+                    DB::table('coders_locations')->insert([
+                        [
+                            'coder_id'=> $coder->id,
+                            'province_id'=> $location->id,
                             'created_at'=> now(),
                             'updated_at'=> now()
                         ]
@@ -159,6 +177,23 @@ class DatabaseSeeder extends Seeder
                         [
                             'recruiter_id'=> $recruiter->id,
                             'language_id'=> $language->id,
+                            'created_at'=> now(),
+                            'updated_at'=> now()
+                        ]
+                    ]);
+                }
+
+                $numlocations=random_int(1,3);
+                $locations=Province::select('id')
+                    ->inRandomOrder()
+                    ->limit($numlocations)
+                    ->distinct()
+                    ->get();
+                foreach($locations as $location){
+                    DB::table('recruiters_locations')->insert([
+                        [
+                            'recruiter_id'=> $recruiter->id,
+                            'province_id'=> $location->id,
                             'created_at'=> now(),
                             'updated_at'=> now()
                         ]
