@@ -30,10 +30,10 @@ return new class extends Migration
             END;
         ');
 
-        DB::unprepared('DROP PROCEDURE IF EXISTS getCodersStacks;');
+        DB::unprepared('DROP PROCEDURE IF EXISTS getCoderStack;');
 
         DB::unprepared('
-            CREATE PROCEDURE getCodersStacks(
+            CREATE PROCEDURE getCoderStack(
                 IN id_coder INT,
                 IN id_stack INT
             )
@@ -42,10 +42,10 @@ return new class extends Migration
             END;
         ');
 
-        DB::unprepared('DROP PROCEDURE IF EXISTS getCoderCodersLanguages;');
+        DB::unprepared('DROP PROCEDURE IF EXISTS getCoderLanguages;');
 
         DB::unprepared('
-            CREATE PROCEDURE getCoderCodersLanguages(
+            CREATE PROCEDURE getCoderLanguages(
                 IN id_coder INT
             )
             BEGIN
@@ -57,14 +57,15 @@ return new class extends Migration
             END;
         ');
 
-        DB::unprepared('DROP PROCEDURE IF EXISTS getCodersLanguages;');
+        DB::unprepared('DROP PROCEDURE IF EXISTS getCoderLanguage;');
 
         DB::unprepared('
-            CREATE PROCEDURE getCodersLanguages(
-                IN id_coder INT
+            CREATE PROCEDURE getCoderLanguage(
+                IN id_coder INT,
+                IN id_language INT
             )
             BEGIN
-                SELECT language_id FROM coders_languages WHERE coder_id = id_coder ;
+                SELECT language_id FROM coders_languages WHERE coder_id = id_coder and language_id = id_language  ;
             END;
         ');
 

@@ -30,10 +30,10 @@ return new class extends Migration
             END;
         ');
 
-        DB::unprepared('DROP PROCEDURE IF EXISTS getRecruitersStacks;');
+        DB::unprepared('DROP PROCEDURE IF EXISTS getRecruiterStacks;');
 
         DB::unprepared('
-            CREATE PROCEDURE getRecruitersStacks(
+            CREATE PROCEDURE getRecruiterStacks(
                 IN id_recruiter INT
             )
             BEGIN
@@ -41,10 +41,10 @@ return new class extends Migration
             END;
         ');
 
-        DB::unprepared('DROP PROCEDURE IF EXISTS getRecruitersLanguages;');
+        DB::unprepared('DROP PROCEDURE IF EXISTS getRecruiterLanguages;');
 
         DB::unprepared('
-            CREATE PROCEDURE getRecruitersLanguages(
+            CREATE PROCEDURE getRecruiterLanguages(
                 IN id_recruiter INT
             )
             BEGIN
