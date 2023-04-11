@@ -19,7 +19,7 @@ class RecruiterFactory extends Factory
         return [
             'event_id' => 1,
             'company_id' => random_int(1,10),
-            'province_id' => random_int(1,3),
+            /* 'province_id' => random_int(1,3), */
             'name' => $this->faker->name(),
             'charge' =>  $this->faker->randomElement(['Gerente','Recruiter']),
             'email' => $this->faker->email(),
