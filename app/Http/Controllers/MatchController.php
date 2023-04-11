@@ -78,7 +78,7 @@ class MatchController extends Controller
                                         echo '<br>'; 
                                     }
                                     else{
-                                        echo "Noooo COINCIDE STACK:$recruiterStack->stack_id DEL CODER: $recruiter->name  CON EL RECLUITER: $coder->name  ";
+                                        echo "COINCIDE STACK:$recruiterStack->stack_id DEL CODER: $recruiter->name  CON EL RECLUITER: $coder->name  ";
                                         $stacks[$recruiterStack->stack_id] = 0;
                                     }
 
