@@ -26,11 +26,11 @@ return new class extends Migration
                 ->on('companies')
                 ->onDelete('cascade');
 
-            $table->unsignedBigInteger('province_id');
+            /* $table->unsignedBigInteger('province_id');
             $table->foreign('province_id')
                 ->references('id')
                 ->on('provinces')
-                ->onDelete('cascade');
+                ->onDelete('cascade'); */
 
             $table->string('name');
             $table->string('charge');

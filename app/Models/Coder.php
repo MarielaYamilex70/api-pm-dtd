@@ -17,9 +17,9 @@ class Coder extends Model
         return $this->belongsTo(Promo::class);
     }
 
-    public function province(){
+    /* public function province(){
         return $this->belongsTo(Province::class);
-    }
+    } */
     
     public function language()
         {

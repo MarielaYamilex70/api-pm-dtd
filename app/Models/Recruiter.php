@@ -16,9 +16,9 @@ class Recruiter extends Model
         return $this->belongsTo(Company::class);
     }
 
-    public function province(){
+    /* public function province(){
         return $this->belongsTo(province::class);
-    }
+    } */
 
     public function language()
         {
