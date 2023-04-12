@@ -138,5 +138,9 @@ class MatchController extends Controller
        
     }
 
+    public function getnumatches ()
+    {
+       //Devuelve todos los Numeros de Matches y la fecha
+    }
     
 }

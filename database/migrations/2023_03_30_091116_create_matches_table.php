@@ -26,7 +26,8 @@ return new class extends Migration
                 ->on('recruiters')
                 ->onDelete('cascade');
 
-            $table->decimal('afinity',5,2);    
+            $table->decimal('afinity',5,2);
+            $table->unsignedInteger('num_match');    
 
             $table->timestamps();
         });
