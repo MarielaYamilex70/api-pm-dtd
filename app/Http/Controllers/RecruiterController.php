@@ -25,19 +25,20 @@ class RecruiterController extends Controller
         $request->validate([
             'event_id' => 'required|integer',
             'company_id' => 'required|integer',
-            'province_id' => 'required|integer',
+           /*  'province_id' => 'required|integer', */
             'name' => 'required',
             'charge' => 'required',
             'remote' => 'required|boolean',
             'email' => 'required|email',
             'phone' => 'required',
-            'linkedin' => 'required'
+            'linkedin' => 'required',
+            'interviews_quantity' => 'required|integer'
         ]);
 
         $recruiter=new Recruiter;
         $recruiter->event_id=$request->event_id;
         $recruiter->company_id=$request->company_id;
-        $recruiter->province_id=$request->province_id;
+       /*  $recruiter->province_id=$request->province_id; */
         $recruiter->name=$request->name;
 
         $recruiter->charge=$request->charge;
@@ -47,6 +48,8 @@ class RecruiterController extends Controller
         $recruiter->email=$request->email;
         $recruiter->phone=$request->phone;
         $recruiter->linkedin=$request->linkedin;
+
+        $recruiter->interviews_quantity=$request->interviews_quantity;
        
         $recruiter->save();
 
@@ -102,18 +105,19 @@ class RecruiterController extends Controller
         $request->validate([
             'event_id' => 'required|integer',
             'company_id' => 'required|integer',
-            'province_id' => 'required|integer',
+           /*  'province_id' => 'required|integer', */
             'name' => 'required',
             'charge' => 'required',
             'remote' => 'required|boolean',
             'email' => 'required|email',
             'phone' => 'required',
-            'linkedin' => 'required'
+            'linkedin' => 'required',
+            'interviews_quantity' => 'required|integer'
         ]);
 
         $recruiter->event_id=$request->event_id;
         $recruiter->company_id=$request->company_id;
-        $recruiter->province_id=$request->province_id;
+       /*  $recruiter->province_id=$request->province_id; */
         $recruiter->name=$request->name;
 
         $recruiter->charge=$request->charge;
@@ -123,6 +127,9 @@ class RecruiterController extends Controller
         $recruiter->email=$request->email;
         $recruiter->phone=$request->phone;
         $recruiter->linkedin=$request->linkedin;
+
+        $recruiter->interviews_quantity=$request->interviews_quantity;
+
        
         $recruiter->save();
 

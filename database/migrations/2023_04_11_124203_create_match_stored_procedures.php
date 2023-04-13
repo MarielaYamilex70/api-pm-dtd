@@ -30,9 +30,16 @@ return new class extends Migration
         DB::unprepared('DROP PROCEDURE IF EXISTS getNewNumMatch;');
 
         DB::unprepared('
-            CREATE PROCEDURE getNewNumMatch()
+            CREATE PROCEDURE getNewNumMatch(
+                OUT newNumMatch INT
+            )
             BEGIN
-                SELECT MAX(num_match)+1 AS newNumMatch  FROM matches;
+                SET newNumMatch = (
+                    SELECT MAX(num_match)+1 FROM matches
+                );
+
+                
+    
             END;
         ');
     }

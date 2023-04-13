@@ -26,7 +26,7 @@ class CoderController extends Controller
         $request->validate([
             'event_id' => 'required',
             'promo_id' => 'required',
-            'province_id' => 'required',
+           /*  'province_id' => 'required', */
             'name' => 'required',
             'gender' => 'required',
             'years' => 'required|integer',
@@ -42,7 +42,7 @@ class CoderController extends Controller
         $coder=new Coder;
         $coder->event_id=$request->event_id;
         $coder->promo_id=$request->promo_id;
-        $coder->province_id=$request->province_id;
+        /* $coder->province_id=$request->province_id; */
         $coder->name=$request->name;
         $coder->gender=$request->gender;
         $coder->years=$request->years;
@@ -104,7 +104,7 @@ class CoderController extends Controller
         $request->validate([
             'event_id' => 'required',
             'promo_id' => 'required',
-            'province_id' => 'required',
+           /*  'province_id' => 'required', */
             'name' => 'required',
             'gender' => 'required',
             'years' => 'required|integer',
@@ -119,7 +119,7 @@ class CoderController extends Controller
 
         $coder->event_id=$request->event_id;
         $coder->promo_id=$request->promo_id;
-        $coder->province_id=$request->province_id;
+       /*  $coder->province_id=$request->province_id; */
         $coder->name=$request->name;
         $coder->gender=$request->gender;
         $coder->years=$request->years;
