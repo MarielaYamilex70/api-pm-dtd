@@ -41,14 +41,7 @@ class StackController extends Controller
            
 
         return response()->json(['message' => 'Error to create stack'], 500);
-        // return response()->json(['message' => 'ERROOOR'],500 );
-
-
-        // $data = [
-        //     'message' => 'Stack created successfully',
-        //     'stack' => $stack
-        // ];
-        // return response()->json($data);
+        
     }
 
     /**
@@ -56,7 +49,7 @@ class StackController extends Controller
      */
     public function show(Stack $stack)
     {
-        // return response()->json($stack);
+        
         if ($stack) {
             $data =[
                 'message'=> 'Stack details',
@@ -68,11 +61,6 @@ class StackController extends Controller
 
         return response()->json(['message' => 'Error '], 500);
 
-        // $data =[
-        //     'message'=> 'Stack details',
-        //     'stack'=>$stack        
-        // ];
-        // return response()->json($data);
     }
 
     /**
@@ -99,13 +87,7 @@ class StackController extends Controller
            
 
         return response()->json(['message' => 'Error to update stack'], 500);
-
-
-        // $data =[
-        //     'message'=> 'Stack updated successfully',
-        //     'stack'=>$stack        
-        // ];
-        // return response()->json($data);
+       
     }
 
     /**
@@ -126,12 +108,6 @@ class StackController extends Controller
 
         return response()->json(['message' => 'Error to delete stack'], 500);
 
-
-        // $data =[
-        //     'message'=> 'Stack delete successfully',
-        //     'stack'=>$stack        
-        // ];
-        // return response()->json($data);
     }
 
     public function recruiters(Request $request)
@@ -150,15 +126,9 @@ class StackController extends Controller
             ];
             return response()->json($data);
         }
-           
 
         return response()->json(['message' => 'Error to fetched Recruiters'], 500);
 
-        // $data =[
-        //     'message'=> 'Recuiters fetched successfully',
-        //     'recruiters'=>$recruiters        
-        // ];
-        // return response()->json($data);
     }
 
     public function coders(Request $request)
@@ -177,14 +147,8 @@ class StackController extends Controller
             ];
             return response()->json($data);
         }
-           
 
         return response()->json(['message' => 'Error to fetched Coders'], 500);
         
-        // $data =[
-        //     'message'=> 'Coders fetched successfully',
-        //     'coders'=>$coders        
-        // ];
-        // return response()->json($data);
     }
 }

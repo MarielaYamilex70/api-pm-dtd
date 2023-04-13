@@ -42,21 +42,15 @@ class CompanyController extends Controller
         $company->save();
 
         if ($company) {
-            $data =[
-                'message'=> 'Company created successfully',
-                'company'=>$company        
+            $data = [
+                'message' => 'Company created successfully',
+                'company' => $company
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to created company'], 500);
-
-        // $data = [
-        //     'message' => 'Company created successfully',
-        //     'company' => $company
-        // ];
-        // return response()->json($data);
     }
 
     /**
@@ -66,21 +60,15 @@ class CompanyController extends Controller
     {
 
         if ($company) {
-            $data =[
-                'message'=> 'Company details',
-                'company'=>$company        
+            $data = [
+                'message' => 'Company details',
+                'company' => $company
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error'], 500);
-
-        // $data = [
-        //     'message' => 'Company details',
-        //     'company' => $company
-        // ];
-        // return response()->json($data);
     }
 
     /**
@@ -97,7 +85,7 @@ class CompanyController extends Controller
             'priority' => 'required',
 
         ]);
-       
+
         $company->province_id = $request->province_id;
         $company->name = $request->name;
         $company->ubication = $request->ubication;
@@ -107,21 +95,15 @@ class CompanyController extends Controller
         $company->save();
 
         if ($company) {
-            $data =[
-                'message'=> 'Company updated successfully',
-                'company'=>$company        
+            $data = [
+                'message' => 'Company updated successfully',
+                'company' => $company
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to updated company'], 500);
-
-        // $data = [
-        //     'message' => 'Company updated successfully',
-        //     'company' => $company
-        // ];
-        // return response()->json($data);
     }
 
     /**
@@ -132,20 +114,14 @@ class CompanyController extends Controller
         $company->delete();
 
         if ($company) {
-            $data =[
-                'message'=> 'Company deleted successfully',
-                'company'=>$company        
+            $data = [
+                'message' => 'Company deleted successfully',
+                'company' => $company
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to deleted company'], 500);
-
-        // $data = [
-        //     'message' => 'Company deleted successfully',
-        //     'company' => $company
-        // ];
-        // return response()->json($data);
     }
 }

@@ -13,7 +13,7 @@ class RecruiterController extends Controller
      */
     public function index()
     {
-        $recruiter=Recruiter::all();
+        $recruiter = Recruiter::all();
         return response()->json($recruiter);
     }
 
@@ -34,40 +34,32 @@ class RecruiterController extends Controller
             'linkedin' => 'required'
         ]);
 
-        $recruiter=new Recruiter;
-        $recruiter->event_id=$request->event_id;
-        $recruiter->company_id=$request->company_id;
-        $recruiter->province_id=$request->province_id;
-        $recruiter->name=$request->name;
+        $recruiter = new Recruiter;
+        $recruiter->event_id = $request->event_id;
+        $recruiter->company_id = $request->company_id;
+        $recruiter->province_id = $request->province_id;
+        $recruiter->name = $request->name;
 
-        $recruiter->charge=$request->charge;
-       
-        $recruiter->remote=$request->remote;
+        $recruiter->charge = $request->charge;
 
-        $recruiter->email=$request->email;
-        $recruiter->phone=$request->phone;
-        $recruiter->linkedin=$request->linkedin;
-       
+        $recruiter->remote = $request->remote;
+
+        $recruiter->email = $request->email;
+        $recruiter->phone = $request->phone;
+        $recruiter->linkedin = $request->linkedin;
+
         $recruiter->save();
 
         if ($recruiter) {
-            $data =[
-                'message'=> 'Recruiter created successfully',
-                'recruiter'=>$recruiter        
+            $data = [
+                'message' => 'Recruiter created successfully',
+                'recruiter' => $recruiter
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to created recruiter'], 500);
-
-
-
-        // $data =[
-        //     'message'=> 'Recruiter created successfully',
-        //     'recruiter'=>$recruiter        
-        // ];
-        // return response()->json($data);
     }
 
     /**
@@ -77,21 +69,15 @@ class RecruiterController extends Controller
     {
 
         if ($recruiter) {
-            $data =[
-                'message'=> 'Recruiter details',
-                'recruiter'=>$recruiter        
+            $data = [
+                'message' => 'Recruiter details',
+                'recruiter' => $recruiter
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error'], 500);
-
-        // $data =[
-        //     'message'=> 'Recruiter details',
-        //     'recruiter'=>$recruiter        
-        // ];
-        // return response()->json($data);
     }
 
     /**
@@ -111,38 +97,31 @@ class RecruiterController extends Controller
             'linkedin' => 'required'
         ]);
 
-        $recruiter->event_id=$request->event_id;
-        $recruiter->company_id=$request->company_id;
-        $recruiter->province_id=$request->province_id;
-        $recruiter->name=$request->name;
+        $recruiter->event_id = $request->event_id;
+        $recruiter->company_id = $request->company_id;
+        $recruiter->province_id = $request->province_id;
+        $recruiter->name = $request->name;
 
-        $recruiter->charge=$request->charge;
-       
-        $recruiter->remote=$request->remote;
+        $recruiter->charge = $request->charge;
 
-        $recruiter->email=$request->email;
-        $recruiter->phone=$request->phone;
-        $recruiter->linkedin=$request->linkedin;
-       
+        $recruiter->remote = $request->remote;
+
+        $recruiter->email = $request->email;
+        $recruiter->phone = $request->phone;
+        $recruiter->linkedin = $request->linkedin;
+
         $recruiter->save();
 
         if ($recruiter) {
-            $data =[
-                'message'=> 'Recruiter updated successfully',
-                'recruiter'=>$recruiter        
+            $data = [
+                'message' => 'Recruiter updated successfully',
+                'recruiter' => $recruiter
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to update recruiter'], 500);
-
-
-        // $data =[
-        //     'message'=> 'Recruiter updated successfully',
-        //     'recruiter'=>$recruiter        
-        // ];
-        // return response()->json($data);
     }
 
     /**
@@ -152,22 +131,15 @@ class RecruiterController extends Controller
     {
         $recruiter->delete();
         if ($recruiter) {
-            $data =[
-                'message'=> 'Recruiter deleted successfully',
-                'recruiter'=>$recruiter        
+            $data = [
+                'message' => 'Recruiter deleted successfully',
+                'recruiter' => $recruiter
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to delete recruiter'], 500);
-
-
-        // $data =[
-        //     'message'=> 'Recruiter deleted successfully',
-        //     'recruiter'=>$recruiter        
-        // ];
-        // return response()->json($data);
     }
 
     public function attach(Request $request)
@@ -178,27 +150,21 @@ class RecruiterController extends Controller
             'coder_id' => 'required|integer',
             'afinity' => 'required|numeric|decimal:0,2'
 
-         ]);
+        ]);
         $recruiter = Recruiter::find($request->recruiter_id);
         $recruiter->coder()->attach($request->coder_id, ['afinity' => $request->afinity]);
 
 
         if ($recruiter) {
-            $data =[
-                'message'=> 'Coder attached successfully',
-                'recruiter'=>$recruiter        
+            $data = [
+                'message' => 'Coder attached successfully',
+                'recruiter' => $recruiter
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to attached Coder'], 500);
-        
-        // $data =[
-        //     'message'=> 'Coder attached successfuly',
-        //     'recruiter'=>$recruiter        
-        // ];
-        // return response()->json($data);
     }
 
     public function detach(Request $request)
@@ -207,28 +173,21 @@ class RecruiterController extends Controller
         $request->validate([
             'recruiter_id' => 'required|integer',
             'coder_id' => 'required|integer',
-           
-         ]);
+
+        ]);
         $recruiter = Recruiter::find($request->recruiter_id);
         $recruiter->coder()->detach($request->coder_id);
 
         if ($recruiter) {
-            $data =[
-                'message'=> 'Coder detached successfully',
-                'recruiter'=>$recruiter        
+            $data = [
+                'message' => 'Coder detached successfully',
+                'recruiter' => $recruiter
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to detached Coder'], 500);
-
-
-        // $data =[
-        //     'message'=> 'Coder detached successfuly',
-        //     'recruiter'=>$recruiter        
-        // ];
-        // return response()->json($data);
     }
 
     public function attachStack(Request $request)
@@ -237,27 +196,21 @@ class RecruiterController extends Controller
         $request->validate([
             'recruiter_id' => 'required|integer',
             'stack_id' => 'required|integer'
-            
-         ]);
+
+        ]);
         $recruiter = Recruiter::find($request->recruiter_id);
         $recruiter->stack()->attach($request->stack_id);
-        
+
         if ($recruiter) {
-            $data =[
-                'message'=> 'Stack attached successfully',
-                'recruiter'=>$recruiter        
+            $data = [
+                'message' => 'Stack attached successfully',
+                'recruiter' => $recruiter
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to attached Stack'], 500);
-        
-        // $data =[
-        //     'message'=> 'Stack attached successfuly',
-        //     'recruiter'=>$recruiter        
-        // ];
-        // return response()->json($data);
     }
 
     public function detachStack(Request $request)
@@ -266,26 +219,21 @@ class RecruiterController extends Controller
         $request->validate([
             'recruiter_id' => 'required|integer',
             'stack_id' => 'required|integer'
-            
-         ]);
+
+        ]);
         $recruiter = Recruiter::find($request->recruiter_id);
         $recruiter->stack()->detach($request->stack_id);
 
         if ($recruiter) {
-            $data =[
-                'message'=> 'Stack detached successfully',
-                'recruiter'=>$recruiter        
+            $data = [
+                'message' => 'Stack detached successfully',
+                'recruiter' => $recruiter
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to detached Stack'], 500);
-        // $data =[
-        //     'message'=> 'Stack detached successfuly',
-        //     'recruiter'=>$recruiter        
-        // ];
-        // return response()->json($data);
     }
 
     public function attachLanguage(Request $request)
@@ -294,57 +242,44 @@ class RecruiterController extends Controller
         $request->validate([
             'recruiter_id' => 'required|integer',
             'language_id' => 'required|integer'
-            
-         ]);
+
+        ]);
         $recruiter = Recruiter::find($request->recruiter_id);
         $recruiter->language()->attach($request->language_id);
 
         if ($recruiter) {
-            $data =[
-                'message'=> 'Languages attached successfully',
-                'recruiter'=>$recruiter        
+            $data = [
+                'message' => 'Languages attached successfully',
+                'recruiter' => $recruiter
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to attached languages'], 500);
-        
-        // $data =[
-        //     'message'=> 'Languages attached successfuly',
-        //     'recruiter'=>$recruiter        
-        // ];
-        // return response()->json($data);
     }
 
-    public function detachLanguage(Request $request) 
+    public function detachLanguage(Request $request)
     {
         //
         $request->validate([
             'recruiter_id' => 'required|integer',
             'language_id' => 'required|integer',
-            
-         ]);
+
+        ]);
         $recruiter = Recruiter::find($request->recruiter_id);
         $recruiter->language()->detach($request->language_id);
 
-        
+
         if ($recruiter) {
-            $data =[
-                'message'=> 'Languages detached successfully',
-                'recruiter'=>$recruiter        
+            $data = [
+                'message' => 'Languages detached successfully',
+                'recruiter' => $recruiter
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to detached languages'], 500);
-        // $data =[
-        //     'message'=> 'Languages detached successfuly',
-        //     'recruiter'=>$recruiter        
-        // ];
-        // return response()->json($data);
     }
-
-
 }
