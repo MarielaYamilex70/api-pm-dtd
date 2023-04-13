@@ -24,24 +24,23 @@ class StackController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            
-         ]);
+
+        ]);
 
         $stack = new Stack();
         $stack->name = $request->name;
         $stack->save();
 
         if ($stack) {
-            $data =[
-                'message'=> 'Stack created successfully',
-                'stack'=>$stack        
+            $data = [
+                'message' => 'Stack created successfully',
+                'stack' => $stack
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to create stack'], 500);
-        
     }
 
     /**
@@ -49,18 +48,17 @@ class StackController extends Controller
      */
     public function show(Stack $stack)
     {
-        
+
         if ($stack) {
-            $data =[
-                'message'=> 'Stack details',
-                'stack'=>$stack        
+            $data = [
+                'message' => 'Stack details',
+                'stack' => $stack
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error '], 500);
-
     }
 
     /**
@@ -68,26 +66,25 @@ class StackController extends Controller
      */
     public function update(Request $request, Stack $stack)
     {
-         $request->validate([
+        $request->validate([
             'name' => 'required',
-            
-         ]);
+
+        ]);
 
 
-        $stack->name=$request->name;
+        $stack->name = $request->name;
         $stack->save();
 
         if ($stack) {
-            $data =[
-                'message'=> 'Stack updated successfully',
-                'stack'=>$stack        
+            $data = [
+                'message' => 'Stack updated successfully',
+                'stack' => $stack
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to update stack'], 500);
-       
     }
 
     /**
@@ -98,57 +95,54 @@ class StackController extends Controller
         $stack->delete();
 
         if ($stack) {
-            $data =[
-                'message'=> 'Stack delete successfully',
-                'stack'=>$stack        
+            $data = [
+                'message' => 'Stack delete successfully',
+                'stack' => $stack
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to delete stack'], 500);
-
     }
 
     public function recruiters(Request $request)
     {
         $request->validate([
             'stack_id' => 'required|integer'
-            
-         ]);
+
+        ]);
         $stacks = Stack::find($request->stack_id);
         $recruiters = $stacks->recruiter;
 
         if ($stacks) {
-            $data =[
-                'message'=> 'Recruiters fetched successfully',
-                'recruiters'=>$recruiters        
+            $data = [
+                'message' => 'Recruiters fetched successfully',
+                'recruiters' => $recruiters
             ];
             return response()->json($data);
         }
 
         return response()->json(['message' => 'Error to fetched Recruiters'], 500);
-
     }
 
     public function coders(Request $request)
     {
         $request->validate([
             'stack_id' => 'required|integer'
-            
-         ]);
+
+        ]);
         $stacks = Stack::find($request->stack_id);
         $coders = $stacks->coder;
 
         if ($stacks) {
-            $data =[
-                'message'=> 'Coders fetched successfully',
-                'coders'=>$coders        
+            $data = [
+                'message' => 'Coders fetched successfully',
+                'coders' => $coders
             ];
             return response()->json($data);
         }
 
         return response()->json(['message' => 'Error to fetched Coders'], 500);
-        
     }
 }
