@@ -13,8 +13,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::all();
-        return response()->json($companies);
+        $company = Company::all();
+        return response()->json($company);
     }
 
     /**
@@ -32,19 +32,19 @@ class CompanyController extends Controller
 
         ]);
 
-        $companies = new Company();
-        $companies->province_id = $request->province_id;
-        $companies->name = $request->name;
-        $companies->ubication = $request->ubication;
-        $companies->phone = $request->phone;
-        $companies->email = $request->email;
-        $companies->priority = $request->priority;
-        $companies->save();
+        $company = new Company();
+        $company->province_id = $request->province_id;
+        $company->name = $request->name;
+        $company->ubication = $request->ubication;
+        $company->phone = $request->phone;
+        $company->email = $request->email;
+        $company->priority = $request->priority;
+        $company->save();
 
-        if ($companies) {
+        if ($company) {
             $data =[
                 'message'=> 'Company created successfully',
-                'company'=>$companies        
+                'company'=>$company        
             ];
             return response()->json($data);
         }
@@ -54,7 +54,7 @@ class CompanyController extends Controller
 
         // $data = [
         //     'message' => 'Company created successfully',
-        //     'company' => $companies
+        //     'company' => $company
         // ];
         // return response()->json($data);
     }
@@ -97,20 +97,19 @@ class CompanyController extends Controller
             'priority' => 'required',
 
         ]);
+       
+        $company->province_id = $request->province_id;
+        $company->name = $request->name;
+        $company->ubication = $request->ubication;
+        $company->phone = $request->phone;
+        $company->email = $request->email;
+        $company->priority = $request->priority;
+        $company->save();
 
-        $companies = new Company();
-        $companies->province_id = $request->province_id;
-        $companies->name = $request->name;
-        $companies->ubication = $request->ubication;
-        $companies->phone = $request->phone;
-        $companies->email = $request->email;
-        $companies->priority = $request->priority;
-        $companies->save();
-
-        if ($companies) {
+        if ($company) {
             $data =[
                 'message'=> 'Company updated successfully',
-                'company'=>$companies        
+                'company'=>$company        
             ];
             return response()->json($data);
         }
@@ -120,7 +119,7 @@ class CompanyController extends Controller
 
         // $data = [
         //     'message' => 'Company updated successfully',
-        //     'company' => $companies
+        //     'company' => $company
         // ];
         // return response()->json($data);
     }

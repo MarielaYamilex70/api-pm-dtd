@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Language extends Model
 {
+    
+    use HasFactory;
+    
+    protected $fillable = ['name'];
+    
+    public static $rules = [
+        'name' => 'unique:languages'
+    ];
+    
     use HasFactory;
     public function coder()
     {
@@ -17,4 +26,5 @@ class Language extends Model
         return $this->belongsToMany(Recruiter::class, 'recruiters_languages');
         
     }
+    
 }

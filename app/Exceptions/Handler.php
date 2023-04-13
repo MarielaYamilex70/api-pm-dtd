@@ -58,7 +58,7 @@ class Handler extends ExceptionHandler
     public function render($request, Throwable $exception)
 {
     if ($exception instanceof QueryException && $exception->errorInfo[1] === 1062) {
-        return response()->json(['message' => 'El registro ya existe'], 500);
+        return response()->json(['message' => 'Duplicate registry'], 500);
     }
 
     return parent::render($request, $exception);
