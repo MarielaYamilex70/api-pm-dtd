@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Language;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\LanguageRequest;
 
 class LanguageController extends Controller
 {
@@ -20,36 +21,40 @@ class LanguageController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
+    public function store(LanguageRequest $request)
+{
+    $request->validate([
+        'name' => 'required',
+    ]);
 
-        $request->validate([
-            'name' => 'required',
-            
-         ]);
-        $language = new Language();
-        $language->name = $request->name;
-        $language->save();
+    $existingLanguage = Language::where('name', $request->name)->first();
 
-        if ($language) {
-            $data =[
-                'message'=> 'Language created successfully',
-                'service'=>$language        
-            ];
-            return response()->json($data);
-        }
-           
-
-        return response()->json(['message' => 'Error to created language'], 500);
-
-
-
-        // $data = [
-        //     'message' => 'Language created successfully',
-        //     'service' => $language
-        // ];
-        // return response()->json($data);
+    if ($existingLanguage) {
+        return response()->json([
+            'message' => 'Duplicate register',
+            'errors' => [
+                'name' => ['Duplicate register']
+            ]
+        ], 422);
     }
+
+    try {
+        $language = Language::create(['name' => $request->name]);
+
+        $data = [
+            'message' => 'Language created successfully',
+            'language' => $language
+        ];
+        return response()->json($data);
+    } catch (\Exception $ex) {
+        return response()->json(['message' => 'Error to create language '], 500);
+    }
+}
+
+    
+
+
+  
 
     /**
      * Display the specified resource.
