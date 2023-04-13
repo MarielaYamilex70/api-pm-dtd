@@ -33,9 +33,14 @@ class MatchController extends Controller
             $totalCoders = DB::select('CALL countCoders()');
             if ( $totalRecruiters[0]->total > 0  && $totalCoders[0]->total>0  ) {
                 
-                $newNumMatch = DB::select('CALL getNewNumMatch()');
-                
-                
+                $NumMatch = DB::select('CALL getNumMatch()');
+                //dd($NumMatch);
+                $newNumMatch=1;
+                if ($NumMatch[0]->NumMatch > 0 ) {
+                    $newNumMatch++;
+                }
+                echo "Numero del Match: ".$newNumMatch;
+                echo '<br>';
                 $recruiters = DB::select('CALL getAllRecruiters()');
                 
                 foreach ($recruiters as $recruiter){
@@ -163,7 +168,7 @@ class MatchController extends Controller
 
                             
 
-                            $match = DB::insert("CALL storeMatch($coder->id, $recruiter->id, $afinity,  $newNumMatch )");
+                            $match = DB::insert("CALL storeMatch($coder->id, $recruiter->id, $afinity, $newNumMatch)");
                             
                             echo "AFINIDAD <$afinity> DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name <br>  ";
                             echo '=========================================================================<br>'; 
@@ -172,6 +177,8 @@ class MatchController extends Controller
                             //echo '<br>'; 
 
                         }else{
+                            $match = DB::insert("CALL storeMatch($coder->id, $recruiter->id, 0, $newNumMatch)");
+                            
                             echo "NO coincide Afinidad NI Teletrabajo DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name <br>  ";
                             echo "AFINIDAD <0> DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name <br>  ";
                             echo '=========================================================================<br>'; 
