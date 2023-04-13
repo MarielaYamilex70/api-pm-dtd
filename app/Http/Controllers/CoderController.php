@@ -14,7 +14,7 @@ class CoderController extends Controller
      */
     public function index()
     {
-        $coders=Coder::all();
+        $coders = Coder::all();
         return response()->json($coders);
     }
 
@@ -37,7 +37,7 @@ class CoderController extends Controller
             'linkedin' => 'required',
             'github' => 'required'
 
-         ]);
+        ]);
 
         $coder=new Coder;
         $coder->event_id=$request->event_id;
@@ -55,21 +55,15 @@ class CoderController extends Controller
         $coder->save();
 
         if ($coder) {
-            $data =[
-                'message'=> 'Coder created successfully',
-                'coders'=>$coder        
+            $data = [
+                'message' => 'Coder created successfully',
+                'coders' => $coder
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to create Coder'], 500);
-        
-        // $data =[
-        //     'message'=> 'Coder created successfully',
-        //     'coder'=>$coder        
-        // ];
-        // return response()->json($data);
     }
 
     /**
@@ -79,21 +73,15 @@ class CoderController extends Controller
     {
 
         if ($coder) {
-            $data =[
-                'message'=> 'Coder details',
-                'coder'=>$coder        
+            $data = [
+                'message' => 'Coder details',
+                'coder' => $coder
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error '], 500);
-
-        // $data =[
-        //     'message'=> 'Coder details',
-        //     'coder'=>$coder        
-        // ];
-        // return response()->json($data);
     }
 
     /**
@@ -115,7 +103,7 @@ class CoderController extends Controller
             'linkedin' => 'required',
             'github' => 'required'
 
-         ]);
+        ]);
 
         $coder->event_id=$request->event_id;
         $coder->promo_id=$request->promo_id;
@@ -132,21 +120,15 @@ class CoderController extends Controller
         $coder->save();
 
         if ($coder) {
-            $data =[
-                'message'=> 'Coder updated successfully',
-                'coder'=>$coder        
+            $data = [
+                'message' => 'Coder updated successfully',
+                'coder' => $coder
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to update Coder'], 500);
-
-        // $data =[
-        //     'message'=> 'Coder updated successfully',
-        //     'coder'=>$coder        
-        // ];
-        // return response()->json($data);
     }
 
     /**
@@ -157,166 +139,125 @@ class CoderController extends Controller
         $coder->delete();
 
         if ($coder) {
-            $data =[
-                'message'=> 'Coder deleted successfully',
-                'coder'=>$coder        
+            $data = [
+                'message' => 'Coder deleted successfully',
+                'coder' => $coder
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to delete Coder'], 500);
-
-        // $data =[
-        //     'message'=> 'Coder deleted successfully',
-        //     'coder'=>$coder        
-        // ];
-        // return response()->json($data);
     }
 
     public function recruiters(Request $request)
     {
-        
+
         $coders = Coder::find($request->coder_id);
         $recruiters = $coders->recruiter;
 
         if ($coders) {
-            $data =[
-                'message'=> 'Recruiter fetched successfully',
-                'recruiters'=>$recruiters        
+            $data = [
+                'message' => 'Recruiter fetched successfully',
+                'recruiters' => $recruiters
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to fetched Recruiter'], 500);
-
-        // $data =[
-        //     'message'=> 'Recuiters fetched successfully',
-        //     'recruiters'=>$recruiters        
-        // ];
-        // return response()->json($data);
     }
 
-    
+
     public function attachStack(Request $request)
     {
-        //
+        
         $request->validate([
             'coder_id' => 'required|integer',
             'stack_id' => 'required|integer'
-            
-         ]);
+
+        ]);
         $coder = Coder::find($request->coder_id);
         $coder->stack()->attach($request->stack_id);
-       
+
         if ($coder) {
-            $data =[
-                'message'=> 'Stack attached successfully',
-                'coder'=>$coder        
+            $data = [
+                'message' => 'Stack attached successfully',
+                'coder' => $coder
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to attached Stack'], 500);
-
-        // $data =[
-        //     'message'=> 'Stack attached successfully',
-        //     'coder'=>$coder        
-        // ];
-        // return response()->json($data);
     }
 
     public function detachStack(Request $request)
     {
-        //
+        
         $request->validate([
             'coder_id' => 'required|integer',
             'stack_id' => 'required|integer'
-            
-         ]);
+
+        ]);
         $coder = Coder::find($request->coder_id);
         $coder->stack()->detach($request->stack_id);
 
         if ($coder) {
-            $data =[
-                'message'=> 'Stack detached successfully',
-                'coder'=>$coder        
+            $data = [
+                'message' => 'Stack detached successfully',
+                'coder' => $coder
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to detached Stack'], 500);
-
-
-        // $data =[
-        //     'message'=> 'Stack detached successfully',
-        //     'coder'=>$coder        
-        // ];
-        // return response()->json($data);
     }
 
     public function attachLanguage(Request $request)
     {
-        //
+        
         $request->validate([
             'coder_id' => 'required|integer',
             'language_id' => 'required|integer'
-            
-         ]);
+
+        ]);
         $coder = Coder::find($request->coder_id);
         $coder->language()->attach($request->language_id);
-        
+
         if ($coder) {
-            $data =[
-                'message'=> 'Languages attached successfully',
-                'coder'=>$coder        
+            $data = [
+                'message' => 'Languages attached successfully',
+                'coder' => $coder
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to attached Languages'], 500);
-
-        
-        // $data =[
-        //     'message'=> 'Languages attached successfully',
-        //     'coder'=>$coder        
-        // ];
-        // return response()->json($data);
     }
 
-    public function detachLanguage(Request $request) 
+    public function detachLanguage(Request $request)
     {
-        //
+        
         $request->validate([
             'coder_id' => 'required|integer',
             'language_id' => 'required|integer',
-            
-         ]);
+
+        ]);
         $coder = Coder::find($request->coder_id);
         $coder->language()->detach($request->language_id);
-        
+
         if ($coder) {
-            $data =[
-                'message'=> 'Languages detached successfully',
-                'coder'=>$coder        
+            $data = [
+                'message' => 'Languages detached successfully',
+                'coder' => $coder
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to detached Languages'], 500);
-
-        // $data =[
-        //     'message'=> 'Languages detached successfully',
-        //     'coder'=>$coder        
-        // ];
-        // return response()->json($data);
     }
-
-
 }
-

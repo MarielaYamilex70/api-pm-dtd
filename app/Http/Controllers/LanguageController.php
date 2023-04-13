@@ -25,30 +25,21 @@ class LanguageController extends Controller
 
         $request->validate([
             'name' => 'required',
-            
-         ]);
+
+        ]);
         $language = new Language();
         $language->name = $request->name;
         $language->save();
 
         if ($language) {
-            $data =[
-                'message'=> 'Language created successfully',
-                'service'=>$language        
+            $data = [
+                'message' => 'Language created successfully',
+                'service' => $language
             ];
             return response()->json($data);
         }
-           
 
         return response()->json(['message' => 'Error to created language'], 500);
-
-
-
-        // $data = [
-        //     'message' => 'Language created successfully',
-        //     'service' => $language
-        // ];
-        // return response()->json($data);
     }
 
     /**
@@ -56,23 +47,17 @@ class LanguageController extends Controller
      */
     public function show(Language $language)
     {
-         // return response()->json($language);
-         if ($language) {
-            $data =[
-                'message'=> 'Language details',
-                'service'=>$language        
+
+        if ($language) {
+            $data = [
+                'message' => 'Language details',
+                'service' => $language
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error'], 500);
-
-        //  $data =[
-        //     'message'=> 'Language details',
-        //     'service'=>$language        
-        // ];
-        // return response()->json($data);
     }
 
     /**
@@ -82,28 +67,22 @@ class LanguageController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            
-         ]);
-         
-        $language->name=$request->name;
+
+        ]);
+
+        $language->name = $request->name;
         $language->save();
 
         if ($language) {
-            $data =[
-                'message'=> 'Language updated successfully',
-                'service'=>$language        
+            $data = [
+                'message' => 'Language updated successfully',
+                'service' => $language
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to updated language'], 500);
-
-        // $data =[
-        //     'message'=> 'Language updated successfully',
-        //     'service'=>$language        
-        // ];
-        // return response()->json($data);
     }
 
     /**
@@ -114,77 +93,48 @@ class LanguageController extends Controller
         $language->delete();
 
         if ($language) {
-            $data =[
-                'message'=> 'Language deleted successfully',
-                'service'=>$language        
+            $data = [
+                'message' => 'Language deleted successfully',
+                'service' => $language
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to deleted language'], 500);
-
-        // $data =[
-        //     'message'=> 'Language delete successfully',
-        //     'service'=>$language        
-        // ];
-        // return response()->json($data);
     }
 
     public function recruiters(Request $request)
     {
-        
+
         $languages = Language::find($request->language_id);
         $recruiters = $languages->recruiter;
         if ($languages) {
-            $data =[
-                'message'=> 'Recruiters fetched successfully',
-                'recruiters'=>$recruiters        
+            $data = [
+                'message' => 'Recruiters fetched successfully',
+                'recruiters' => $recruiters
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to fetched recruiters'], 500);
-
-
-        // $data =[
-        //     'message'=> 'Recuiters fetched successfuly',
-        //     'recruiters'=>$recruiters        
-        // ];
-        // return response()->json($data);
     }
-    
+
     public function coders(Request $request)
     {
-        
+
         $languages = Language::find($request->language_id);
         $coders = $languages->coders;
         if ($languages) {
-            $data =[
-                'message'=> 'Coders fetched successfully',
-                'coders'=>$coders        
+            $data = [
+                'message' => 'Coders fetched successfully',
+                'coders' => $coders
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to fetched coders'], 500);
-
-
-        // $data =[
-        //     'message'=> 'Coders fetched successfully',
-        //     'coders'=>$coders        
-        // ];
-        // return response()->json($data);
     }
-
-
-
-
-
-
-
-
-
 }

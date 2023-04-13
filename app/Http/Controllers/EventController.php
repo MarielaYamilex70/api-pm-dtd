@@ -13,7 +13,7 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events=Event::all();
+        $events = Event::all();
         return response()->json($events);
     }
 
@@ -28,34 +28,26 @@ class EventController extends Controller
             'url' => 'required',
             'max' => 'required|integer',
             'min' => 'required|integer',
-         ]);
+        ]);
 
-        $event=new Event;
-        $event->name=$request->name;
-        $event->date=$request->date;
-        $event->url=$request->url;
-        $event->max=$request->max;
-        $event->min=$request->min;
+        $event = new Event;
+        $event->name = $request->name;
+        $event->date = $request->date;
+        $event->url = $request->url;
+        $event->max = $request->max;
+        $event->min = $request->min;
         $event->save();
 
         if ($event) {
-            $data =[
-                'message'=> 'Event created successfully',
-                'event'=>$event        
+            $data = [
+                'message' => 'Event created successfully',
+                'event' => $event
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to created event'], 500);
-
-        // $data =[
-        //     'message'=> 'Event created successfully',
-        //     'event'=>$event        
-        // ];
-        // return response()->json($data);
-       
-
     }
 
     /**
@@ -63,23 +55,17 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        // return response()->json($event);
+
         if ($event) {
-            $data =[
-                'message'=> 'Event details',
-                'event'=>$event        
+            $data = [
+                'message' => 'Event details',
+                'event' => $event
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error'], 500);
-
-        // $data =[
-        //     'message'=> 'Event details',
-        //     'event'=>$event        
-        // ];
-        // return response()->json($data);
     }
 
     /**
@@ -93,29 +79,24 @@ class EventController extends Controller
             'url' => 'required',
             'max' => 'required|integer',
             'min' => 'required|integer',
-         ]);
+        ]);
 
-        $event->name=$request->name;
-        $event->date=$request->date;
-        $event->url=$request->url;
-        $event->max=$request->max;
-        $event->min=$request->min;
+        $event->name = $request->name;
+        $event->date = $request->date;
+        $event->url = $request->url;
+        $event->max = $request->max;
+        $event->min = $request->min;
         $event->save();
         if ($event) {
-            $data =[
-                'message'=> 'Event updated successfully',
-                'event'=>$event        
+            $data = [
+                'message' => 'Event updated successfully',
+                'event' => $event
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to updated event'], 500);
-        // $data =[
-        //     'message'=> 'Event updated successfully',
-        //     'event'=>$event        
-        // ];
-        // return response()->json($data);
     }
 
     /**
@@ -126,19 +107,14 @@ class EventController extends Controller
         $event->delete();
 
         if ($event) {
-            $data =[
-                'message'=> 'Event deleted successfully',
-                'event'=>$event        
+            $data = [
+                'message' => 'Event deleted successfully',
+                'event' => $event
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to deleted event'], 500);
-        // $data =[
-        //     'message'=> 'Event deleted successfully',
-        //     'event'=>$event        
-        // ];
-        // return response()->json($data);
     }
 }

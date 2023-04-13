@@ -34,7 +34,7 @@ class ProvincesController extends Controller
         ]);
 
         $province = new Province;
-        $province->region_id=$request->region_id;
+        $province->region_id = $request->region_id;
         $province->name = $request->name;
         $province->lat = $request->lat;
         $province->long = $request->long;
@@ -42,21 +42,15 @@ class ProvincesController extends Controller
         $province->save();
 
         if ($province) {
-            $data =[
-                'message'=> 'Province created successfully',
-                'province'=>$province        
+            $data = [
+                'message' => 'Province created successfully',
+                'province' => $province
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to create province'], 500);
-
-        // $data = [
-        //     'message' => 'Province created successfully',
-        //     'province' => $province
-        // ];
-        // return response()->json($data);
     }
 
     /**
@@ -66,21 +60,15 @@ class ProvincesController extends Controller
     {
         // return response()->json($provinces);
         if ($province) {
-            $data =[
-                'message'=> 'Province details',
-                'province'=>$province        
+            $data = [
+                'message' => 'Province details',
+                'province' => $province
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error '], 500);
-
-        // $data = [
-        //     'message' => 'Province details',
-        //     'province' => $province
-        // ];
-        // return response()->json($data);
     }
 
     /**
@@ -96,7 +84,7 @@ class ProvincesController extends Controller
             'iso' => 'required',
 
         ]);
-        $province->region_id=$request->region_id;
+        $province->region_id = $request->region_id;
         $province->name = $request->name;
         $province->lat = $request->lat;
         $province->long = $request->long;
@@ -104,21 +92,15 @@ class ProvincesController extends Controller
         $province->save();
 
         if ($province) {
-            $data =[
-                'message'=> 'Province updated successfully',
-                'province'=>$province        
+            $data = [
+                'message' => 'Province updated successfully',
+                'province' => $province
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to update province'], 500);
-
-        // $data = [
-        //     'message' => 'Province updated successfully',
-        //     'province' => $province
-        // ];
-        // return response()->json($data);
     }
 
     /**
@@ -129,21 +111,14 @@ class ProvincesController extends Controller
         $province->delete();
 
         if ($province) {
-            $data =[
-                'message'=> 'Province deleted successfully',
-                'province'=>$province        
+            $data = [
+                'message' => 'Province deleted successfully',
+                'province' => $province
             ];
             return response()->json($data);
         }
-           
+
 
         return response()->json(['message' => 'Error to deleted province'], 500);
-
-
-        // $data =[
-        //     'message'=> 'Province deleted successfully',
-        //     'province'=>$province        
-        // ];
-        // return response()->json($data);
     }
 }
