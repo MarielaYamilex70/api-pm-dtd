@@ -11,8 +11,9 @@ class StackControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testCanCreateStack()
+    public function testCreateStack()
     {
+        
         $stackData = [
             'name' => 'Test Stack'
         ];
