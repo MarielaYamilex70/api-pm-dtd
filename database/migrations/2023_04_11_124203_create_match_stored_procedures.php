@@ -37,6 +37,24 @@ return new class extends Migration
              
             END;
         ');
+
+        DB::unprepared('DROP PROCEDURE IF EXISTS getMatches;');
+
+        DB::unprepared('
+            CREATE PROCEDURE getMatches(
+                IN numMatch INT
+            )
+            BEGIN
+                SELECT recruiters.name, coders.name, matches.afinity 
+                FROM matches 
+                JOIN recruiters 
+                    ON matches.recruiter_id = recruiters.id 
+                JOIN coders 
+                    ON matches.coder_id = coders.id 
+                WHERE matches.num_match = numMatch 
+                ORDER BY recruiters.company_id, recruiters.id, coders.id;
+            END;
+        ');
     }
 
     /**

@@ -20,3 +20,4 @@ Route::get('/', function () {
 });
 
 Route::get('/match','App\Http\Controllers\MatchController@index');
+Route::get('/match/demo','App\Http\Controllers\MatchController@demo');
