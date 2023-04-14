@@ -106,6 +106,8 @@ Route::post('/coders/languages/detach','App\Http\Controllers\CoderController@det
 Route::post('/languages/coders','App\Http\Controllers\LanguageController@coders');
 
 
+Route::get('/match','App\Http\Controllers\MatchController@index');
+Route::post('/match','App\Http\Controllers\MatchController@store');
 
 
 

@@ -13,20 +13,25 @@ class MatchController extends Controller
      */
     public function index()
     {
+        $NumMatch = DB::select('CALL getNumMatch()');
+        //dd($NumMatch);
+        if ($NumMatch[0]->NumMatch > 0) {
+            $NumMatches=$NumMatch[0]->NumMatch;
+            // echo $NumMatches.'<br>';
+            // echo gettype($NumMatches);
 
-        $coders = Coder::find($request->coder_id);
-        $recruiters = $coders->recruiter;
-
-        if ($coders) {
-            $data = [
-                'message' => 'Recruiter fetched successfully',
-                'recruiters' => $recruiters
-            ];
-            return response()->json($data);
+            $matches = DB::select("CALL getMatches($NumMatches)");
+            //dd($matches);
+            if ($matches) {
+                $data = [
+                    'message' => 'Matches fetched successfully',
+                    'matches' => $matches
+                ];
+                return response()->json($data);
+            }
         }
 
-
-        return response()->json(['message' => 'Error to fetched Recruiter'], 500);
+        return response()->json(['message' => 'Error to fetched Matches'], 500); 
             
        
     }
@@ -41,9 +46,10 @@ class MatchController extends Controller
         if ( $totalRecruiters[0]->total > 0  && $totalCoders[0]->total>0  ) {
             
             $NumMatch = DB::select('CALL getNumMatch()');
-            //dd($NumMatch);
+            //dd($NumMatch[0]->NumMatch);
             $newNumMatch=1;
             if ($NumMatch[0]->NumMatch > 0 ) {
+                $newNumMatch=$NumMatch[0]->NumMatch;
                 $newNumMatch++;
             }
             //echo "Numero del Match: ".$newNumMatch;
@@ -176,10 +182,12 @@ class MatchController extends Controller
         if ( $totalRecruiters[0]->total > 0  && $totalCoders[0]->total>0  ) {
             
             $NumMatch = DB::select('CALL getNumMatch()');
-            //dd($NumMatch);
+            //dd($NumMatch[0]->NumMatch);
             $newNumMatch=1;
             if ($NumMatch[0]->NumMatch > 0 ) {
+                $newNumMatch=$NumMatch[0]->NumMatch;
                 $newNumMatch++;
+                dd($newNumMatch);
             }
             echo "Numero del Match: ".$newNumMatch;
             echo '<br>';
