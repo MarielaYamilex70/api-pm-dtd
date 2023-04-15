@@ -70,6 +70,31 @@ return new class extends Migration
             END;
         ');
 
+        
+
+        DB::unprepared('DROP PROCEDURE IF EXISTS getTotalCoderSchedule;');
+
+        DB::unprepared('
+            CREATE PROCEDURE getTotalCoderSchedule(
+                IN id_coder INT
+            )
+            BEGIN
+                SELECT COUNT(coder_id) FROM matches WHERE coder_id = id_coder;
+            END;
+        ');
+
+        DB::unprepared('DROP PROCEDURE IF EXISTS getCoderSchedule;');
+
+        DB::unprepared('
+            CREATE PROCEDURE getCoderSchedule(
+                IN id_coder INT,
+                IN job_interview INT
+            )
+            BEGIN
+                SELECT coder_id FROM matches WHERE coder_id = id_coder and interview = job_interview  ;
+            END;
+        ');
+
   
         DB::unprepared('DROP PROCEDURE IF EXISTS storeSchedule;');
 
