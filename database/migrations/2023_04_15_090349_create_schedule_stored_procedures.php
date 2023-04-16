@@ -38,7 +38,7 @@ return new class extends Migration
                 IN id_event INT
             )
             BEGIN
-                SELECT maxInterviewCoder, minInterviewCoder
+                SELECT events.max AS maxInterviewCoder, events.min AS minInterviewCoder
                 FROM events
                 WHERE events.id = id_event;
             END;
@@ -50,22 +50,20 @@ return new class extends Migration
         DB::unprepared('
             CREATE PROCEDURE getMatchesRecruiterCoders(
                 IN numMatch INT,
-                IN id_recruiter INT,
-                IN id_company INT
+                IN id_recruiter INT
             )
             BEGIN
                 SELECT coders.id, coders.name, matches.afinity 
                 FROM matches
-                JOIN recruiters 
-                    ON matches.recruiter_id = recruiters.id 
-                JOIN companies 
-                    ON recruiters.company_id = companies.id     
+                
                 JOIN coders 
                     ON matches.coder_id = coders.id 
                 
                 WHERE matches.num_match = numMatch 
                     AND matches.recruiter_id = id_recruiter
-                    AND recruiters.company_id <> id_company
+                    AND matches.afinity > 0
+                    AND matches.interview = 0
+                    
                 ORDER BY matches.afinity DESC ;
             END;
         ');
@@ -76,10 +74,14 @@ return new class extends Migration
 
         DB::unprepared('
             CREATE PROCEDURE getTotalCoderSchedule(
+                IN numMatch INT,
                 IN id_coder INT
             )
             BEGIN
-                SELECT COUNT(coder_id) FROM matches WHERE coder_id = id_coder;
+                SELECT COUNT(coder_id) AS total  FROM matches 
+                WHERE  matches.num_match = numMatch 
+                    AND coder_id = id_coder
+                    AND interview > 0;
             END;
         ');
 
@@ -87,11 +89,37 @@ return new class extends Migration
 
         DB::unprepared('
             CREATE PROCEDURE getCoderSchedule(
+                IN numMatch INT,
                 IN id_coder INT,
                 IN job_interview INT
             )
             BEGIN
-                SELECT coder_id FROM matches WHERE coder_id = id_coder and interview = job_interview  ;
+                SELECT coder_id FROM matches 
+                WHERE matches.num_match = numMatch 
+                    AND coder_id = id_coder 
+                    AND interview = job_interview  ;
+            END;
+        ');
+
+        DB::unprepared('DROP PROCEDURE IF EXISTS getCoderCompanySchedule;');
+
+        DB::unprepared('
+            CREATE PROCEDURE getCoderCompanySchedule(
+                IN numMatch INT,
+                IN id_coder INT,
+                IN id_company INT
+            )
+            BEGIN
+                SELECT matches.coder_id 
+                FROM matches 
+                JOIN recruiters 
+                    ON matches.recruiter_id = recruiters.id 
+                JOIN companies 
+                    ON recruiters.company_id = companies.id
+                WHERE matches.num_match = numMatch 
+                    AND matches.coder_id = id_coder 
+                    AND interview > 0
+                    AND companies.id = id_company  ;
             END;
         ');
 
