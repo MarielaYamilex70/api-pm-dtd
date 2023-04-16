@@ -59,7 +59,7 @@ class ScheduleController extends Controller
                     //dd($CoderCompanySchedule);    
                     
 
-                    if (($totalCoderSchedule[0]->total <= $MaxMinCoderInterview[0]->maxInterviewCoder) && !$coderSchedule && !$CoderCompanySchedule ) {
+                    if (($totalCoderSchedule[0]->total < $MaxMinCoderInterview[0]->maxInterviewCoder) && !$coderSchedule && !$CoderCompanySchedule ) {
                         //dd($coders);
                         echo "Se asigna la ENTREVISTA: $interviews  del RECRUITER: $recruiter->name  con el CODER: $coder->name que tienen una AFINIDAD: $coder->afinity% ";
                         echo '<br>';
