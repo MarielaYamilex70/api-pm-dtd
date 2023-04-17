@@ -27,8 +27,8 @@ return new class extends Migration
                 ->onDelete('cascade');
 
             $table->decimal('afinity',5,2);
-            $table->unsignedInteger('num_match');    
-
+            $table->unsignedInteger('num_match');     
+            $table->unsignedTinyInteger('interview');
             $table->timestamps();
         });
     }
