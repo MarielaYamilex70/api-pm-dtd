@@ -27,15 +27,17 @@ class ScheduleController extends Controller
             $recruiters = DB::select("CALL getAllRecruitersToSchedule($lastNumMatch)");
             
             foreach ($recruiters as $recruiter){
-                $interviews = 1;
-                $interviewsQuantity = $recruiter->interviews_quantity;
+                $interview = $recruiter->first_interview;;
+                $lastInterview = $recruiter->last_interview;
                 echo "***********************************************";
                 echo '<br>';
                 echo "ID: ".$recruiter->id."  NOMBRE:  ".$recruiter->name."  COMPANY:  ".$recruiter->company_id;
                 echo '<br>';
                 echo "***********************************************";
                 echo '<br>';
-                echo " TOTAL ENTREVISTAS DEL RECRUITER:  ".$interviewsQuantity;
+                echo " PRIMERA ENTREVISTA DE RECRUITER:  ".$interview;
+                echo '<br>';
+                echo " ULTIMA ENTREVISTA DEL RECRUITER:  ".$lastInterview;
                 echo '<br>';
 
                 $coders = DB::select("CALL getMatchesRecruiterCoders($lastNumMatch, $recruiter->id)");
@@ -43,18 +45,23 @@ class ScheduleController extends Controller
                 //dd($coders);
                 foreach ($coders as $coder){
                     
-                    if ($coders) echo $coder->name;
+                    echo $coder->name;
+                    echo '<br>';
+                    echo "-----------------------------";
                     echo '<br>';
                     
 
                     $totalCoderSchedule = DB::select("CALL getTotalCoderSchedule($lastNumMatch, $coder->id)");
                     if ($totalCoderSchedule[0]->total <= $MaxMinCoderInterview[0]->maxInterviewCoder)  echo "El coder no supera el numero maximo de entrevistas";
+                    else echo "OJOOOOOO, El coder SI supera el numero maximo de entrevistas";
                     echo '<br>';
-                    $coderSchedule = DB::select("CALL getCoderSchedule($lastNumMatch, $coder->id, $interviews)");
+                    $coderSchedule = DB::select("CALL getCoderSchedule($lastNumMatch, $coder->id, $interview)");
                     if (!$coderSchedule)  echo "El coder no tiene asignado la entrevista, el numero de entrevista";
+                    else echo "OJOOOOOO, El coder SI tiene asignado la entrevista, el numero de entrevista";
                     echo '<br>';
                     $CoderCompanySchedule = DB::select("CALL getCoderCompanySchedule($lastNumMatch, $coder->id, $recruiter->company_id )");
                     if (!$CoderCompanySchedule)  echo "El Coder no tiene asignado otra entrevista con la misma Empresa";
+                    else echo "OJOOOOOO, El Coder SI tiene asignado otra entrevista con la misma Empresa";
                     echo '<br>';
                     //dd($CoderCompanySchedule);    
                     
@@ -63,27 +70,29 @@ class ScheduleController extends Controller
                         //dd($coders);
                         echo "===================================================================================================================";
                         echo '<br>';
-                        echo "Se asigna la ENTREVISTA: $interviews  del RECRUITER: $recruiter->name  con el CODER: $coder->name que tienen una AFINIDAD: $coder->afinity% ";
+                        echo "Se asigna la ENTREVISTA: $interview  del RECRUITER: $recruiter->name  con el CODER: $coder->name que tienen una AFINIDAD: $coder->afinity% ";
                         echo '<br>';
                         echo "===================================================================================================================";
                         echo '<br>';
 
-                        $Schedule = DB::update("CALL storeSchedule($coder->id, $recruiter->id, $interviews)");
+                        $schedule = DB::update("CALL storeSchedule($coder->id, $recruiter->id, $interview)");
                       
-                        $interviews++;
+                        if ($schedule) {
+                                 
+                            //print_r($schedule);
+                        
+                            //echo '<br>';
 
-                        if ($interviews > $interviewsQuantity) {
-                            //Se terminaron las entrevistas del RECRUITER 
-                            break;
+                            $interview++;
+
+                            if ($interview > $lastInterview) break; //Se terminaron las entrevistas del RECRUITER 
                         }
+                        else{
+                            echo "Error to updated Schedule";
+                        }    
                     }
-                 
-
                 }
-
             }
-
-
         }
         else{
             echo "Error to fetched Matches";

@@ -38,7 +38,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->boolean('remote');
-            $table->unsignedTinyInteger('interviews_quantity');
+            $table->unsignedTinyInteger('first_interview');
+            $table->unsignedTinyInteger('last_interview');
+          
             
             $table->timestamps();
         });

@@ -19,7 +19,7 @@ return new class extends Migration
                 IN numMatch INT
             )
             BEGIN
-                SELECT recruiters.company_id, companies.priority, recruiters.id, recruiters.name, recruiters.interviews_quantity
+                SELECT recruiters.company_id, companies.priority, recruiters.id, recruiters.name, recruiters.first_interview, recruiters.last_interview
                 FROM recruiters
                 JOIN matches
                     ON recruiters.id = matches.recruiter_id

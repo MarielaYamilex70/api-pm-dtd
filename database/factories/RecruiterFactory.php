@@ -26,7 +26,8 @@ class RecruiterFactory extends Factory
             'phone' => $this->faker->phoneNumber(),
             'linkedin' => $this->faker->url(),
             'remote' => random_int(0,1),
-            'interviews_quantity' => random_int(1,15),
+            'first_interview' => $firstInterview = random_int(1,15),
+            'last_interview' => random_int($firstInterview,15)
         ];
     }
 }
