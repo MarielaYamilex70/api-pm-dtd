@@ -22,8 +22,8 @@ class ScheduleController extends Controller
             $MaxMinCoderInterview = DB::select("CALL getMaxMinCoderInterview($event)");
             echo " MAX ENTREVISTAS POR CODER:  ".$MaxMinCoderInterview[0]->maxInterviewCoder;
             echo '<br>';
-            echo " MIN ENTREVISTAS POR CODER:  ".$MaxMinCoderInterview[0]->minInterviewCoder;
-            echo '<br>';
+            //echo " MIN ENTREVISTAS POR CODER:  ".$MaxMinCoderInterview[0]->minInterviewCoder;
+            //echo '<br>';
             $recruiters = DB::select("CALL getAllRecruitersToSchedule($lastNumMatch)");
             
             foreach ($recruiters as $recruiter){
@@ -61,7 +61,11 @@ class ScheduleController extends Controller
 
                     if (($totalCoderSchedule[0]->total < $MaxMinCoderInterview[0]->maxInterviewCoder) && !$coderSchedule && !$CoderCompanySchedule ) {
                         //dd($coders);
+                        echo "===================================================================================================================";
+                        echo '<br>';
                         echo "Se asigna la ENTREVISTA: $interviews  del RECRUITER: $recruiter->name  con el CODER: $coder->name que tienen una AFINIDAD: $coder->afinity% ";
+                        echo '<br>';
+                        echo "===================================================================================================================";
                         echo '<br>';
 
                         $Schedule = DB::update("CALL storeSchedule($coder->id, $recruiter->id, $interviews)");
