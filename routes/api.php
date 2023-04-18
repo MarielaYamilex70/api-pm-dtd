@@ -109,6 +109,7 @@ Route::post('/languages/coders','App\Http\Controllers\LanguageController@coders'
 
 Route::get('/match','App\Http\Controllers\MatchController@index');
 Route::post('/match','App\Http\Controllers\MatchController@store');
+Route::get('/match/search','App\Http\Controllers\MatchController@search');
 
 Route::get('/schedule','App\Http\Controllers\ScheduleController@index');
 Route::post('/schedule','App\Http\Controllers\ScheduleController@store');

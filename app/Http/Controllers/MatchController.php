@@ -48,16 +48,14 @@ class MatchController extends Controller
         $totalCoders = DB::select('CALL countCoders()');
         if ( $totalRecruiters[0]->total > 0  && $totalCoders[0]->total>0  ) {
             
-            $NumMatch = DB::select('CALL getNumMatch()');
-            //dd($NumMatch[0]->NumMatch);
+            $numMatch = DB::select('CALL getNumMatch()');
+            //dd($numMatch[0]->NumMatch);
             $newNumMatch=1;
-            if ($NumMatch[0]->NumMatch > 0 ) {
-                $newNumMatch=$NumMatch[0]->NumMatch;
+            if ($numMatch[0]->NumMatch > 0 ) {
+                $newNumMatch=$numMatch[0]->NumMatch;
                 $newNumMatch++;
             }
-            else{
-                return response()->json(['message' => 'Error to get NunMatches'], 500); 
-            }
+            
             //echo "Numero del Match: ".$newNumMatch;
             //echo '<br>';
             $recruiters = DB::select('CALL getAllRecruiters()');
@@ -196,6 +194,49 @@ class MatchController extends Controller
     public function getnumatches ()
     {
        //Devuelve todos los Numeros de Matches y la fecha
+       $numMatch = DB::select('CALL getNumMatch()');
+        //dd($numMatch[0]->NumMatch);
+        
+        if ($numMatch[0]->NumMatch > 0 ) {
+            $data = [
+                'message' => 'OK'
+            ];
+            return response()->json($data);
+        }
+        else{
+            return response()->json(['message' => 'Error to get NunMatchessssssss'], 500); 
+        }
+    }
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'search_text' => 'required'
+        ]);
+        $numMatch = DB::select('CALL getNumMatch()');
+        //dd($NumMatch);
+        if ($numMatch[0]->NumMatch > 0) {
+            $lastNumMatch=$numMatch[0]->NumMatch;
+            // echo $NumMatches.'<br>';
+            // echo gettype($NumMatches);
+
+            $matches = DB::select("CALL getSearchMatches($lastNumMatch, $request->search_text)");
+            //dd($matches);
+            if ($matches) {
+                $data = [
+                    'message' => 'Matches fetched successfully',
+                    'matches' => $matches
+                ];
+                return response()->json($data);
+            }
+            else{
+                return response()->json(['message' => 'Error to fetched Matches'], 500);     
+            }
+        }
+
+        return response()->json(['message' => 'Error to get NunMatches'], 500); 
+            
+       
     }
 
     public function demo()

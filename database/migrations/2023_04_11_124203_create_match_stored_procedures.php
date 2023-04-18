@@ -59,6 +59,33 @@ return new class extends Migration
                 ORDER BY recruiters.company_id, recruiters.id, matches.afinity DESC ;
             END;
         ');
+
+        DB::unprepared('DROP PROCEDURE IF EXISTS getSearchMatches;');
+
+        DB::unprepared("
+            CREATE PROCEDURE getSearchMatches(
+                IN numMatch INT,
+                IN searchText VARCHAR(255) 
+            )
+            BEGIN
+                SELECT events.name AS nameEvent, companies.name AS nameCompany, recruiters.name AS nameRecruiter, coders.name AS nameCoder, matches.afinity 
+                FROM matches
+                JOIN recruiters 
+                    ON matches.recruiter_id = recruiters.id 
+                JOIN companies 
+                    ON recruiters.company_id = companies.id     
+                JOIN coders 
+                    ON matches.coder_id = coders.id 
+                JOIN events 
+                    ON coders.event_id = events.id      
+                WHERE matches.num_match = numMatch 
+                    AND ((events.name LIKE '%searchText%')
+                    OR (companies.name LIKE '%searchText%')
+                    OR (recruiters.name LIKE '%searchText%')
+                    OR (coders.name LIKE '%searchText%'))
+                ORDER BY recruiters.company_id, recruiters.id, matches.afinity DESC ;
+            END;
+        ");
     }
 
     /**
