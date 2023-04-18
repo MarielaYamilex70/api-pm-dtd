@@ -197,6 +197,29 @@ class RecruiterController extends Controller
         return response()->json(['message' => 'Error to detached Coder'], 500);
     }
 
+
+    public function coders(Request $request)
+    {
+
+        $request->validate([
+            'recruiter_id' => 'required|integer'
+        ]);
+        $recruiter = Recruiter::find($request->recruiter_id);
+        $coders = $recruiter->coder;
+
+        if ($recruiter) {
+            $data = [
+                'message' => 'Coders fetched successfully',
+                'recruiter' => $recruiter,
+                'coders' => $coders
+            ];
+            return response()->json($data);
+        }
+
+
+        return response()->json(['message' => 'Error to fetched Coders'], 500);
+    }
+
     public function attachStack(Request $request)
     {
         //

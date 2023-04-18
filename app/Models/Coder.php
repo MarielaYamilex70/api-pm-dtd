@@ -21,23 +21,21 @@ class Coder extends Model
         return $this->belongsTo(Province::class);
     } */
     
-    public function language()
-        {
+    public function language(){
         return $this->belongsToMany(Language::class, 'coders_languages');
     }
 
-    public function recruiter()
-        {
-        return $this->belongsToMany(Recruiter::class, 'matches');
+    public function recruiter(){
+        return $this->belongsToMany(Recruiter::class, 'matches','coder_id','recruiter_id')
+            ->withPivot('num_match', 'afinity', 'interview' );
+
     }
 
-    public function stack()
-        {
+    public function stack(){
         return $this->belongsToMany(Stack::class, 'coders_stacks');
     }
 
-    public function location()
-    {
-    return $this->belongsToMany(Province::class, 'coders_locations');
-}
+    public function location(){
+        return $this->belongsToMany(Province::class, 'coders_locations');
+    }
 }
