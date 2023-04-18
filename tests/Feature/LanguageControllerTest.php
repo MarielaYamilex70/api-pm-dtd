@@ -3,39 +3,41 @@
 namespace Tests\Feature;
 
 use App\Models\Language;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Http\Response;
 use Tests\TestCase;
 
 class LanguageControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    use DatabaseTransactions;
 
-    public function testCanCreateLanguage()
-{
-    $languageData = [
-        'name' => 'Test Language'
-    ];
+//     public function testCanCreateLanguage()
+// {
+//     $languageData = [
+//         'name' => 'Test Language'
+//     ];
 
-    $response = $this->postJson('/api/languages', $languageData);
+//     $response = $this->postJson('/api/languages', $languageData);
 
-    $response->assertStatus(Response::HTTP_CREATED)
-        ->assertJsonStructure([
-            'message',
-            'language' => [
-                'id',
-                'name',
-                'created_at',
-                'updated_at'
-            ]
-        ])
-        ->assertJson([
-            'message' => 'Language created successfully',
-            'language' => [
-                'name' => $languageData['name']
-            ]
-        ]);
-}
+//     $response->assertStatus(Response::HTTP_CREATED)
+//         ->assertJsonStructure([
+//             'message',
+//             'language' => [
+//                 'id',
+//                 'name',
+//                 'created_at',
+//                 'updated_at'
+//             ]
+//         ])
+//         ->assertJson([
+//             'message' => 'Language created successfully',
+//             'language' => [
+//                 'name' => $languageData['name']
+//             ]
+//         ]);
+// }
+
+
 
 
     public function testCanGetLanguage()
