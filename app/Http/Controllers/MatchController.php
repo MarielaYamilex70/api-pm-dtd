@@ -239,7 +239,7 @@ class MatchController extends Controller
                 ->join("coders", "coders.id", "=", "matches.coder_id")
                 ->join("events", "events.id", "=", "coders.event_id")
                 ->where("matches.num_match", "=", $lastNumMatch)
-                ->orWhere("companies.name", "LIKE", "%".$request->search_text."%")
+                ->Where("companies.name", "LIKE", "%".$request->search_text."%")
                 ->orWhere("recruiters.name", "LIKE", "%".$request->search_text."%")
                 ->orWhere("coders.name", "LIKE", "%".$request->search_text."%")
                 ->orWhere("events.name", "LIKE", "%".$request->search_text."%")
@@ -258,6 +258,7 @@ class MatchController extends Controller
             if ($matches) {
                 $data = [
                     'message' => 'Matches fetched successfully',
+                    'search' => $request->search_text,
                     'matches' => $matches
                 ];
                 return response()->json($data);
