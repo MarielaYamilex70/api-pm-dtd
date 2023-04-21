@@ -9,6 +9,11 @@ class StackTest extends TestCase
     /** @test */
     public function test_stack_index_returns_200_ok(): void
     {
+    // Scenario: Retrieve stacks
+    // Given I am on the stacks page
+    // When I make a GET request to '/stacks'
+    // Then the response status code should be 200 OK
+
         $response = $this->call('GET', '/stacks', []);
 
 
