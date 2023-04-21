@@ -13,14 +13,14 @@ class MatchController extends Controller
      */
     public function index()
     {
-        $NumMatch = DB::select('CALL getNumMatch()');
+        $numMatch = DB::select('CALL getNumMatch()');
         //dd($NumMatch);
-        if ($NumMatch[0]->NumMatch > 0) {
-            $NumMatches=$NumMatch[0]->NumMatch;
+        if ($numMatch[0]->NumMatch > 0) {
+            $lastNumMatch=$numMatch[0]->NumMatch;
             // echo $NumMatches.'<br>';
             // echo gettype($NumMatches);
 
-            $matches = DB::select("CALL getMatches($NumMatches)");
+            $matches = DB::select("CALL getMatches($lastNumMatch)");
             //dd($matches);
             if ($matches) {
                 $data = [
@@ -29,9 +29,12 @@ class MatchController extends Controller
                 ];
                 return response()->json($data);
             }
+            else{
+                return response()->json(['message' => 'Error to fetched Matches'], 500);     
+            }
         }
 
-        return response()->json(['message' => 'Error to fetched Matches'], 500); 
+        return response()->json(['message' => 'Error to get NunMatches'], 500); 
             
        
     }
@@ -45,13 +48,14 @@ class MatchController extends Controller
         $totalCoders = DB::select('CALL countCoders()');
         if ( $totalRecruiters[0]->total > 0  && $totalCoders[0]->total>0  ) {
             
-            $NumMatch = DB::select('CALL getNumMatch()');
-            //dd($NumMatch[0]->NumMatch);
+            $numMatch = DB::select('CALL getNumMatch()');
+            //dd($numMatch[0]->NumMatch);
             $newNumMatch=1;
-            if ($NumMatch[0]->NumMatch > 0 ) {
-                $newNumMatch=$NumMatch[0]->NumMatch;
+            if ($numMatch[0]->NumMatch > 0 ) {
+                $newNumMatch=$numMatch[0]->NumMatch;
                 $newNumMatch++;
             }
+            
             //echo "Numero del Match: ".$newNumMatch;
             //echo '<br>';
             $recruiters = DB::select('CALL getAllRecruiters()');
@@ -162,17 +166,113 @@ class MatchController extends Controller
                 }
                 
             }
+            $matches = DB::select("CALL getMatches($newNumMatch)");
+            //dd($matches);
+            if ($matches) {
+                $data = [
+                    'message' => 'Matches created successfully',
+                    'matches' => $matches
+                ];
+                return response()->json($data);
+            }
+            else{
+                return response()->json(['message' => 'Error to created Matches'], 500);     
+            }
+
+            
         }
-        $data = [
-            'message' => 'Match created successfully'
-        ];
-        return response()->json($data);
+        else{
+            $data = [
+                'message' => 'ERROR, There are not recruiters and/or coders'
+            ];
+            return response()->json($data);
+        }
+        
        
     }
 
     public function getnumatches ()
     {
        //Devuelve todos los Numeros de Matches y la fecha
+       $numMatch = DB::select('CALL getNumMatch()');
+        //dd($numMatch[0]->NumMatch);
+        
+        if ($numMatch[0]->NumMatch > 0 ) {
+            $data = [
+                'message' => 'OK'
+            ];
+            return response()->json($data);
+        }
+        else{
+            return response()->json(['message' => 'Error to get NunMatchessssssss'], 500); 
+        }
+    }
+
+    public function search(Request $request)
+    {
+        $request->validate([
+            'search_text' => 'required'
+        ]);
+        $numMatch = DB::select('CALL getNumMatch()');
+        //dd($NumMatch);
+        if ($numMatch[0]->NumMatch > 0) {
+            $lastNumMatch=$numMatch[0]->NumMatch;
+            // echo $NumMatches.'<br>';
+            // echo gettype($NumMatches);
+
+            /* $matches = DB::select("CALL getSearchMatches($lastNumMatch, $request->search_text)");
+            //dd($matches);
+            if ($matches) {
+                $data = [
+                    'message' => 'Matches fetched successfully',
+                    'matches' => $matches
+                ];
+                return response()->json($data);
+            }
+            else{
+                return response()->json(['message' => 'Error to fetched Matches'], 500);     
+            } */
+
+            $matches = DB::table("matches")
+                ->join("recruiters","recruiters.id","=", "matches.recruiter_id")
+                ->join("companies","companies.id","=", "recruiters.company_id")
+                ->join("coders", "coders.id", "=", "matches.coder_id")
+                ->join("events", "events.id", "=", "coders.event_id")
+                ->where("matches.num_match", "=", $lastNumMatch)
+                ->Where("companies.name", "LIKE", "%".$request->search_text."%")
+                ->orWhere("recruiters.name", "LIKE", "%".$request->search_text."%")
+                ->orWhere("coders.name", "LIKE", "%".$request->search_text."%")
+                ->orWhere("events.name", "LIKE", "%".$request->search_text."%")
+                ->select("events.name AS nameEvent",
+                        "companies.name AS nameCompany", 
+                        "companies.priority", 
+                        "recruiters.id as idRecruiter", 
+                        "recruiters.name as nameRecruiter", 
+                        "coders.name as nameCoder", 
+                        "matches.num_match", 
+                        "matches.afinity")
+                ->orderBy("companies.priority")
+                ->orderBy("recruiters.id")
+                ->orderBy("matches.afinity","DESC")
+                ->get();
+            if ($matches) {
+                $data = [
+                    'message' => 'Matches fetched successfully',
+                    'search' => $request->search_text,
+                    'matches' => $matches
+                ];
+                return response()->json($data);
+            }
+            else{
+                return response()->json(['message' => 'Error to fetched Matches'], 500);     
+            } 
+
+
+        }
+
+        return response()->json(['message' => 'Error to get NunMatches'], 500); 
+            
+       
     }
 
     public function demo()

@@ -37,10 +37,11 @@ Route::get('/coders/{coder}','App\Http\Controllers\CoderController@show');
 Route::put('/coders/{coder}','App\Http\Controllers\CoderController@update');
 Route::delete('/coders/{coder}','App\Http\Controllers\CoderController@destroy');
 
-Route::post('/matches/recruiters','App\Http\Controllers\RecruiterController@attach');
-Route::post('/matches/recruiters/detach','App\Http\Controllers\RecruiterController@detach');
+Route::post('/matches/recruiter','App\Http\Controllers\RecruiterController@attach');
+Route::post('/matches/recruiter/detach','App\Http\Controllers\RecruiterController@detach');
 
-Route::post('/matches/coders','App\Http\Controllers\CoderController@recruiters');
+Route::get('/matches/recruiter/coders','App\Http\Controllers\RecruiterController@coders');
+Route::get('/matches/coder/recruiters','App\Http\Controllers\CoderController@recruiters');
 
 Route::get('/companies','App\Http\Controllers\CompanyController@index');
 Route::post('/companies','App\Http\Controllers\CompanyController@store');
@@ -108,7 +109,10 @@ Route::post('/languages/coders','App\Http\Controllers\LanguageController@coders'
 
 Route::get('/match','App\Http\Controllers\MatchController@index');
 Route::post('/match','App\Http\Controllers\MatchController@store');
+Route::get('/match/search','App\Http\Controllers\MatchController@search');
 
+Route::get('/schedule','App\Http\Controllers\ScheduleController@index');
+Route::post('/schedule','App\Http\Controllers\ScheduleController@store');
 
 
 

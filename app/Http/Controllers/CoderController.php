@@ -152,13 +152,16 @@ class CoderController extends Controller
 
     public function recruiters(Request $request)
     {
+        $request->validate([
+            'coder_id' => 'required|integer'
+        ]);
+        $coder = Coder::find($request->coder_id);
+        $recruiters = $coder->recruiter;
 
-        $coders = Coder::find($request->coder_id);
-        $recruiters = $coders->recruiter;
-
-        if ($coders) {
+        if ($coder) {
             $data = [
                 'message' => 'Recruiter fetched successfully',
+                'coder' => $coder,
                 'recruiters' => $recruiters
             ];
             return response()->json($data);

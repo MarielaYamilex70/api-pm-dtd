@@ -20,23 +20,21 @@ class Recruiter extends Model
         return $this->belongsTo(province::class);
     } */
 
-    public function language()
-        {
+    public function language(){
         return $this->belongsToMany(Language::class, 'recruiters_languages');
     }
 
-    public function coder()
-        {
-        return $this->belongsToMany(Coder::class, 'matches');
-    }
+    public function coder(){
+        return $this->belongsToMany(Coder::class, 'matches','coder_id','recruiter_id')
+            ->withPivot('num_match', 'afinity', 'interview' );
 
-    public function stack()
-        {
+    }
+    
+    public function stack(){
         return $this->belongsToMany(Stack::class, 'recruiters_stacks');
     }
 
-    public function location()
-    {
+    public function location(){
         return $this->belongsToMany(Province::class, 'recruiters_locations');
     }
 }
