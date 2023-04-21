@@ -140,6 +140,60 @@ class ScheduleController extends Controller
         }
     }
 
+    public function search(Request $request)
+    {
+        $request->validate([
+            'search_text' => 'required'
+        ]);
+        $numMatch = DB::select('CALL getNumMatch()');
+        //dd($NumMatch);
+        if ($numMatch[0]->NumMatch > 0) {
+            $lastNumMatch=$numMatch[0]->NumMatch;
+            
+            $matches = DB::table("matches")
+                ->join("recruiters","recruiters.id","=", "matches.recruiter_id")
+                ->join("companies","companies.id","=", "recruiters.company_id")
+                ->join("coders", "coders.id", "=", "matches.coder_id")
+                ->join("events", "events.id", "=", "coders.event_id")
+                ->where("matches.num_match", "=", $lastNumMatch)
+                ->where("matches.interview", ">", 0)
+                ->Where("companies.name", "LIKE", "%".$request->search_text."%")
+                ->orWhere("recruiters.name", "LIKE", "%".$request->search_text."%")
+                ->orWhere("coders.name", "LIKE", "%".$request->search_text."%")
+                ->orWhere("events.name", "LIKE", "%".$request->search_text."%")
+                ->select("events.name AS nameEvent",
+                        "companies.name AS nameCompany", 
+                        "companies.priority", 
+                        "recruiters.id as idRecruiter", 
+                        "recruiters.name as nameRecruiter", 
+                        "coders.name as nameCoder", 
+                        "matches.num_match", 
+                        "matches.afinity",
+                        "matches.interview")
+                ->orderBy("companies.priority")
+                ->orderBy("recruiters.id")
+                ->orderBy("matches.afinity","DESC")
+                ->get();
+            if ($matches) {
+                $data = [
+                    'message' => 'Matches fetched successfully',
+                    'search' => $request->search_text,
+                    'matches' => $matches
+                ];
+                return response()->json($data);
+            }
+            else{
+                return response()->json(['message' => 'Error to fetched Matches'], 500);     
+            } 
+
+
+        }
+
+        return response()->json(['message' => 'Error to get NunMatches'], 500); 
+            
+       
+    }
+
     public function demo()
     {
         $numMatch = DB::select('CALL getNumMatch()');
