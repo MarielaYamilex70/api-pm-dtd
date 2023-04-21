@@ -64,6 +64,7 @@ class StackControllerTest extends TestCase
         $stackData = [
             'name' => 'Updated Stack'
         ];
+        
 
         $response = $this->putJson("/api/stacks/{$stack->id}", $stackData);
 
