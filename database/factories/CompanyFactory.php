@@ -17,7 +17,7 @@ class CompanyFactory extends Factory
     public function definition(): array
     {
         return [
-            'province_id' => random_int(1,3),
+            'province_id' => random_int(1,12),
             'name' => $this->faker->company(),
             'ubication' => $this->faker->address(),
             'email' => $this->faker->email(),

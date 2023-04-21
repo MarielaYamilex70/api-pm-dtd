@@ -29,8 +29,8 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $stacks = [
-            ['name' => 'PHP'],
-            ['name' => 'JAVA']
+            ['name' => 'PHP'], // id: 1
+            ['name' => 'JAVA'] // id: 2
             
         ];
         foreach ($stacks as $stack) {
@@ -38,9 +38,9 @@ class DatabaseSeeder extends Seeder
         }
 
         $languages = [
-            ['name' => 'Inglés/Alto'],
-            ['name' => 'Inglés/Medio'],
-            ['name' => 'Inglés/Bajo']
+            ['name' => 'Inglés/Alto'], // id: 1
+            ['name' => 'Inglés/Medio'], // id: 2
+            ['name' => 'Inglés/Bajo'] // id: 3
             
         ];
         foreach ($languages as $language) {
@@ -48,8 +48,15 @@ class DatabaseSeeder extends Seeder
         }
 
         $regions = [
-            ['name' => 'Asturias', 'lat' => 43.36662, 'long' => -5.86112,'iso' => 'AS'],
-            ['name' => 'Galicia','lat' => 42.5750554, 'long' => -8.1338558,'iso' => 'GA']
+            ['name' => 'Barcelona', 'lat' => 43.36662, 'long' => -5.86112,'iso' => 'BCN'], // id: 1
+            ['name' => 'Madrid','lat' => 42.5750554, 'long' => -8.1338558,'iso' => 'MAD'], // id: 2
+            ['name' => 'Asturias', 'lat' => 43.36662, 'long' => -5.86112,'iso' => 'AST'], // id: 3
+            ['name' => 'Sevilla', 'lat' => 43.36662, 'long' => -5.86112,'iso' => 'SEV'], // id: 4
+            ['name' => 'Málaga', 'lat' => 43.36662, 'long' => -5.86112,'iso' => 'MLG'], // id: 5
+            ['name' => 'Cantabria', 'lat' => 43.36662, 'long' => -5.86112,'iso' => 'CA'], // id: 6
+            ['name' => 'Galicia','lat' => 42.5750554, 'long' => -8.1338558,'iso' => 'GAL'], // id: 7
+            ['name' => 'Castilla y Leon', 'lat' => 43.36662, 'long' => -5.86112,'iso' => 'CL'], // id: 8
+            ['name' => 'Bilbao', 'lat' => 43.36662, 'long' => -5.86112,'iso' => 'BIL'] // id: 9
             
         ];
         foreach ($regions as $region) {
@@ -57,9 +64,19 @@ class DatabaseSeeder extends Seeder
         }
 
         $provinces = [
-            ['region_id' => 1, 'name' => 'Oviedo', 'lat' => 43.3579649, 'long' => -5.8733862,'iso' => 'AS'],
-            ['region_id' => 2, 'name' => 'La Coruña','lat' => 43.37135, 'long' => -8.396,'iso' => 'C'],
-            ['region_id' => 1, 'name' => 'Gijon','lat' => 43.5453, 'long' => -5.66193,'iso' => 'C']
+            ['region_id' => 3, 'name' => 'Oviedo', 'lat' => 43.3579649, 'long' => -5.8733862,'iso' => 'OVD'], // id: 1
+            ['region_id' => 7, 'name' => 'La Coruña','lat' => 43.37135, 'long' => -8.396,'iso' => 'LCG'], // id: 2
+            ['region_id' => 3, 'name' => 'Gijon','lat' => 43.5453, 'long' => -5.66193,'iso' => 'GJN'], // id: 3
+            ['region_id' => 1, 'name' => 'Barcelona','lat' => 43.5453, 'long' => -5.66193,'iso' => 'BCN'], // id: 4
+            ['region_id' => 2, 'name' => 'Madrid','lat' => 43.5453, 'long' => -5.66193,'iso' => 'MAD'], // id: 5
+            ['region_id' => 3, 'name' => 'Asturias','lat' => 43.5453, 'long' => -5.66193,'iso' => 'AST'], // id:6
+            ['region_id' => 4, 'name' => 'Sevilla','lat' => 43.5453, 'long' => -5.66193,'iso' => 'SEV'], // id: 7
+            ['region_id' => 5, 'name' => 'Málaga','lat' => 43.5453, 'long' => -5.66193,'iso' => 'MLG'], // id: 8
+            ['region_id' => 6, 'name' => 'Cantabria','lat' => 43.5453, 'long' => -5.66193,'iso' => 'CA'], // id: 9
+            ['region_id' => 7, 'name' => 'Galicia','lat' => 43.5453, 'long' => -5.66193,'iso' => 'GAL'], // id: 10
+            ['region_id' => 8, 'name' => 'Castilla y Leon','lat' => 43.5453, 'long' => -5.66193,'iso' => 'CL'], // id: 11
+            ['region_id' => 9, 'name' => 'Bilbao','lat' => 43.5453, 'long' => -5.66193,'iso' => 'BIL'], // id: 12
+            
             
         ];
         foreach ($provinces as $province) {
@@ -67,7 +84,13 @@ class DatabaseSeeder extends Seeder
         }
 
         $schools = [
-            ['province_id' => 3, 'name' => 'Asturias', 'lat' => 43.5453, 'long' => -5.66193],
+            ['province_id' => 4, 'name' => 'Factoría F5, Barcelona', 'lat' => 43.5453, 'long' => -5.66193], // id: 1
+            ['province_id' => 5, 'name' => 'Factoría F5, Madrid', 'lat' => 43.5453, 'long' => -5.66193], // id: 2
+            ['province_id' => 5, 'name' => 'Fundación Tomillo, Madrid', 'lat' => 43.5453, 'long' => -5.66193], // id: 3
+            ['province_id' => 6, 'name' => 'Factoría F5, Asturias', 'lat' => 43.5453, 'long' => -5.66193], // id: 4
+            ['province_id' => 7, 'name' => 'Fundación Don Bosco, Sevilla', 'lat' => 43.5453, 'long' => -5.66193], // id: 5
+            ['province_id' => 8, 'name' => 'Arrabal, Málaga', 'lat' => 43.5453, 'long' => -5.66193], // id: 6
+            ['province_id' => 12, 'name' => 'Peñascal Kooperatiba, Bilbao', 'lat' => 43.5453, 'long' => -5.66193] // id: 7
             
             
         ];
@@ -76,9 +99,16 @@ class DatabaseSeeder extends Seeder
         }
 
         $promotions = [
-            ['school_id' => 1, 'name' => 'FemCodersNorte', 'nick' => 'FEM', 'quantity' => 19],
-            ['school_id' => 1, 'name' => 'Asturias', 'nick' => 'AST', 'quantity' => 20],
-            ['school_id' => 1, 'name' => 'RuralCamp', 'nick' => 'RURAL', 'quantity' => 20]
+            ['school_id' => 4, 'name' => 'P1_850_FEMCODERS', 'nick' => 'P1_850_FEMCODERS', 'quantity' => 19],
+            ['school_id' => 4, 'name' => 'P2_850_GIJÓN', 'nick' => 'P2_850_GIJÓN', 'quantity' => 18],
+            ['school_id' => 4, 'name' => 'P1_850_RURAL_CAMP', 'nick' => 'P1_850_RURAL_CAMP', 'quantity' => 16],
+            ['school_id' => 1, 'name' => 'P5_850_MIXTAFULLSTACK', 'nick' => 'P5_850_MIXTAFULLSTACK', 'quantity' => 37],
+            ['school_id' => 1, 'name' => 'P1_850_INCORPORA-ACCENTURE', 'nick' => 'P1_850_INCORPORA-ACCENTURE', 'quantity' => 7],
+            ['school_id' => 1, 'name' => 'P2_850_FEMCODERS BCN', 'nick' => 'P2_850_FEMCODERS BCN', 'quantity' => 17],
+            ['school_id' => 2, 'name' => 'P2_850_FEMCODERS MAD', 'nick' => 'P2_850_FEMCODERS MAD', 'quantity' => 18],
+            ['school_id' => 6, 'name' => 'P1_850_FEMCODERS MÁLAGA', 'nick' => 'P1_850_FEMCODERS MÁLAGA', 'quantity' => 24],
+            ['school_id' => 5, 'name' => 'P1_850_FEMCODERS SEVILLA', 'nick' => 'P1_850_FEMCODERS SEVILLA', 'quantity' => 22],
+            ['school_id' => 1, 'name' => 'P3_FEMTECH_BCN', 'nick' => 'P3_FEMTECH_BCN', 'quantity' => 1]
         ];
         foreach ($promotions as $promo) {
             Promotion::create($promo);
@@ -110,23 +140,24 @@ class DatabaseSeeder extends Seeder
                 }
 
                 $numLanguages=random_int(1,3);
-                $languages=Language::select('id')
+                /* $languages=Language::select('id')
                     ->inRandomOrder()
                     ->limit($numLanguages)
                     ->distinct()
-                    ->get();
-                foreach($languages as $language){
+                    ->get(); */
+                //foreach($languages as $language){
                     DB::table('coders_languages')->insert([
                         [
                             'coder_id'=> $coder->id,
-                            'language_id'=> $language->id,
+                            //'language_id'=> $language->id,
+                            'language_id'=>$numLanguages,
                             'created_at'=> now(),
                             'updated_at'=> now()
                         ]
                     ]);
-                }
+                //}
 
-                $numlocations=random_int(1,3);
+                $numlocations=random_int(1,12);
                 $locations=Province::select('id')
                     ->inRandomOrder()
                     ->limit($numlocations)
@@ -183,7 +214,7 @@ class DatabaseSeeder extends Seeder
                     ]);
                 }
 
-                $numlocations=random_int(1,3);
+                $numlocations=random_int(1,12);
                 $locations=Province::select('id')
                     ->inRandomOrder()
                     ->limit($numlocations)
