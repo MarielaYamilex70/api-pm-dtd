@@ -34,8 +34,8 @@ class CoderController extends Controller
             'remote' => 'required|boolean',
             'email' => 'required|email',
             'phone' => 'required',
-            'linkedin' => 'required',
-            'github' => 'required'
+            'linkedin' => '',
+            'github' => ''
 
         ]);
 
