@@ -90,4 +90,5 @@ class StackControllerTest extends TestCase
             ]);
         $this->assertDatabaseMissing('stacks', $stack->toArray());
     }
+    use RefreshDatabase;
 }
