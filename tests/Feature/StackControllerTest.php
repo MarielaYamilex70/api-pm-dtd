@@ -1,24 +1,18 @@
 <?php
-
 namespace Tests\Feature;
-
 use App\Models\Stack;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
 use Tests\TestCase;
-
 class StackControllerTest extends TestCase
 {
     use RefreshDatabase;
-
     public function testCanCreateStack()
     {
         $stackData = [
             'name' => 'Test Stack'
         ];
-
         $response = $this->postJson('/api/stacks', $stackData);
-
         $response->assertStatus(Response::HTTP_OK)
             ->assertJsonStructure([
                 'message',
@@ -34,13 +28,10 @@ class StackControllerTest extends TestCase
                 'stack' => $stackData
             ]);
     }
-
     public function testCanGetStack()
     {
         $stack = Stack::factory()->create();
-
         $response = $this->getJson("/api/stacks/{$stack->id}");
-
         $response->assertStatus(Response::HTTP_OK)
             ->assertJsonStructure([
                 'message',
@@ -56,17 +47,13 @@ class StackControllerTest extends TestCase
                 'stack' => $stack->toArray()
             ]);
     }
-
     public function testCanUpdateStack()
     {
         $stack = Stack::factory()->create();
-
         $stackData = [
             'name' => 'Updated Stack'
         ];
-
         $response = $this->putJson("/api/stacks/{$stack->id}", $stackData);
-
         $response->assertStatus(Response::HTTP_OK)
             ->assertJsonStructure([
                 'message',
@@ -81,16 +68,12 @@ class StackControllerTest extends TestCase
                 'message' => 'Stack updated successfully',
                 'stack' => $stackData
             ]);
-
         $this->assertDatabaseHas('stacks', $stackData);
     }
-
     public function testCanDeleteStack()
     {
         $stack = Stack::factory()->create();
-
         $response = $this->deleteJson("/api/stacks/{$stack->id}");
-
         $response->assertStatus(Response::HTTP_OK)
             ->assertJsonStructure([
                 'message',
@@ -105,7 +88,6 @@ class StackControllerTest extends TestCase
                 'message' => 'Stack delete successfully',
                 'stack' => $stack->toArray()
             ]);
-
         $this->assertDatabaseMissing('stacks', $stack->toArray());
     }
 }
