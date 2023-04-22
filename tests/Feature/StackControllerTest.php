@@ -1,12 +1,14 @@
 <?php
 namespace Tests\Feature;
 use App\Models\Stack;
+use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\Response;
-use Tests\TestCase;
+
 class StackControllerTest extends TestCase
 {
     use RefreshDatabase;
+    
     public function testCanCreateStack()
     {
         $stackData = [
@@ -90,5 +92,5 @@ class StackControllerTest extends TestCase
             ]);
         $this->assertDatabaseMissing('stacks', $stack->toArray());
     }
-    use RefreshDatabase;
+    
 }
