@@ -8,6 +8,7 @@ Este repositorio almacena un servicio API backend que complementa la aplicación
 
 La base de datos para API-PM-DTD fue diseñada como muestra el siguiente diagrama entidad-relación:
 
+ ![Imagen entidad-relación](/C:\xampp\htdocs\api-pm-dtd\All\entidad-relacion.jpg)
 
 
 
@@ -15,10 +16,10 @@ La base de datos para API-PM-DTD fue diseñada como muestra el siguiente diagram
 
 
 
-## Tecnologías ✅
+## Tecnologías🛠️  
 
-- Laravel
-- MySQL
+· Laravel
+· MySQL
 
 
 ## Podrías considerar usar: 
@@ -30,14 +31,14 @@ La base de datos para API-PM-DTD fue diseñada como muestra el siguiente diagram
 ## Instalación 💻
 Una vez haya clonado este repositorio de Github , debe seguir estos pasos para ejecutar la aplicación:
 
-- Instalar dependecias con: Composer install npm install
+- Instalar dependecias con: `Composer install`  `npm install`
 - Cree una base de datos MySQL (puede usar PHPMyAdmin o la línea de comandos para hacerlo)
 - Cree el archivo .env (como referencia, podría usar "env.example" en la raíz del proyecto)
-- Migre la base de datos con: php artisan migrate php artisan migrate:fresh (este comando es para actualizar los cambios a migraciones anteriores) php artisan migrate:fresh --seed (el último comando es para actualizar migraciones anteriores y generar el daatbae con 10 registros utilizando datos aleatorios)
+- Migre la base de datos con:  `php artisan migrate`  `php artisan migrate:fresh` (este comando es para actualizar los cambios a migraciones anteriores)  `php artisan migrate:fresh --seed` (el último comando es para actualizar migraciones anteriores y generar el daatbae con 10 registros utilizando datos aleatorios)
 
 
 ## Test 🧾
-- Para lanzar los test, utiliza el comando php artisan test.
+- Para lanzar los test, utiliza el comando ` php artisan test.`
 
 
 
