@@ -17,8 +17,8 @@ La base de datos para API-PM-DTD fue diseñada como muestra el siguiente diagram
 
 ## Tecnologías ✅
 
-· Laravel
-· MySQL
+- Laravel
+- MySQL
 
 
 ## Podrías considerar usar: 
