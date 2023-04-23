@@ -18,7 +18,7 @@ class CoderFactory extends Factory
     {
         return [
             'event_id' => 1,
-            'promo_id' => random_int(1,3),
+            'promo_id' => random_int(1,7),
             /* 'province_id' => random_int(1,3), */
             'name' => $this->faker->name(),
             'gender' =>  $this->faker->randomElement(['Mujer','Hombre']),
