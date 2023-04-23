@@ -27,7 +27,7 @@ class CompanyController extends Controller
             'name' => 'required',
             'ubication' => 'required',
             'phone' => 'required',
-            'email',
+            'email' => 'required',
             'priority' => 'required',
 
         ]);
