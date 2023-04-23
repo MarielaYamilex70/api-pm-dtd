@@ -27,7 +27,6 @@ class CompanyController extends Controller
             'name' => 'required',
             'ubication' => 'required',
             'phone' => 'required',
-            'email' ,
             'priority' => 'required',
 
         ]);
@@ -81,7 +80,6 @@ class CompanyController extends Controller
             'name' => 'required',
             'ubication' => 'required',
             'phone' => 'required',
-            'email' => 'required|email',
             'priority' => 'required',
 
         ]);

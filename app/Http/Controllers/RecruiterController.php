@@ -25,13 +25,11 @@ class RecruiterController extends Controller
         $request->validate([
             'event_id' => 'required|integer',
             'company_id' => 'required|integer',
-           /*  'province_id' => 'required|integer', */
             'name' => 'required',
             'charge' => 'required',
             'remote' => 'required|boolean',
             'email' => 'required|email',
             'phone' => 'required',
-            'linkedin' ,
             'interviews_quantity' => 'required|integer'
         ]);
 
@@ -91,13 +89,11 @@ class RecruiterController extends Controller
         $request->validate([
             'event_id' => 'required|integer',
             'company_id' => 'required|integer',
-           /*  'province_id' => 'required|integer', */
             'name' => 'required',
             'charge' => 'required',
             'remote' => 'required|boolean',
             'email' => 'required|email',
             'phone' => 'required',
-            'linkedin' => 'required',
             'interviews_quantity' => 'required|integer'
         ]);
 

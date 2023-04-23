@@ -24,10 +24,8 @@ class SchoolsController extends Controller
     {
         $request->validate([
             'province_id' => 'required',
-            'name' => 'required',
-            'lat',
-            'long',
-
+            'name' => 'required'
+           
         ]);
 
         $school = new School;
@@ -71,9 +69,9 @@ class SchoolsController extends Controller
     public function update(Request $request, School $school)
     {
         $request->validate([
-            'name' => 'required',
-            'lat' => ['required', 'numeric', 'regex:/^-?\d*(\.\d+)?$/'],
-            'long' => ['required', 'numeric', 'regex:/^-?\d*(\.\d+)?$/'],
+            'province_id' => 'required',
+            'name' => 'required'
+           
         ]);
         $school->name = $request->name;
         $school->lat = $request->lat;
