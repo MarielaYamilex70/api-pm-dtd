@@ -25,8 +25,8 @@ class SchoolsController extends Controller
         $request->validate([
             'province_id' => 'required',
             'name' => 'required',
-            'lat' => ['required', 'numeric', 'regex:/^-?\d*(\.\d+)?$/'],
-            'long' => ['required', 'numeric', 'regex:/^-?\d*(\.\d+)?$/'],
+            'lat' ,
+            'long' ,
 
         ]);
 
