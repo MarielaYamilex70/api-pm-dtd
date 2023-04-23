@@ -8,7 +8,7 @@ Este repositorio almacena un servicio API backend que complementa la aplicación
 
 La base de datos para API-PM-DTD fue diseñada como muestra el siguiente diagrama entidad-relación:
 
- ![Imagen entidad-relación](C:\xampp\htdocs\api-pm-dtd\All\entidad-relacion.jpg)
+ ![Imagen entidad-relación](C:\xampp\htdocs\api-pm-dtd\resources\img\MSQL.jpg)
 
 
 
