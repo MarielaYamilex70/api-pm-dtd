@@ -27,7 +27,11 @@ class CompanyController extends Controller
             'name' => 'required',
             'ubication' => 'required',
             'phone' => 'required',
+<<<<<<< HEAD
             'email' ,
+=======
+            'email' => 'required',
+>>>>>>> a4eeaef662b2117e41e354cf482677fbe572ac72
             'priority' => 'required',
 
         ]);

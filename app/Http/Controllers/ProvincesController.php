@@ -27,8 +27,13 @@ class ProvincesController extends Controller
         $request->validate([
             'region_id' => 'required|integer',
             'name' => 'required',
+<<<<<<< HEAD
             'lat' ,
             'long' ,
+=======
+            'lat',
+            'long',
+>>>>>>> a4eeaef662b2117e41e354cf482677fbe572ac72
             'iso' => 'required',
 
         ]);
