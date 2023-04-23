@@ -1,6 +1,6 @@
 <h1 align="center"> API-PM-DTD</h1> 
 
-Este repositorio almacena un servicio API backend que complementa la aplicación Prematch-DTD creada en React.
+Este repositorio almacena un servicio API backend que complementa la aplicación Prematch-DTD (https://github.com/IrisGomis/prematch-dtd) creada en React.
 
 
 
