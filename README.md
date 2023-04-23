@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 <h1 align="center"> API-PM-DTD</h1> 
 ![Logo tooMatch](C:\xampp\htdocs\api-pm-dtd\resources\img\logotoomatch.jpg)
 
@@ -10,11 +10,6 @@ Este repositorio almacena un servicio API backend que complementa la aplicación
 
 La base de datos para API-PM-DTD fue diseñada como muestra el siguiente diagrama entidad-relación:
 ![img entidad-relación](C:\xampp\htdocs\api-pm-dtd\resources\img\mysql.jpg)
-
-
-
-
-
 
 
 
