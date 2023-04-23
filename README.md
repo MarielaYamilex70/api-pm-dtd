@@ -34,7 +34,7 @@ Una vez haya clonado este repositorio de Github , debe seguir estos pasos para e
 - Instalar dependecias con: `composer install`  `npm install`
 - Cree una base de datos MySQL (puede usar PHPMyAdmin o la línea de comandos para hacerlo)
 - Cree el archivo .env (como referencia, podría usar "env.example" en la raíz del proyecto)
-- Migre la base de datos con:  `php artisan migrate`  `php artisan migrate:fresh` (este comando es para actualizar los cambios a migraciones anteriores)  `php artisan migrate:fresh --seed` (el último comando es para actualizar migraciones anteriores y generar el daatbae con 10 registros utilizando datos aleatorios)
+- Migre la base de datos con:  `php artisan migrate`  `php artisan migrate:fresh` (este comando es para actualizar los cambios a migraciones anteriores)  `php artisan migrate:fresh --seed` (el último comando es para para eliminar y recrear todas las tablas de la base de datos y luego poblarlas con datos de prueba utilizando los archivos de semillas)
 
 
 ## Test 🧾
