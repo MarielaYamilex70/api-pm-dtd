@@ -25,13 +25,8 @@ class SchoolsController extends Controller
         $request->validate([
             'province_id' => 'required',
             'name' => 'required',
-<<<<<<< HEAD
-            'lat' ,
-            'long' ,
-=======
             'lat',
             'long',
->>>>>>> a4eeaef662b2117e41e354cf482677fbe572ac72
 
         ]);
 
