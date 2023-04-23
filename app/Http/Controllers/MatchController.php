@@ -399,5 +399,66 @@ class MatchController extends Controller
         }
        
     }
+
+
+    public function prueba()
+    {
+
+        $coder = DB::table("coders")
+        
+            ->join("coders_locations","coders.id","=", "coders_locations.coder_id")
+            ->join("coders_stacks","coders.id","=", "coders_stacks.coder_id")
+            ->join("coders_languages", "coders.id", "=", "coders_languages.coder_id")
+            
+            ->where("coders_locations.province_id", "=", 1)
+            ->Where("coders_stacks.stack_id", "=", 1)
+            ->Where("coders_languages.language_id", "=", 1)
+            
+            ->select("coders.id")
+            
+            ->first();
+        
+        $recruiter = DB::table("recruiters")
+        
+            ->join("recruiters_locations","recruiters.id","=", "recruiters_locations.recruiter_id")
+            ->join("recruiters_stacks","recruiters.id","=", "recruiters_stacks.recruiter_id")
+            ->join("recruiters_languages", "recruiters.id", "=", "recruiters_languages.recruiter_id")
+            
+            ->where("recruiters_locations.province_id", "=", 1)
+            ->Where("recruiters_stacks.stack_id", "=", 1)
+            ->Where("recruiters_languages.language_id", "=", 1)
+            
+            ->select("recruiters.id")
+            
+            ->first();            
+
+        if ($coder && $recruiter) {
+
+            //dd($coder);
+            echo $recruiter->id;
+            echo "<br>";
+            echo $coder->id;
+            /* $this->assertDatabaseHas('matches', [
+                'recruiter_id' => $recruiter[0]->id,
+                'coder_id' => $coder[0]->id
+
+            ]); */
+        }
+
+        $match = DB::table("matches")
+        
+            ->where("matches.recruiter_id", "=", $recruiter->id)
+            ->Where("matches.coder_id", "=", $coder->id)
+            
+            
+            ->select("matches.id", "matches.afinity")
+            
+            ->first();                
+
+        if ($match) {
+            echo "<br>";
+            echo $match->afinity;
+        }
+    }
     
 }
