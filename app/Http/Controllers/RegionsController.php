@@ -24,8 +24,8 @@ class RegionsController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'lat' => 'required',
-            'long' => 'required',
+            'lat' ,
+            'long' ,
             'iso' => 'required',
 
         ]);
