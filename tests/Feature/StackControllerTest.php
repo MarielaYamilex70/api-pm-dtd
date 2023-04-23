@@ -11,6 +11,7 @@ class StackControllerTest extends TestCase
 {
     use RefreshDatabase;
 
+    /** @test */
     public function testCanCreateStack()
     {
 
@@ -48,7 +49,7 @@ class StackControllerTest extends TestCase
                 'stack' => $stackData
             ]);
     }
-
+    /** @test */
     public function testCanGetStack()
     {
         // Scenario: Get a stack
@@ -64,7 +65,7 @@ class StackControllerTest extends TestCase
         // And the stack object in the response should have the following values:
         //     | id   | 1          |
         //     | name | Test Stack |
-    
+
 
 
         $stack = Stack::factory()->create();
@@ -86,7 +87,7 @@ class StackControllerTest extends TestCase
                 'stack' => $stack->toArray()
             ]);
     }
-
+    /** @test */
     public function testCanUpdateStack()
     {
         // Scenario: Update a stack
@@ -102,7 +103,7 @@ class StackControllerTest extends TestCase
         // And the stack with ID "1" in the database should have the following values:
         //     | id   | 1             |
         //     | name | Updated Stack |
-    
+
 
         $stack = Stack::factory()->create();
 
@@ -130,7 +131,7 @@ class StackControllerTest extends TestCase
 
         $this->assertDatabaseHas('stacks', $stackData);
     }
-
+    /** @test */
     public function testCanDeleteStack()
     {
         // Scenario: Delete a stack
@@ -144,7 +145,7 @@ class StackControllerTest extends TestCase
         //     - created_at
         //     - updated_at
         // And the stack with ID "1" should no longer exist in the database
-    
+
 
         $stack = Stack::factory()->create();
 

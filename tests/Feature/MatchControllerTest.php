@@ -1,17 +1,13 @@
 <?php
 
-// namespace Tests\Unit;
+// namespace Tests\Feature;
 
 // use Tests\TestCase;
 // use App\Http\Controllers\MatchController;
 
 // class MatchControllerTest extends TestCase
 // {
-//     /**cle
-//      * Test the index method of MatchController
-//      *
-//      * @return void
-//      */
+//     /** @test */
 //     public function testIndex()
 //     {
 //         $matchController = new MatchController();
@@ -34,4 +30,7 @@
 //         // Assert that the matches property value is an array
 //         $this->assertIsArray($response->matches);
 //     }
-// }
+// } 
+
+
+
