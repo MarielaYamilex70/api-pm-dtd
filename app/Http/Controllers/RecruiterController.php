@@ -31,7 +31,7 @@ class RecruiterController extends Controller
             'remote' => 'required|boolean',
             'email' => 'required|email',
             'phone' => 'required',
-            'linkedin' => 'required',
+            'linkedin' ,
             'interviews_quantity' => 'required|integer'
         ]);
 
