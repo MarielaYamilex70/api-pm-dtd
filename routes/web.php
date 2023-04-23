@@ -14,5 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    echo "API-PM-DTD";
+    
 });
+
+
+Route::get('/match/demo','App\Http\Controllers\MatchController@demo');
+Route::get('/schedule/demo','App\Http\Controllers\ScheduleController@demo');
+
+Route::get('/schedule/prueba','App\Http\Controllers\ScheduleController@countScheduleXCoder');

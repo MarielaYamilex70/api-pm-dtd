@@ -1,6 +1,9 @@
 <?php
 
 namespace App\Exceptions;
+use Illuminate\Database\QueryException;
+use App\Exceptions\DuplicateEntryException;
+
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
@@ -22,7 +25,14 @@ class Handler extends ExceptionHandler
      * @var array<int, class-string<\Throwable>>
      */
     protected $dontReport = [
-        //
+        \Illuminate\Validation\ValidationException::class,
+        \Illuminate\Auth\AuthenticationException::class,
+        \Illuminate\Auth\Access\AuthorizationException::class,
+        \Symfony\Component\HttpKernel\Exception\HttpException::class,
+        \Illuminate\Database\Eloquent\ModelNotFoundException::class,
+        \Illuminate\Session\TokenMismatchException::class,
+        \Illuminate\Validation\UnauthorizedException::class,
+        \App\Exceptions\DuplicateEntryException::class,
     ];
 
     /**
@@ -45,4 +55,13 @@ class Handler extends ExceptionHandler
             //
         });
     }
+    public function render($request, Throwable $exception)
+{
+    if ($exception instanceof QueryException && $exception->errorInfo[1] === 1062) {
+        return response()->json(['message' => 'Duplicate registry'], 500);
+    }
+
+    return parent::render($request, $exception);
 }
+}
+

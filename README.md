@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1 align="center"> API-PM-DTD</h1> 
 
 Este repositorio almacena un servicio API backend que complementa la aplicación Prematch-DTD (https://github.com/IrisGomis/prematch-dtd) creada en React.
@@ -47,3 +48,5 @@ Este proyecto ha sido realizado por un equipo de 5 programadoras en formación:
 
 | [<img src="https://avatars.githubusercontent.com/u/117082608?v=4" width=115><br><sub>Mariela Yamilex </sub>](https://github.com/MarielaYamilex70) |  [<img src="https://avatars.githubusercontent.com/u/117083641?v=4" width=115><br><sub>Iris Gomis </sub>](https://github.com/IrisGomis) |  [<img src="https://avatars.githubusercontent.com/u/117080419?v=4" width=115><br><sub>Natalia Iriarte</sub>](https://github.com/Natalia-irlo) | [<img src="https://avatars.githubusercontent.com/u/90630004?v=4" width=115><br><sub>Diana Borrajo</sub>](https://github.com/Dianab177) | [<img src="https://avatars.githubusercontent.com/u/117688044?v=4" width=115><br><sub>Irene Fernández</sub>](https://github.com/irenefl) |
 | :---: | :---: | :---: | :---: | :---: |
+=======
+>>>>>>> 631b2e2c386195db45aad8dfd6b2a440210c9ae6
