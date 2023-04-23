@@ -23,4 +23,4 @@ Route::get('/', function () {
 Route::get('/match/demo','App\Http\Controllers\MatchController@demo');
 Route::get('/schedule/demo','App\Http\Controllers\ScheduleController@demo');
 
-Route::get('/match/prueba','App\Http\Controllers\MatchController@prueba');
+Route::get('/schedule/prueba','App\Http\Controllers\ScheduleController@countScheduleXCoder');

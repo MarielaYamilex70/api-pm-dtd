@@ -113,6 +113,7 @@ Route::get('/match/search','App\Http\Controllers\MatchController@search');
 
 Route::get('/schedule','App\Http\Controllers\ScheduleController@index');
 Route::post('/schedule','App\Http\Controllers\ScheduleController@store');
-Route::get('/schedule/search','App\Http\Controllers\ScheduleController@search');
+Route::get('/schedule/countCoder','App\Http\Controllers\ScheduleController@countScheduleXCoder');
+Route::get('/schedule/countRecruiter','App\Http\Controllers\ScheduleController@countScheduleXRecruiter');
 
 

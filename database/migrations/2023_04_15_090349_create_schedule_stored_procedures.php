@@ -185,31 +185,35 @@ return new class extends Migration
             END;
         ');
 
-        DB::unprepared('DROP PROCEDURE IF EXISTS getSearchSchedulerRecruiters;');
+        DB::unprepared('DROP PROCEDURE IF EXISTS getCountScheduleXCoder;');
 
         DB::unprepared("
-            CREATE PROCEDURE getSearchSchedulerRecruiters(
-                IN numMatch INT,
-                IN searchText VARCHAR(255)
+            CREATE PROCEDURE getCountScheduleXCoder(
+                IN numMatch INT
             )
             BEGIN
-                SELECT events.name AS nameEvent, companies.name AS nameCompany, recruiters.name AS nameRecruiter, coders.name AS nameCoder, matches.afinity, matches.interview 
+                SELECT matches.coder_id AS idCoder, matches.afinity, COUNT(matches.interview) AS maxInterview
                 FROM matches
-                JOIN recruiters 
-                    ON matches.recruiter_id = recruiters.id 
-                JOIN companies 
-                    ON recruiters.company_id = companies.id     
-                JOIN coders 
-                    ON matches.coder_id = coders.id 
-                JOIN events 
-                    ON coders.event_id = events.id      
-                WHERE matches.num_match = numMatch 
-                    AND matches.interview > 0
-                    AND ((events.name LIKE '%searchText%')
-                    OR (companies.name LIKE '%searchText%')
-                    OR (recruiters.name LIKE '%searchText%')
-                    OR (coders.name LIKE '%searchText%'))
-                ORDER BY recruiters.company_id, recruiters.id, matches.interview;
+                WHERE matches.num_match = numMatch
+                 AND  matches.interview > 0
+                GROUP BY  matches.coder_id 
+                ORDER BY matches.coder_id, matches.interview;
+            END;
+        ");
+
+        DB::unprepared('DROP PROCEDURE IF EXISTS getCountScheduleXRecruiter;');
+
+        DB::unprepared("
+            CREATE PROCEDURE getCountScheduleXRecruiter(
+                IN numMatch INT
+            )
+            BEGIN
+                SELECT matches.recruiter_id  AS idRecruiter, matches.afinity, COUNT(matches.interview) AS maxInterview
+                FROM matches
+                WHERE matches.num_match = numMatch
+                 AND  matches.interview > 0
+                GROUP BY  matches.recruiter_id  
+                ORDER BY matches.recruiter_id , matches.interview;
             END;
         ");
     

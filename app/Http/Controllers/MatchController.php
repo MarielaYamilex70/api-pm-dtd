@@ -14,14 +14,12 @@ class MatchController extends Controller
     public function index()
     {
         $numMatch = DB::select('CALL getNumMatch()');
-        //dd($NumMatch);
+       
         if ($numMatch[0]->NumMatch > 0) {
             $lastNumMatch=$numMatch[0]->NumMatch;
-            // echo $NumMatches.'<br>';
-            // echo gettype($NumMatches);
-
+           
             $matches = DB::select("CALL getMatches($lastNumMatch)");
-            //dd($matches);
+           
             if ($matches) {
                 $data = [
                     'message' => 'Matches fetched successfully',
@@ -49,36 +47,21 @@ class MatchController extends Controller
         if ( $totalRecruiters[0]->total > 0  && $totalCoders[0]->total>0  ) {
             
             $numMatch = DB::select('CALL getNumMatch()');
-            //dd($numMatch[0]->NumMatch);
+            
             $newNumMatch=1;
             if ($numMatch[0]->NumMatch > 0 ) {
                 $newNumMatch=$numMatch[0]->NumMatch;
                 $newNumMatch++;
             }
             
-            //echo "Numero del Match: ".$newNumMatch;
-            //echo '<br>';
             $recruiters = DB::select('CALL getAllRecruiters()');
             
             foreach ($recruiters as $recruiter){
-                //dd($recruiter->id);
-                //echo '**********************************************************************************<br>';
-                //echo 'Recruiter: ';
-                //print_r($recruiter->id) ;
-                //print_r($recruiter->province_id) ;
-                //echo '<br>';
-                //echo '**********************************************************************************<br>'; 
-
-                $coders = DB::select('CALL getAllCoders()');
-                //dd($coders);
-                //print_r($coders) ; 
                 
+                $coders = DB::select('CALL getAllCoders()');
+                                
                 foreach ($coders as $coder){
-                    //echo 'Coder: ';
-                    //print_r($coder->id) ;
-                    //print_r($coder->province_id) ;
-                    //echo '<br>';
-
+                    
                     $coincidences = [];
 
                     $recruiterLocations = DB::select("CALL getRecruiterLocations($recruiter->id)");
@@ -86,38 +69,27 @@ class MatchController extends Controller
                     foreach ($recruiterLocations as $recruiterLocation){
 
                         $coderLocation = DB::select("CALL getCoderLocation($coder->id, $recruiterLocation->province_id )");
-                        //echo "Recruiter Locations: ".$recruiterLocation->province_id;
+                        
                         if ($coderLocation) {
                             $coinLocation = 1;
-                            // echo " Coder Locations: ".$coderLocation[0]->province_id;
-                            // echo '<br>'; 
+                            
                         }
 
                     } 
-                    // echo '<br>'; 
-                    // echo "Recruiter Remote:".$recruiter->remote;
-                    // echo '<br>'; 
+                    
                     if ( $coinLocation || $recruiter->remote) {
                         $recruiterStacks = DB::select("CALL getRecruiterStacks($recruiter->id)");
                         foreach ($recruiterStacks as $recruiterStack){
-                            //dd($recruiterLanguages);
-                            //print_r($recruiterStack->stack_id) ;
-                            //echo '<br>'; 
+                            
                             $coderStack = DB::select("CALL getCoderStack($coder->id, $recruiterStack->stack_id )");
                             
-                            //echo "STACK: ";
-                            //echo '<br>'; 
                             if ( $coderStack) {
                                 array_push($coincidences, 1);
 
-                                // echo "COINCIDE STACK:$recruiterStack->stack_id DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name  ";
-                                // echo '<br>'; 
                             }
                             else{
                                 array_push($coincidences, 0);
                                 
-                                // echo "NOOOOO COINCIDE STACK:$recruiterStack->stack_id DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name  ";
-                                // echo '<br>'; 
                             }
 
                         }
@@ -129,18 +101,12 @@ class MatchController extends Controller
                         
                                 $coderLanguage = DB::select("CALL getCoderLanguage($coder->id, $recruiterLanguage->language_id )");
                                 
-                                // echo "LANGUAGE: ";
-                                // echo '<br>'; 
                                 if ( $coderLanguage) {
                                     array_push($coincidences, 1);
-
-                                    // echo "COINCIDE LANGUAGE:$recruiterStack->stack_id DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name  ";
-                                    // echo '<br>'; 
                                 }
                                 else{
                                     array_push($coincidences, 0);
-                                    // echo "NOOOOO COINCIDE LANGUAGE:$recruiterStack->stack_id DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name  ";
-                                    // echo '<br>'; 
+                                    
                                 }
                         
                             }
@@ -151,23 +117,17 @@ class MatchController extends Controller
 
                         $match = DB::insert("CALL storeMatch($coder->id, $recruiter->id, $afinity, $newNumMatch)");
                         
-                        // echo "AFINIDAD <$afinity> DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name <br>  ";
-                        // echo '=========================================================================<br>'; 
 
                     }else{
                         $match = DB::insert("CALL storeMatch($coder->id, $recruiter->id, 0, $newNumMatch)");
                         
-                        // echo "NO coincide Afinidad NI Teletrabajo DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name <br>  ";
-                        // echo "AFINIDAD <0> DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name <br>  ";
-                        // echo '=========================================================================<br>'; 
-                            
                     }
                     
                 }
                 
             }
             $matches = DB::select("CALL getMatches($newNumMatch)");
-            //dd($matches);
+            
             if ($matches) {
                 $data = [
                     'message' => 'Matches created successfully',
@@ -193,10 +153,8 @@ class MatchController extends Controller
 
     public function getnumatches ()
     {
-       //Devuelve todos los Numeros de Matches y la fecha
-       $numMatch = DB::select('CALL getNumMatch()');
-        //dd($numMatch[0]->NumMatch);
-        
+        $numMatch = DB::select('CALL getNumMatch()');
+                
         if ($numMatch[0]->NumMatch > 0 ) {
             $data = [
                 'message' => 'OK'
@@ -214,25 +172,10 @@ class MatchController extends Controller
             'search_text' => 'required'
         ]);
         $numMatch = DB::select('CALL getNumMatch()');
-        //dd($NumMatch);
+        
         if ($numMatch[0]->NumMatch > 0) {
             $lastNumMatch=$numMatch[0]->NumMatch;
-            // echo $NumMatches.'<br>';
-            // echo gettype($NumMatches);
-
-            /* $matches = DB::select("CALL getSearchMatches($lastNumMatch, $request->search_text)");
-            //dd($matches);
-            if ($matches) {
-                $data = [
-                    'message' => 'Matches fetched successfully',
-                    'matches' => $matches
-                ];
-                return response()->json($data);
-            }
-            else{
-                return response()->json(['message' => 'Error to fetched Matches'], 500);     
-            } */
-
+            
             $matches = DB::table("matches")
                 ->join("recruiters","recruiters.id","=", "matches.recruiter_id")
                 ->join("companies","companies.id","=", "recruiters.company_id")
@@ -398,67 +341,6 @@ class MatchController extends Controller
             }
         }
        
-    }
-
-
-    public function prueba()
-    {
-
-        $coder = DB::table("coders")
-        
-            ->join("coders_locations","coders.id","=", "coders_locations.coder_id")
-            ->join("coders_stacks","coders.id","=", "coders_stacks.coder_id")
-            ->join("coders_languages", "coders.id", "=", "coders_languages.coder_id")
-            
-            ->where("coders_locations.province_id", "=", 1)
-            ->Where("coders_stacks.stack_id", "=", 1)
-            ->Where("coders_languages.language_id", "=", 1)
-            
-            ->select("coders.id")
-            
-            ->first();
-        
-        $recruiter = DB::table("recruiters")
-        
-            ->join("recruiters_locations","recruiters.id","=", "recruiters_locations.recruiter_id")
-            ->join("recruiters_stacks","recruiters.id","=", "recruiters_stacks.recruiter_id")
-            ->join("recruiters_languages", "recruiters.id", "=", "recruiters_languages.recruiter_id")
-            
-            ->where("recruiters_locations.province_id", "=", 1)
-            ->Where("recruiters_stacks.stack_id", "=", 1)
-            ->Where("recruiters_languages.language_id", "=", 1)
-            
-            ->select("recruiters.id")
-            
-            ->first();            
-
-        if ($coder && $recruiter) {
-
-            //dd($coder);
-            echo $recruiter->id;
-            echo "<br>";
-            echo $coder->id;
-            /* $this->assertDatabaseHas('matches', [
-                'recruiter_id' => $recruiter[0]->id,
-                'coder_id' => $coder[0]->id
-
-            ]); */
-        }
-
-        $match = DB::table("matches")
-        
-            ->where("matches.recruiter_id", "=", $recruiter->id)
-            ->Where("matches.coder_id", "=", $coder->id)
-            
-            
-            ->select("matches.id", "matches.afinity")
-            
-            ->first();                
-
-        if ($match) {
-            echo "<br>";
-            echo $match->afinity;
-        }
     }
     
 }
