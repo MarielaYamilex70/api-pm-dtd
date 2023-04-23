@@ -42,8 +42,8 @@ Una vez haya clonado este repositorio de Github , debe seguir estos pasos para e
 
 
 
- ## Colaboradoras👩🏻‍💻
+ ## Colaboradoras:family_woman_woman_girl_girl:
 Este proyecto ha sido realizado por un equipo de 5 programadoras en formación:
 
-| [<img src="https://avatars.githubusercontent.com/u/117082608?v=4" width=115><br><sub>Mariela Yamilex /sub>](https://github.com/MarielaYamilex70) |  [<img src="https://avatars.githubusercontent.com/u/117083641?v=4" width=115><br><sub>Iris Gomis </sub>](https://github.com/IrisGomis) |  [<img src="https://avatars.githubusercontent.com/u/117080419?v=4" width=115><br><sub>Natalia Iriarte</sub>](https://github.com/Natalia-irlo) | [<img src="https://avatars.githubusercontent.com/u/90630004?v=4" width=115><br><sub>Diana Borrajo</sub>](https://github.com/Dianab177) | [<img src="https://avatars.githubusercontent.com/u/117688044?v=4" width=115><br><sub>Irene Fernández</sub>](https://github.com/irenefl) |
+| [<img src="https://avatars.githubusercontent.com/u/117082608?v=4" width=115><br><sub>Mariela Yamilex </sub>](https://github.com/MarielaYamilex70) |  [<img src="https://avatars.githubusercontent.com/u/117083641?v=4" width=115><br><sub>Iris Gomis </sub>](https://github.com/IrisGomis) |  [<img src="https://avatars.githubusercontent.com/u/117080419?v=4" width=115><br><sub>Natalia Iriarte</sub>](https://github.com/Natalia-irlo) | [<img src="https://avatars.githubusercontent.com/u/90630004?v=4" width=115><br><sub>Diana Borrajo</sub>](https://github.com/Dianab177) | [<img src="https://avatars.githubusercontent.com/u/117688044?v=4" width=115><br><sub>Irene Fernández</sub>](https://github.com/irenefl) |
 | :---: | :---: | :---: | :---: | :---: |
