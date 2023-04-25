@@ -26,21 +26,16 @@ return new class extends Migration
                 ->on('companies')
                 ->onDelete('cascade');
 
-            /* $table->unsignedBigInteger('province_id');
-            $table->foreign('province_id')
-                ->references('id')
-                ->on('provinces')
-                ->onDelete('cascade'); */
-
             $table->string('name');
-            $table->string('charge');
-            $table->string('linkedin')->unique();
+            $table->string('lastname');
+            $table->string('charge')->nullable();
+            $table->string('linkedin')->nullable();
             $table->string('email')->unique();
-            $table->string('phone')->unique();
+            $table->string('phone')->nullable();
             $table->boolean('remote');
-            $table->unsignedTinyInteger('first_interview');
-            $table->unsignedTinyInteger('last_interview');
-          
+            $table->unsignedTinyInteger('first_interview')->nullable();;
+            $table->unsignedTinyInteger('last_interview')->nullable();;
+            $table->string('gender')->nullable();
             
             $table->timestamps();
         });

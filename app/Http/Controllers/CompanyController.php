@@ -25,9 +25,7 @@ class CompanyController extends Controller
         $request->validate([
             'province_id' => 'required|integer',
             'name' => 'required',
-            'ubication' => 'required',
-            'phone' => 'required',
-            'priority' => 'required',
+            'priority' => 'required|integer',
 
         ]);
 
@@ -78,9 +76,7 @@ class CompanyController extends Controller
         $request->validate([
             'province_id' => 'required|integer',
             'name' => 'required',
-            'ubication' => 'required',
-            'phone' => 'required',
-            'priority' => 'required',
+            'priority' => 'required|integer',
 
         ]);
 

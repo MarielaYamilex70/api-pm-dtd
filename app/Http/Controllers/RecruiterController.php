@@ -26,18 +26,17 @@ class RecruiterController extends Controller
             'event_id' => 'required|integer',
             'company_id' => 'required|integer',
             'name' => 'required',
-            'charge' => 'required',
+            'lastname' => 'required',
             'remote' => 'required|boolean',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'interviews_quantity' => 'required|integer'
+            'email' => 'required|email'
         ]);
 
         $recruiter=new Recruiter;
         $recruiter->event_id=$request->event_id;
         $recruiter->company_id=$request->company_id;
-       /*  $recruiter->province_id=$request->province_id; */
+      
         $recruiter->name=$request->name;
+        $recruiter->lastname=$request->lastname;
 
         $recruiter->charge = $request->charge;
 
@@ -47,7 +46,10 @@ class RecruiterController extends Controller
         $recruiter->phone=$request->phone;
         $recruiter->linkedin=$request->linkedin;
 
-        $recruiter->interviews_quantity=$request->interviews_quantity;
+        $recruiter->first_interview=$request->first_interview;
+        $recruiter->last_interview=$request->last_interview;
+
+        $recruiter->gender=$request->gender;
        
         $recruiter->save();
 
@@ -90,17 +92,15 @@ class RecruiterController extends Controller
             'event_id' => 'required|integer',
             'company_id' => 'required|integer',
             'name' => 'required',
-            'charge' => 'required',
+            'lastname' => 'required',
             'remote' => 'required|boolean',
-            'email' => 'required|email',
-            'phone' => 'required',
-            'interviews_quantity' => 'required|integer'
+            'email' => 'required|email'
         ]);
 
         $recruiter->event_id=$request->event_id;
         $recruiter->company_id=$request->company_id;
-       /*  $recruiter->province_id=$request->province_id; */
         $recruiter->name=$request->name;
+        $recruiter->lastname=$request->lastname;
 
         $recruiter->charge = $request->charge;
 
@@ -110,7 +110,10 @@ class RecruiterController extends Controller
         $recruiter->phone=$request->phone;
         $recruiter->linkedin=$request->linkedin;
 
-        $recruiter->interviews_quantity=$request->interviews_quantity;
+        $recruiter->first_interview=$request->first_interview;
+        $recruiter->last_interview=$request->last_interview;
+
+        $recruiter->gender=$request->gender;
 
        
         $recruiter->save();

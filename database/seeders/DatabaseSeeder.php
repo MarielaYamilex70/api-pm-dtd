@@ -30,7 +30,10 @@ class DatabaseSeeder extends Seeder
 
         $stacks = [
             ['name' => 'PHP'], // id: 1
-            ['name' => 'JAVA'] // id: 2
+            ['name' => 'JAVA'], // id: 2
+            ['name' => 'JAVASCRIPT'], // id: 3
+            ['name' => 'REACT'] // id: 4
+            
             
         ];
         foreach ($stacks as $stack) {
@@ -39,8 +42,8 @@ class DatabaseSeeder extends Seeder
 
         $languages = [
             ['name' => 'Inglés/Alto'], // id: 1
-            ['name' => 'Inglés/Medio'], // id: 2
-            ['name' => 'Inglés/Bajo'] // id: 3
+            ['name' => 'Inglés/Medio'] // id: 2
+          
             
         ];
         foreach ($languages as $language) {
@@ -139,7 +142,7 @@ class DatabaseSeeder extends Seeder
                     ]);
                 }
 
-                $numLanguages=random_int(1,3);
+                $numLanguages=random_int(1,2);
                 /* $languages=Language::select('id')
                     ->inRandomOrder()
                     ->limit($numLanguages)

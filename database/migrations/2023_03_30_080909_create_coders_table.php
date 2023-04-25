@@ -32,14 +32,16 @@ return new class extends Migration
                 ->onDelete('cascade'); */
 
             $table->string('name');
+            $table->string('lastname');
             $table->string('gender');
-            $table->unsignedTinyInteger('years');
-            $table->string('avaliability');
-            $table->boolean('remote');
+            $table->unsignedTinyInteger('years')->nullable();
+            $table->string('avaliability')->nullable();
+            $table->boolean('remote')->nullable();
             $table->string('email')->unique();
             $table->string('phone')->unique();
-            $table->string('linkedin')->unique();
-            $table->string('github')->unique();
+            $table->string('linkedin')->nullable();
+            $table->string('github')->nullable();
+            $table->string('profile')->nullable();
 
             $table->timestamps();
         });
