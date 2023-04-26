@@ -116,4 +116,6 @@ Route::post('/schedule','App\Http\Controllers\ScheduleController@store');
 Route::get('/schedule/countCoder','App\Http\Controllers\ScheduleController@countScheduleXCoder');
 Route::get('/schedule/countRecruiter','App\Http\Controllers\ScheduleController@countScheduleXRecruiter');
 
+Route::post('/upload/excel', 'App\Http\Controllers\ExcelController@uploadExcel'); 
+
 
