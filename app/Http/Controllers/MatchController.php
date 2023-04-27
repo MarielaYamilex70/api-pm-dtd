@@ -61,79 +61,89 @@ class MatchController extends Controller
                 $coders = DB::select('CALL getAllCoders()');
                                 
                 foreach ($coders as $coder){
+
                     
-                    $coincidences = [];
-
-                    $recruiterLocations = DB::select("CALL getRecruiterLocations($recruiter->id)");
-                    $coinLocation = 0;
-                    if ($recruiterLocations ) {
-                        
-                        foreach ($recruiterLocations as $recruiterLocation){
-
-                            $coderLocation = DB::select("CALL getCoderLocation($coder->id, $recruiterLocation->province_id )");
-                            
-                            if ($coderLocation) {
-                                $coinLocation = 1;
-                                
-                            }
-
-                        } 
-                    }
-                    else{
-                        $coinLocation = 1; //El recruiter no tiene ubicacion definida, machea con todas
-                    }
+                    if (($recruiter->gender == 'Mujer' && $coder->gender == $recruiter->gender) || $recruiter->gender == '' ) {
                     
-                    if ( $coinLocation || $recruiter->remote) {
-                        $recruiterStacks = DB::select("CALL getRecruiterStacks($recruiter->id)");
-                        if ($recruiterStacks) {
-                            
-                            foreach ($recruiterStacks as $recruiterStack){
-                                
-                                $coderStack = DB::select("CALL getCoderStack($coder->id, $recruiterStack->stack_id )");
-                                
-                                if ( $coderStack) {
-                                    array_push($coincidences, 1);
+                        $coincidences = [];
 
-                                }
-                                else{
-                                    array_push($coincidences, 0);
+                        $recruiterLocations = DB::select("CALL getRecruiterLocations($recruiter->id)");
+                        $coinLocation = 0;
+                        if ($recruiterLocations ) {
+                            
+                            foreach ($recruiterLocations as $recruiterLocation){
+
+                                $coderLocation = DB::select("CALL getCoderLocation($coder->id, $recruiterLocation->province_id )");
+                                
+                                if ($coderLocation) {
+                                    $coinLocation = 1;
                                     
                                 }
 
+                            } 
+                        }
+                        else{
+                            $coinLocation = 1; //El recruiter no tiene ubicacion definida, machea con todas
+                        }
+                        
+                        if ( $coinLocation || $recruiter->remote) {
+                            $recruiterStacks = DB::select("CALL getRecruiterStacks($recruiter->id)");
+                            if ($recruiterStacks) {
+                                
+                                foreach ($recruiterStacks as $recruiterStack){
+                                    
+                                    $coderStack = DB::select("CALL getCoderStack($coder->id, $recruiterStack->stack_id )");
+                                    
+                                    if ( $coderStack) {
+                                        array_push($coincidences, 1);
+
+                                    }
+                                    else{
+                                        array_push($coincidences, 0);
+                                        
+                                    }
+
+                                }
                             }
+                            else{
+                                array_push($coincidences, 1);//El recruiter no tiene Stack definido, machea con todos 
+                            }
+                            
+                            if (array_sum($coincidences)) {
+                                
+                                $recruiterLanguages = DB::select("CALL getRecruiterLanguages($recruiter->id)");
+                                if ($recruiterLanguages ) {
+                                    foreach ($recruiterLanguages as $recruiterLanguage){
+                                
+                                        $coderLanguage = DB::select("CALL getCoderLanguage($coder->id, $recruiterLanguage->language_id )");
+                                        
+                                        if ( $coderLanguage) {
+                                            array_push($coincidences, 1);
+                                        }
+                                        else{
+                                            array_push($coincidences, 0);
+                                            
+                                        }
+                                
+                                    }
+                                }
+                                else{
+                                    array_push($coincidences, 1);//El recruiter no tiene lenguaje definido, machea con todos 
+                                }
+                                
+                            
+                            }
+
+                            $afinity = array_sum($coincidences)/count($coincidences)*100;
+
+                            $match = DB::insert("CALL storeMatch($coder->id, $recruiter->id, $afinity, $newNumMatch)");
+                            
+
                         }else{
-                            array_push($coincidences, 1);//El recruiter no tiene Stack definido, machea con todos 
-                        }
-                        
-                        if (array_sum($coincidences)) {
+                            $match = DB::insert("CALL storeMatch($coder->id, $recruiter->id, 0, $newNumMatch)");
                             
-                            $recruiterLanguages = DB::select("CALL getRecruiterLanguages($recruiter->id)");
-                            foreach ($recruiterLanguages as $recruiterLanguage){
-                        
-                                $coderLanguage = DB::select("CALL getCoderLanguage($coder->id, $recruiterLanguage->language_id )");
-                                
-                                if ( $coderLanguage) {
-                                    array_push($coincidences, 1);
-                                }
-                                else{
-                                    array_push($coincidences, 0);
-                                    
-                                }
-                        
-                            }
-                        
                         }
-
-                        $afinity = array_sum($coincidences)/count($coincidences)*100;
-
-                        $match = DB::insert("CALL storeMatch($coder->id, $recruiter->id, $afinity, $newNumMatch)");
-                        
-
-                    }else{
-                        $match = DB::insert("CALL storeMatch($coder->id, $recruiter->id, 0, $newNumMatch)");
-                        
                     }
-                    
                 }
                 
             }
@@ -265,88 +275,105 @@ class MatchController extends Controller
                     print_r($coder->id) ;
                     //print_r($coder->province_id) ;
                     echo '<br>';
+
+                    if (($recruiter->gender == 'Mujer' && $coder->gender == $recruiter->gender) || $recruiter->gender == '' ) {
                     
-                    $coincidences = [];
+                        $coincidences = [];
 
-                    $recruiterLocations = DB::select("CALL getRecruiterLocations($recruiter->id)");
-                    $coinLocation = 0;
-                    foreach ($recruiterLocations as $recruiterLocation){
+                        $recruiterLocations = DB::select("CALL getRecruiterLocations($recruiter->id)");
+                        $coinLocation = 0;
+                        if ($recruiterLocations ) {
+                            foreach ($recruiterLocations as $recruiterLocation){
 
-                        $coderLocation = DB::select("CALL getCoderLocation($coder->id, $recruiterLocation->province_id )");
-                        echo "Recruiter Locations: ".$recruiterLocation->province_id;
-                        if ($coderLocation) {
-                            $coinLocation = 1;
-                            echo " Coder Locations: ".$coderLocation[0]->province_id;
-                            echo '<br>'; 
+                                $coderLocation = DB::select("CALL getCoderLocation($coder->id, $recruiterLocation->province_id )");
+                                echo "Recruiter Locations: ".$recruiterLocation->province_id;
+                                if ($coderLocation) {
+                                    $coinLocation = 1;
+                                    echo " Coder Locations: ".$coderLocation[0]->province_id;
+                                    echo '<br>'; 
+                                }
+
+                            } 
                         }
+                        else{
+                            $coinLocation = 1; //El recruiter no tiene ubicacion definida, machea con todas
+                        }    
+                        echo '<br>'; 
+                        echo "Recruiter Remote:".$recruiter->remote;
+                        echo '<br>'; 
+                        if ( $coinLocation || $recruiter->remote) {
 
-                    } 
-                    echo '<br>'; 
-                    echo "Recruiter Remote:".$recruiter->remote;
-                    echo '<br>'; 
-                    if ( $coinLocation || $recruiter->remote) {
+                            $recruiterStacks = DB::select("CALL getRecruiterStacks($recruiter->id)");
+                            if ($recruiterStacks) {
+                                foreach ($recruiterStacks as $recruiterStack){
+                                    //dd($recruiterLanguages);
+                                    //print_r($recruiterStack->stack_id) ;
+                                    //echo '<br>'; 
+                                    $coderStack = DB::select("CALL getCoderStack($coder->id, $recruiterStack->stack_id )");
+                                    
+                                    echo "STACK: ";
+                                    echo '<br>'; 
+                                    if ( $coderStack) {
+                                        array_push($coincidences, 1);
+                                        echo "COINCIDE STACK:$recruiterStack->stack_id DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name  ";
+                                        echo '<br>'; 
+                                    }
+                                    else{
+                                        array_push($coincidences, 0);
+                                        echo "NOOOOO COINCIDE STACK:$recruiterStack->stack_id DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name  ";
+                                        echo '<br>'; 
+                                    }
 
-                        $recruiterStacks = DB::select("CALL getRecruiterStacks($recruiter->id)");
-                        foreach ($recruiterStacks as $recruiterStack){
-                            //dd($recruiterLanguages);
-                            //print_r($recruiterStack->stack_id) ;
-                            //echo '<br>'; 
-                            $coderStack = DB::select("CALL getCoderStack($coder->id, $recruiterStack->stack_id )");
-                            
-                            echo "STACK: ";
-                            echo '<br>'; 
-                            if ( $coderStack) {
-                                array_push($coincidences, 1);
-                                echo "COINCIDE STACK:$recruiterStack->stack_id DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name  ";
-                                echo '<br>'; 
+                                }
                             }
                             else{
-                                array_push($coincidences, 0);
-                                echo "NOOOOO COINCIDE STACK:$recruiterStack->stack_id DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name  ";
-                                echo '<br>'; 
+                                array_push($coincidences, 1);//El recruiter no tiene Stack definido, machea con todos 
                             }
-
-                        }
-                        
-                        if (array_sum($coincidences)) {
                             
-                            $recruiterLanguages = DB::select("CALL getRecruiterLanguages($recruiter->id)");
-                            foreach ($recruiterLanguages as $recruiterLanguage){
-                        
-                                $coderLanguage = DB::select("CALL getCoderLanguage($coder->id, $recruiterLanguage->language_id )");
-                                echo "LANGUAGE: ";
-                                echo '<br>'; 
-                                if ( $coderLanguage) {
-                                    array_push($coincidences, 1);
-                                    echo "COINCIDE LANGUAGE:$recruiterStack->stack_id DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name  ";
-                                    echo '<br>'; 
+                            if (array_sum($coincidences)) {
+                                
+                                $recruiterLanguages = DB::select("CALL getRecruiterLanguages($recruiter->id)");
+                                if ($recruiterLanguages ) {
+                                    foreach ($recruiterLanguages as $recruiterLanguage){
+                                
+                                        $coderLanguage = DB::select("CALL getCoderLanguage($coder->id, $recruiterLanguage->language_id )");
+                                        echo "LANGUAGE: ";
+                                        echo '<br>'; 
+                                        if ( $coderLanguage) {
+                                            array_push($coincidences, 1);
+                                            echo "COINCIDE LANGUAGE:$recruiterStack->stack_id DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name  ";
+                                            echo '<br>'; 
+                                        }
+                                        else{
+                                            array_push($coincidences, 0);
+                                            echo "NOOOOO COINCIDE LANGUAGE:$recruiterStack->stack_id DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name  ";
+                                            echo '<br>'; 
+                                        }
+                                
+                                    }
                                 }
                                 else{
-                                    array_push($coincidences, 0);
-                                    echo "NOOOOO COINCIDE LANGUAGE:$recruiterStack->stack_id DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name  ";
-                                    echo '<br>'; 
+                                    array_push($coincidences, 1);//El recruiter no tiene lenguaje definido, machea con todos 
                                 }
-                        
-                            }
-                        
-                        }
-
-                        $afinity = array_sum($coincidences)/count($coincidences)*100;
-
-                        $match = DB::insert("CALL storeMatch($coder->id, $recruiter->id, $afinity, $newNumMatch)");
-                        
-                        echo "AFINIDAD <$afinity> DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name <br>  ";
-                        echo '=========================================================================<br>'; 
-
-                    }else{
-                        $match = DB::insert("CALL storeMatch($coder->id, $recruiter->id, 0, $newNumMatch)");
-                        
-                        echo "NO coincide Afinidad NI Teletrabajo DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name <br>  ";
-                        echo "AFINIDAD <0> DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name <br>  ";
-                        echo '=========================================================================<br>'; 
                             
+                            }
+
+                            $afinity = array_sum($coincidences)/count($coincidences)*100;
+
+                            $match = DB::insert("CALL storeMatch($coder->id, $recruiter->id, $afinity, $newNumMatch)");
+                            
+                            echo "AFINIDAD <$afinity> DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name <br>  ";
+                            echo '=========================================================================<br>'; 
+
+                        }else{
+                            $match = DB::insert("CALL storeMatch($coder->id, $recruiter->id, 0, $newNumMatch)");
+                            
+                            echo "NO coincide Afinidad NI Teletrabajo DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name <br>  ";
+                            echo "AFINIDAD <0> DEL RECLUITER: $recruiter->name  CON EL CODER: $coder->name <br>  ";
+                            echo '=========================================================================<br>'; 
+                                
+                        }
                     }
-                    
                 }
                 
             }
