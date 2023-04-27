@@ -89,6 +89,8 @@ return new class extends Migration
                 ORDER BY recruiters.company_id, recruiters.id, matches.afinity DESC ;
             END;
         ");
+
+        
     }
 
     /**

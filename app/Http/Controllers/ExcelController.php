@@ -11,6 +11,7 @@ use App\Imports\CodersImport;
 use App\Imports\AuxCodersImport;
 use App\Imports\RecruitersImport;
 use App\Imports\AuxRecruitersImport;
+use Illuminate\Support\Facades\DB;
 
 class ExcelController extends Controller
 {
@@ -36,31 +37,72 @@ class ExcelController extends Controller
         Excel::import(new CodersImport, $file);
 
         Excel::import(new AuxCodersImport, $file);
+
+        $rcoderPivots = DB::select('CALL getPivotCoders()');
+        //dd($recruiterPivots);
+        foreach ($recruiterPivots as $recruiterPivot){
         
         // Devolver una respuesta JSON
         return response()->json([
             'message' => 'The coders data has been successfully loaded'
         ]);
 
+        
+
     }
 
     public function uploadRecruitersExcel(Request $request){
 
         // Obtener el archivo Excel cargado
-        $file = $request->file('file');
+        //$file = $request->file('file');
        
-        Excel::import(new RecruitersImport, $file);
+        //Excel::import(new RecruitersImport, $file);
 
-        Excel::import(new AuxRecruitersImport, $file);
+        //Excel::import(new AuxRecruitersImport, $file);
 
-        /* $recruiter = DB::table("recruiters")
-
-            ->join("aux_recruiters_locations", "recruiters.name", "=", "aux_recruiters_locations.aux_recruiters_locations", )
+        $recruiterPivots = DB::select('CALL getPivotRecruiters()');
+        //dd($recruiterPivots);
+        foreach ($recruiterPivots as $recruiterPivot){
+           /*  if ($recruiterPivot->barcelona) {
+                $recruiterLocation = DB::insert("CALL storeRecruiterLocation($recruiterPivot->id, 4)");
+            }
+            if ($recruiterPivot->madrid) {
+                $recruiterLocation = DB::insert("CALL storeRecruiterLocation($recruiterPivot->id, 5)");
+            }
+            if ($recruiterPivot->asturias) {
+                $recruiterLocation = DB::insert("CALL storeRecruiterLocation($recruiterPivot->id, 6)");
+            }
+            if ($recruiterPivot->sevilla) {
+                $recruiterLocation = DB::insert("CALL storeRecruiterLocation($recruiterPivot->id, 7)");
+            }
+            if ($recruiterPivot->malaga) {
+                $recruiterLocation = DB::insert("CALL storeRecruiterLocation($recruiterPivot->id, 8)");
+            }
+            if ($recruiterPivot->cantabria) {
+                $recruiterLocation = DB::insert("CALL storeRecruiterLocation($recruiterPivot->id, 9)");
+            }
+            if ($recruiterPivot->galicia) {
+                $recruiterLocation = DB::insert("CALL storeRecruiterLocation($recruiterPivot->id, 10)");
+            } */
             
-            ->select("recruiters.id", )
 
-            ->get();
- */
+            if ($recruiterPivot->php) {
+                $recruiterStack = DB::insert("CALL storeRecruiterStack($recruiterPivot->id, 1)");
+            }
+
+            if ($recruiterPivot->java) {
+                $recruiterStack = DB::insert("CALL storeRecruiterStack($recruiterPivot->id, 2)");
+            }
+            
+
+            if ($recruiterPivot->idioma == 'Inglés alto') {
+                $recruiterLanguage = DB::insert("CALL storeRecruiterLanguage($recruiterPivot->id, 1)");
+            }
+                        
+        }
+
+
+         
         // Devolver una respuesta JSON
         return response()->json([
             'message' => 'The recruiters data has been successfully loaded'
