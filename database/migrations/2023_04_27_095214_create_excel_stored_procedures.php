@@ -17,9 +17,7 @@ return new class extends Migration
         DB::unprepared("
             CREATE PROCEDURE getPivotRecruiters( )
             BEGIN
-               
-
-                SELECT  recruiters.id, recruiters.name AS nameRecruiter, 
+               SELECT  recruiters.id, recruiters.name AS nameRecruiter, 
                 aux_recruiters.barcelona,
                 aux_recruiters.madrid ,
                 aux_recruiters.asturias ,
@@ -106,6 +104,48 @@ return new class extends Migration
                 ;
             END;
         ");
+
+        DB::unprepared('DROP PROCEDURE IF EXISTS storeCoderLocation;');
+
+        DB::unprepared('
+            CREATE PROCEDURE storeCoderLocation(
+                IN id_coder INT,
+                IN id_province INT
+            )
+            BEGIN
+                INSERT INTO coders_locations (coder_id, province_id, created_at, updated_at) 
+                VALUES (id_coder, id_province, NULL, NULL);
+                
+            END;
+        ');
+
+        DB::unprepared('DROP PROCEDURE IF EXISTS storeCoderStack;');
+
+        DB::unprepared('
+            CREATE PROCEDURE storeCoderStack(
+                IN id_coder INT,
+                IN id_stack INT
+            )
+            BEGIN
+                INSERT INTO coders_stacks (coder_id, stack_id, created_at, updated_at) 
+                VALUES (id_coder, id_stack, NULL, NULL);
+                
+            END;
+        ');
+
+        DB::unprepared('DROP PROCEDURE IF EXISTS storeCoderLanguage;');
+
+        DB::unprepared('
+            CREATE PROCEDURE storeCoderLanguage(
+                IN id_coder INT,
+                IN id_language INT
+            )
+            BEGIN
+                INSERT INTO coders_languages (coder_id, language_id, created_at, updated_at) 
+                VALUES (id_coder, id_language, NULL, NULL);
+                
+            END;
+        ');
     }
 
     /**
