@@ -8,6 +8,29 @@ use Illuminate\Database\Eloquent\Model;
 class Recruiter extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+
+        'event_id' ,
+        'company_id' ,
+        
+        'name' ,
+        'lastname' ,
+
+        'email' ,
+       
+        'first_interview' ,
+        'last_interview' ,
+
+        'remote' ,
+       
+        'gender' 
+
+        
+    ];
+
+
+
     public function event(){
         return $this->belongsTo(Event::class);
     }

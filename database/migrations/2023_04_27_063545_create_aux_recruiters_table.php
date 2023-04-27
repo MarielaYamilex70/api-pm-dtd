@@ -26,18 +26,17 @@ return new class extends Migration
 
             $table->boolean('remote');
 
-
-            $table->string('barcelona')->nullable();
-            $table->string('madrid')->nullable();
-            $table->string('asturias')->nullable();
-            $table->string('sevilla')->nullable();
-            $table->string('malaga')->nullable();
-            $table->string('cantabria')->nullable();
-            $table->string('galicia')->nullable();
-            $table->string('castilla_y_leon')->nullable();
+            $table->boolean('barcelona')->nullable();
+            $table->boolean('madrid')->nullable();
+            $table->boolean('asturias')->nullable();
+            $table->boolean('sevilla')->nullable();
+            $table->boolean('malaga')->nullable();
+            $table->boolean('cantabria')->nullable();
+            $table->boolean('galicia')->nullable();
+            $table->boolean('castilla_y_leon')->nullable();
             
-            $table->string('php')->nullable();
-            $table->string('java')->nullable();
+            $table->boolean('php')->nullable();
+            $table->boolean('java')->nullable();
             /* $table->string('javascript')->nullable();
             $table->string('react')->nullable(); */
             $table->string('idioma')->nullable();

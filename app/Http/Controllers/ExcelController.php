@@ -20,8 +20,8 @@ class ExcelController extends Controller
         $file = $request->file('file');
        
         Excel::import(new CompaniesImport, $file);
+        
         // Devolver una respuesta JSON
-
         return response()->json([
             'message' => 'The companies data has been successfully loaded'
         ]);
@@ -36,8 +36,8 @@ class ExcelController extends Controller
         Excel::import(new CodersImport, $file);
 
         Excel::import(new AuxCodersImport, $file);
+        
         // Devolver una respuesta JSON
-
         return response()->json([
             'message' => 'The coders data has been successfully loaded'
         ]);
@@ -49,9 +49,19 @@ class ExcelController extends Controller
         // Obtener el archivo Excel cargado
         $file = $request->file('file');
        
-        Excel::import(new AuxRecruitersImport, $file);
-        // Devolver una respuesta JSON
+        Excel::import(new RecruitersImport, $file);
 
+        Excel::import(new AuxRecruitersImport, $file);
+
+        /* $recruiter = DB::table("recruiters")
+
+            ->join("aux_recruiters_locations", "recruiters.name", "=", "aux_recruiters_locations.aux_recruiters_locations", )
+            
+            ->select("recruiters.id", )
+
+            ->get();
+ */
+        // Devolver una respuesta JSON
         return response()->json([
             'message' => 'The recruiters data has been successfully loaded'
         ]);
