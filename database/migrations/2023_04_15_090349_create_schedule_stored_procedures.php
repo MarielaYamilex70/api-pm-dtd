@@ -158,7 +158,7 @@ return new class extends Migration
                     ON coders.event_id = events.id      
                 WHERE matches.num_match = numMatch 
                     AND matches.interview > 0
-                ORDER BY recruiters.company_id, recruiters.id, matches.interview;
+                ORDER BY companies.priority, recruiters.company_id, recruiters.id, matches.interview;
             END;
         ');
 

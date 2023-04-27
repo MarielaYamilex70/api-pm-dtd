@@ -59,7 +59,7 @@ class ExcelController extends Controller
                     $location = 7;
                     $coderLocation = DB::insert("CALL storeCoderLocation($coderPivot->id, $location)");
                     break; 
-                case 'Malaga' or 'Málaga':
+                case 'Málaga':
                     $location = 8;
                     $coderLocation = DB::insert("CALL storeCoderLocation($coderPivot->id, $location)");
                     break; 
@@ -72,7 +72,7 @@ class ExcelController extends Controller
                     $location = 10;
                     $coderLocation = DB::insert("CALL storeCoderLocation($coderPivot->id, $location)");
                     break;   
-                case 'CyL' or 'Castilla y Leon':
+                case 'CyL':
                     $location = 11;
                     $coderLocation = DB::insert("CALL storeCoderLocation($coderPivot->id, $location)");
                     break;            
