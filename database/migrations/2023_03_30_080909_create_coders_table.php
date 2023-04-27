@@ -37,8 +37,10 @@ return new class extends Migration
             $table->unsignedTinyInteger('years')->nullable();
             $table->string('avaliability')->nullable();
             $table->boolean('remote')->nullable();
-            $table->string('email')->unique();
-            $table->string('phone')->unique();
+           /*  $table->string('email')->unique();
+            $table->string('phone')->unique(); */
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
             $table->string('linkedin')->nullable();
             $table->string('github')->nullable();
             $table->string('profile')->nullable();

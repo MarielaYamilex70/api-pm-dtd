@@ -33,8 +33,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone')->nullable();
             $table->boolean('remote');
-            $table->unsignedTinyInteger('first_interview')->nullable();;
-            $table->unsignedTinyInteger('last_interview')->nullable();;
+            $table->unsignedTinyInteger('first_interview')->nullable();
+            $table->unsignedTinyInteger('last_interview')->nullable();
             $table->string('gender')->nullable();
             
             $table->timestamps();
