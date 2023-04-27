@@ -38,9 +38,10 @@ class ExcelController extends Controller
 
         Excel::import(new AuxCodersImport, $file);
 
-        $rcoderPivots = DB::select('CALL getPivotCoders()');
-        //dd($recruiterPivots);
-        foreach ($recruiterPivots as $recruiterPivot){
+        $coderPivots = DB::select('CALL getPivotCoders()');
+        dd($coderPivots);
+        foreach ($coderPivots as $coderPivot){
+        }    
         
         // Devolver una respuesta JSON
         return response()->json([
