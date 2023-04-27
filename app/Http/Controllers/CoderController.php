@@ -26,24 +26,19 @@ class CoderController extends Controller
         $request->validate([
             'event_id' => 'required',
             'promo_id' => 'required',
-           /*  'province_id' => 'required', */
             'name' => 'required',
+            'lastname' => 'required',
             'gender' => 'required',
-            'years' => 'required|integer',
-            'avaliability' => 'required',
-            'remote' => 'required|boolean',
             'email' => 'required|email',
-            'phone' => 'required',
-            'linkedin' => '',
-            'github' => ''
+            'phone' => 'required'
 
         ]);
 
         $coder=new Coder;
         $coder->event_id=$request->event_id;
         $coder->promo_id=$request->promo_id;
-        /* $coder->province_id=$request->province_id; */
         $coder->name=$request->name;
+        $coder->lastname=$request->lastname;
         $coder->gender=$request->gender;
         $coder->years=$request->years;
         $coder->avaliability=$request->avaliability;
@@ -52,6 +47,8 @@ class CoderController extends Controller
         $coder->phone=$request->phone;
         $coder->linkedin=$request->linkedin;
         $coder->github=$request->github;
+        $coder->profile=$request->profile;
+
         $coder->save();
 
         if ($coder) {
@@ -92,23 +89,17 @@ class CoderController extends Controller
         $request->validate([
             'event_id' => 'required',
             'promo_id' => 'required',
-           /*  'province_id' => 'required', */
             'name' => 'required',
+            'lastname' => 'required',
             'gender' => 'required',
-            'years' => 'required|integer',
-            'avaliability' => 'required',
-            'remote' => 'required|integer',
             'email' => 'required|email',
-            'phone' => 'required',
-            'linkedin' => 'required',
-            'github' => 'required'
-
+            'phone' => 'required'
         ]);
 
         $coder->event_id=$request->event_id;
         $coder->promo_id=$request->promo_id;
-       /*  $coder->province_id=$request->province_id; */
         $coder->name=$request->name;
+        $coder->lastname=$request->lastname;
         $coder->gender=$request->gender;
         $coder->years=$request->years;
         $coder->avaliability=$request->avaliability;
@@ -117,6 +108,7 @@ class CoderController extends Controller
         $coder->phone=$request->phone;
         $coder->linkedin=$request->linkedin;
         $coder->github=$request->github;
+        $coder->profile=$request->profile;
         $coder->save();
 
         if ($coder) {

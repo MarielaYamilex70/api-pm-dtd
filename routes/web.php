@@ -24,3 +24,4 @@ Route::get('/match/demo','App\Http\Controllers\MatchController@demo');
 Route::get('/schedule/demo','App\Http\Controllers\ScheduleController@demo');
 
 Route::get('/schedule/prueba','App\Http\Controllers\ScheduleController@countScheduleXCoder');
+

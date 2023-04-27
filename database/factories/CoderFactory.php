@@ -19,16 +19,17 @@ class CoderFactory extends Factory
         return [
             'event_id' => 1,
             'promo_id' => random_int(1,7),
-            /* 'province_id' => random_int(1,3), */
-            'name' => $this->faker->name(),
-            'gender' =>  $this->faker->randomElement(['Mujer','Hombre']),
+            'name' => $this->faker->firstName(),
+            'lastname' => $this->faker->lastName(),
+            'gender' =>  $this->faker->randomElement(['Mujer','Hombre', 'Otros']),
             'years' => random_int(18,60),
             'avaliability' =>  $this->faker->randomElement(['Total','Media Jornada']),
             'remote' => random_int(0,1),
             'email' => $this->faker->email(),
             'phone' => $this->faker->phoneNumber(),
             'linkedin' => $this->faker->url(),
-            'github' => $this->faker->url()
+            'github' => $this->faker->url(),
+            'profile' => 'FullStack'
         ];
     }
 }

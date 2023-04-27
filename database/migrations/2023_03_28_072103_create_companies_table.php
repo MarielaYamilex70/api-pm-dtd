@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
                   
             $table->string('name')->unique();
-            $table->string('ubication');
-            $table->string('email')->unique();
-            $table->string('phone')->unique();
+            $table->string('ubication')->nullable();
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
             $table->unsignedTinyInteger('priority');
 
             $table->timestamps();

@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     use HasFactory;
-    public function province(){
+    
+    protected $fillable = [
+        'name',
+        'priority'
+    ];
+    /* public function province(){
         return $this->belongsTo(Provinces::class);
-    }
+    } */
 }

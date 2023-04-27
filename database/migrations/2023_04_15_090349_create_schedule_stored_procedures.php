@@ -192,7 +192,7 @@ return new class extends Migration
                 IN numMatch INT
             )
             BEGIN
-                SELECT matches.coder_id AS idCoder, matches.afinity, COUNT(matches.interview) AS maxInterview
+                SELECT matches.coder_id AS idCoder, COUNT(matches.interview) AS maxInterview
                 FROM matches
                 WHERE matches.num_match = numMatch
                  AND  matches.interview > 0
@@ -208,7 +208,7 @@ return new class extends Migration
                 IN numMatch INT
             )
             BEGIN
-                SELECT matches.recruiter_id  AS idRecruiter, matches.afinity, COUNT(matches.interview) AS maxInterview
+                SELECT matches.recruiter_id  AS idRecruiter, COUNT(matches.interview) AS maxInterview
                 FROM matches
                 WHERE matches.num_match = numMatch
                  AND  matches.interview > 0

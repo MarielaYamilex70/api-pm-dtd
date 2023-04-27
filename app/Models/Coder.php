@@ -9,6 +9,16 @@ class Coder extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'event_id',
+        'promo_id',
+        'name',
+        'lastname',
+        'gender',
+        'profile',
+        
+    ];
+
     public function event(){
         return $this->belongsTo(Event::class);
     }

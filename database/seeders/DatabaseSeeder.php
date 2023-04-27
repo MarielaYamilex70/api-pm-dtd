@@ -30,7 +30,10 @@ class DatabaseSeeder extends Seeder
 
         $stacks = [
             ['name' => 'PHP'], // id: 1
-            ['name' => 'JAVA'] // id: 2
+            ['name' => 'JAVA'], // id: 2
+            ['name' => 'JAVASCRIPT'], // id: 3
+            ['name' => 'REACT'] // id: 4
+            
             
         ];
         foreach ($stacks as $stack) {
@@ -39,8 +42,8 @@ class DatabaseSeeder extends Seeder
 
         $languages = [
             ['name' => 'Inglés/Alto'], // id: 1
-            ['name' => 'Inglés/Medio'], // id: 2
-            ['name' => 'Inglés/Bajo'] // id: 3
+            ['name' => 'Inglés/Medio'] // id: 2
+          
             
         ];
         foreach ($languages as $language) {
@@ -114,123 +117,123 @@ class DatabaseSeeder extends Seeder
             Promotion::create($promo);
         }
 
-        \App\Models\Company::factory(10)->create();
+        //\App\Models\Company::factory(10)->create();
 
         \App\Models\Event::factory(1)->create();
 
-        \App\Models\Coder::factory(59)
-            ->create()
-            ->each(function($coder){
+        // \App\Models\Coder::factory(59)
+        //     ->create()
+        //     ->each(function($coder){
                 
-                $numStacks=random_int(1,2);
-                $stacks=Stack::select('id')
-                    ->inRandomOrder()
-                    ->limit($numStacks)
-                    ->distinct()
-                    ->get();
-                foreach($stacks as $stack){
-                    DB::table('coders_stacks')->insert([
-                        [
-                            'coder_id'=> $coder->id,
-                            'stack_id'=> $stack->id,
-                            'created_at'=> now(),
-                            'updated_at'=> now()
-                        ]
-                    ]);
-                }
+        //         $numStacks=random_int(1,2);
+        //         $stacks=Stack::select('id')
+        //             ->inRandomOrder()
+        //             ->limit($numStacks)
+        //             ->distinct()
+        //             ->get();
+        //         foreach($stacks as $stack){
+        //             DB::table('coders_stacks')->insert([
+        //                 [
+        //                     'coder_id'=> $coder->id,
+        //                     'stack_id'=> $stack->id,
+        //                     'created_at'=> now(),
+        //                     'updated_at'=> now()
+        //                 ]
+        //             ]);
+        //         }
 
-                $numLanguages=random_int(1,3);
-                /* $languages=Language::select('id')
-                    ->inRandomOrder()
-                    ->limit($numLanguages)
-                    ->distinct()
-                    ->get(); */
-                //foreach($languages as $language){
-                    DB::table('coders_languages')->insert([
-                        [
-                            'coder_id'=> $coder->id,
-                            //'language_id'=> $language->id,
-                            'language_id'=>$numLanguages,
-                            'created_at'=> now(),
-                            'updated_at'=> now()
-                        ]
-                    ]);
-                //}
+        //         $numLanguages=random_int(1,2);
+        //         /* $languages=Language::select('id')
+        //             ->inRandomOrder()
+        //             ->limit($numLanguages)
+        //             ->distinct()
+        //             ->get(); */
+        //         //foreach($languages as $language){
+        //             DB::table('coders_languages')->insert([
+        //                 [
+        //                     'coder_id'=> $coder->id,
+        //                     //'language_id'=> $language->id,
+        //                     'language_id'=>$numLanguages,
+        //                     'created_at'=> now(),
+        //                     'updated_at'=> now()
+        //                 ]
+        //             ]);
+        //         //}
 
-                $numlocations=random_int(1,12);
-                $locations=Province::select('id')
-                    ->inRandomOrder()
-                    ->limit($numlocations)
-                    ->distinct()
-                    ->get();
-                foreach($locations as $location){
-                    DB::table('coders_locations')->insert([
-                        [
-                            'coder_id'=> $coder->id,
-                            'province_id'=> $location->id,
-                            'created_at'=> now(),
-                            'updated_at'=> now()
-                        ]
-                    ]);
-                }
+        //         $numlocations=random_int(1,12);
+        //         $locations=Province::select('id')
+        //             ->inRandomOrder()
+        //             ->limit($numlocations)
+        //             ->distinct()
+        //             ->get();
+        //         foreach($locations as $location){
+        //             DB::table('coders_locations')->insert([
+        //                 [
+        //                     'coder_id'=> $coder->id,
+        //                     'province_id'=> $location->id,
+        //                     'created_at'=> now(),
+        //                     'updated_at'=> now()
+        //                 ]
+        //             ]);
+        //         }
 
-            });
+        //     });
 
-        \App\Models\Recruiter::factory(20)
-            ->create()
-            ->each(function($recruiter){
+        // \App\Models\Recruiter::factory(20)
+        //     ->create()
+        //     ->each(function($recruiter){
                 
-                $numStacks=random_int(1,2);
-                $stacks=Stack::select('id')
-                    ->inRandomOrder()
-                    ->limit($numStacks)
-                    ->distinct()
-                    ->get();
-                foreach($stacks as $stack){
-                    DB::table('recruiters_stacks')->insert([
-                        [
-                            'recruiter_id'=> $recruiter->id,
-                            'stack_id'=> $stack->id,
-                            'created_at'=> now(),
-                            'updated_at'=> now()
-                        ]
-                    ]);
-                }
+        //         $numStacks=random_int(1,2);
+        //         $stacks=Stack::select('id')
+        //             ->inRandomOrder()
+        //             ->limit($numStacks)
+        //             ->distinct()
+        //             ->get();
+        //         foreach($stacks as $stack){
+        //             DB::table('recruiters_stacks')->insert([
+        //                 [
+        //                     'recruiter_id'=> $recruiter->id,
+        //                     'stack_id'=> $stack->id,
+        //                     'created_at'=> now(),
+        //                     'updated_at'=> now()
+        //                 ]
+        //             ]);
+        //         }
 
-                $numLanguages=random_int(1,2);
-                $languages=Language::select('id')
-                    ->inRandomOrder()
-                    ->limit($numLanguages)
-                    ->distinct()
-                    ->get();
-                foreach($languages as $language){
-                    DB::table('recruiters_languages')->insert([
-                        [
-                            'recruiter_id'=> $recruiter->id,
-                            'language_id'=> $language->id,
-                            'created_at'=> now(),
-                            'updated_at'=> now()
-                        ]
-                    ]);
-                }
+        //         $numLanguages=random_int(1,2);
+        //         $languages=Language::select('id')
+        //             ->inRandomOrder()
+        //             ->limit($numLanguages)
+        //             ->distinct()
+        //             ->get();
+        //         foreach($languages as $language){
+        //             DB::table('recruiters_languages')->insert([
+        //                 [
+        //                     'recruiter_id'=> $recruiter->id,
+        //                     'language_id'=> $language->id,
+        //                     'created_at'=> now(),
+        //                     'updated_at'=> now()
+        //                 ]
+        //             ]);
+        //         }
 
-                $numlocations=random_int(1,12);
-                $locations=Province::select('id')
-                    ->inRandomOrder()
-                    ->limit($numlocations)
-                    ->distinct()
-                    ->get();
-                foreach($locations as $location){
-                    DB::table('recruiters_locations')->insert([
-                        [
-                            'recruiter_id'=> $recruiter->id,
-                            'province_id'=> $location->id,
-                            'created_at'=> now(),
-                            'updated_at'=> now()
-                        ]
-                    ]);
-                }
+        //         $numlocations=random_int(1,12);
+        //         $locations=Province::select('id')
+        //             ->inRandomOrder()
+        //             ->limit($numlocations)
+        //             ->distinct()
+        //             ->get();
+        //         foreach($locations as $location){
+        //             DB::table('recruiters_locations')->insert([
+        //                 [
+        //                     'recruiter_id'=> $recruiter->id,
+        //                     'province_id'=> $location->id,
+        //                     'created_at'=> now(),
+        //                     'updated_at'=> now()
+        //                 ]
+        //             ]);
+        //         }
 
-            });
+        //     });
     }
 }
