@@ -105,12 +105,12 @@ class DatabaseSeeder extends Seeder
             ['school_id' => 4, 'name' => 'P1_850_FEMCODERS', 'nick' => 'P1_850_FEMCODERS', 'quantity' => 19],
             ['school_id' => 4, 'name' => 'P2_850_GIJÓN', 'nick' => 'P2_850_GIJÓN', 'quantity' => 18],
             ['school_id' => 4, 'name' => 'P1_850_RURAL_CAMP', 'nick' => 'P1_850_RURAL_CAMP', 'quantity' => 16],
-            ['school_id' => 1, 'name' => 'P5_850_MIXTAFULLSTACK', 'nick' => 'P5_850_MIXTAFULLSTACK', 'quantity' => 37],
-            ['school_id' => 1, 'name' => 'P1_850_INCORPORA-ACCENTURE', 'nick' => 'P1_850_INCORPORA-ACCENTURE', 'quantity' => 7],
-            ['school_id' => 1, 'name' => 'P2_850_FEMCODERS BCN', 'nick' => 'P2_850_FEMCODERS BCN', 'quantity' => 17],
-            ['school_id' => 2, 'name' => 'P2_850_FEMCODERS MAD', 'nick' => 'P2_850_FEMCODERS MAD', 'quantity' => 18],
-            ['school_id' => 6, 'name' => 'P1_850_FEMCODERS MÁLAGA', 'nick' => 'P1_850_FEMCODERS MÁLAGA', 'quantity' => 24],
-            ['school_id' => 5, 'name' => 'P1_850_FEMCODERS SEVILLA', 'nick' => 'P1_850_FEMCODERS SEVILLA', 'quantity' => 22],
+            ['school_id' => 1, 'name' => 'P5_850_MIXTA_FULLSTACK', 'nick' => 'P5_850_MIXTA_FULLSTACK', 'quantity' => 37],
+            ['school_id' => 1, 'name' => 'P1_850_INCORPORA_ACCENTURE', 'nick' => 'P1_850_INCORPORA_ACCENTURE', 'quantity' => 7],
+            ['school_id' => 1, 'name' => 'P2_850_FEMCODERS_BCN', 'nick' => 'P2_850_FEMCODERS_BCN', 'quantity' => 17],
+            ['school_id' => 2, 'name' => 'P2_850_FEMCODERS_MAD', 'nick' => 'P2_850_FEMCODERS_MAD', 'quantity' => 18],
+            ['school_id' => 6, 'name' => 'P1_850_FEMCODERS_MÁLAGA', 'nick' => 'P1_850_FEMCODERS_MÁLAGA', 'quantity' => 24],
+            ['school_id' => 5, 'name' => 'P1_850_FEMCODERS_SEVILLA', 'nick' => 'P1_850_FEMCODERS_SEVILLA', 'quantity' => 22],
             ['school_id' => 1, 'name' => 'P3_FEMTECH_BCN', 'nick' => 'P3_FEMTECH_BCN', 'quantity' => 1]
         ];
         foreach ($promotions as $promo) {
