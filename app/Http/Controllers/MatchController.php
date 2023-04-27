@@ -66,32 +66,43 @@ class MatchController extends Controller
 
                     $recruiterLocations = DB::select("CALL getRecruiterLocations($recruiter->id)");
                     $coinLocation = 0;
-                    foreach ($recruiterLocations as $recruiterLocation){
-
-                        $coderLocation = DB::select("CALL getCoderLocation($coder->id, $recruiterLocation->province_id )");
+                    if ($recruiterLocations ) {
                         
-                        if ($coderLocation) {
-                            $coinLocation = 1;
-                            
-                        }
+                        foreach ($recruiterLocations as $recruiterLocation){
 
-                    } 
-                    
-                    if ( $coinLocation || $recruiter->remote) {
-                        $recruiterStacks = DB::select("CALL getRecruiterStacks($recruiter->id)");
-                        foreach ($recruiterStacks as $recruiterStack){
+                            $coderLocation = DB::select("CALL getCoderLocation($coder->id, $recruiterLocation->province_id )");
                             
-                            $coderStack = DB::select("CALL getCoderStack($coder->id, $recruiterStack->stack_id )");
-                            
-                            if ( $coderStack) {
-                                array_push($coincidences, 1);
-
-                            }
-                            else{
-                                array_push($coincidences, 0);
+                            if ($coderLocation) {
+                                $coinLocation = 1;
                                 
                             }
 
+                        } 
+                    }
+                    else{
+                        $coinLocation = 1; //El recruiter no tiene ubicacion definida, machea con todas
+                    }
+                    
+                    if ( $coinLocation || $recruiter->remote) {
+                        $recruiterStacks = DB::select("CALL getRecruiterStacks($recruiter->id)");
+                        if ($recruiterStacks) {
+                            
+                            foreach ($recruiterStacks as $recruiterStack){
+                                
+                                $coderStack = DB::select("CALL getCoderStack($coder->id, $recruiterStack->stack_id )");
+                                
+                                if ( $coderStack) {
+                                    array_push($coincidences, 1);
+
+                                }
+                                else{
+                                    array_push($coincidences, 0);
+                                    
+                                }
+
+                            }
+                        }else{
+                            array_push($coincidences, 1);//El recruiter no tiene Stack definido, machea con todos 
                         }
                         
                         if (array_sum($coincidences)) {
