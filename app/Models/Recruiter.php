@@ -24,7 +24,9 @@ class Recruiter extends Model
 
         'remote' ,
        
-        'gender' 
+        'gender' ,
+
+        'stack_counter'
 
         
     ];

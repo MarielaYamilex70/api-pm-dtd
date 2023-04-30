@@ -50,7 +50,7 @@ class ScheduleController extends Controller
             //echo " MIN ENTREVISTAS POR CODER:  ".$MaxMinCoderInterview[0]->minInterviewCoder;
             //echo '<br>';
             $recruiters = DB::select("CALL getAllRecruitersToSchedule($lastNumMatch)");
-            
+            $totalCoders = DB::select('CALL countCoders()');
             foreach ($recruiters as $recruiter){
                 $interview = $recruiter->first_interview;;
                 $lastInterview = $recruiter->last_interview;
@@ -112,9 +112,13 @@ class ScheduleController extends Controller
 
                             if ($interview > $lastInterview) break; //Se terminaron las entrevistas del RECRUITER 
                         }
-                        //else{
-                            //echo "Error to updated Schedule";
-                        //}    
+                        elseif($coderSchedule && ($coder->id = $totalCoders[0]->total ) && ($interview < $lastInterview )){
+
+                           
+                            $interview++;
+       
+                            
+                        }    
                     }
                 }
             }
@@ -210,10 +214,11 @@ class ScheduleController extends Controller
             //echo " MIN ENTREVISTAS POR CODER:  ".$MaxMinCoderInterview[0]->minInterviewCoder;
             //echo '<br>';
             $recruiters = DB::select("CALL getAllRecruitersToSchedule($lastNumMatch)");
-            
+            $totalCoders = DB::select('CALL countCoders()');
             foreach ($recruiters as $recruiter){
                 $interview = $recruiter->first_interview;;
                 $lastInterview = $recruiter->last_interview;
+                $interviewTotal = 0;
                 echo "***********************************************";
                 echo '<br>';
                 echo "ID: ".$recruiter->id."  NOMBRE:  ".$recruiter->name."  COMPANY:  ".$recruiter->company_id;
@@ -230,7 +235,7 @@ class ScheduleController extends Controller
                 //dd($coders);
                 foreach ($coders as $coder){
                     
-                    echo $coder->name;
+                    echo "Id: $coder->id Nombre:$coder->name";
                     echo '<br>';
                     echo "-----------------------------";
                     echo '<br>';
@@ -269,13 +274,27 @@ class ScheduleController extends Controller
                             //echo '<br>';
 
                             $interview++;
+                            $interviewTotal++;
 
-                            if ($interview > $lastInterview) break; //Se terminaron las entrevistas del RECRUITER 
+                            if (($interview > $lastInterview) || ($interviewTotal >= 14 )) break; //Se terminaron las entrevistas del RECRUITER 
                         }
-                        else{
-                            echo "Error to updated Schedule";
-                        }    
+                           
                     }
+                    /* elseif( ($coder->id == $totalCoders[0]->total ) && ($interview < $lastInterview )){
+                        echo">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+                        echo '<br>';
+                        echo"OjOOOOOO SE CAMBIA PARA LA PROXIMA ENTREVISTA";
+                        echo"EL CODER ID: $coder->id = AL TOTAL DE CODER";
+                        echo '<br>';
+                        echo" $interview < $lastInterview";
+                        echo '<br>';
+
+                        echo">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
+                        echo '<br>';
+                        $interview++;
+   
+                        
+                    } */
                 }
             }
         }

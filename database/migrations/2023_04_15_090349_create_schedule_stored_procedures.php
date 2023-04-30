@@ -27,7 +27,8 @@ return new class extends Migration
                     ON recruiters.company_id = companies.id
                 WHERE matches.num_match = numMatch 
                 GROUP BY recruiters.id 
-                ORDER BY companies.priority, companies.id, recruiters.id;
+                ORDER BY  recruiters.stack_counter, companies.priority ;
+                
             END;
         ');
 
@@ -141,26 +142,33 @@ return new class extends Migration
 
         DB::unprepared('DROP PROCEDURE IF EXISTS getSchedulerRecruiters;');
 
-        DB::unprepared('
+        DB::unprepared("
             CREATE PROCEDURE getSchedulerRecruiters(
                 IN numMatch INT
             )
             BEGIN
-                SELECT events.name AS nameEvent, companies.name AS nameCompany, recruiters.name AS nameRecruiter, coders.name AS nameCoder, matches.afinity, matches.interview 
+                SELECT events.name AS nameEvent, companies.name AS nameCompany,
+                CONCAT(recruiters.name, ' ',recruiters.lastname)  AS nameRecruiter,
+                CONCAT( coders.name, ' ', coders.lastname,' - ', provinces.name)AS nameCoder,
+                matches.afinity, matches.interview
                 FROM matches
-                JOIN recruiters 
-                    ON matches.recruiter_id = recruiters.id 
-                JOIN companies 
-                    ON recruiters.company_id = companies.id     
-                JOIN coders 
-                    ON matches.coder_id = coders.id 
-                JOIN events 
-                    ON coders.event_id = events.id      
-                WHERE matches.num_match = numMatch 
+                JOIN recruiters
+                    ON matches.recruiter_id = recruiters.id
+                JOIN companies
+                    ON recruiters.company_id = companies.id
+                JOIN coders
+                    ON matches.coder_id = coders.id
+                JOIN events
+                    ON coders.event_id = events.id
+                JOIN coders_locations
+                    ON coders_locations.coder_id = coders.id
+                JOIN provinces
+                    ON provinces.id = coders_locations.province_id
+                WHERE matches.num_match = numMatch
                     AND matches.interview > 0
                 ORDER BY companies.priority, recruiters.company_id, recruiters.id, matches.interview;
             END;
-        ');
+        ");
 
         DB::unprepared('DROP PROCEDURE IF EXISTS getSchedulerCoders;');
 

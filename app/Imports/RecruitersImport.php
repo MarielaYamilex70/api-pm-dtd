@@ -6,6 +6,8 @@ use App\Models\Recruiter;
 use App\Models\Company;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Illuminate\Support\Facades\DB;
+
 
 class RecruitersImport implements ToModel, WithHeadingRow
 {
@@ -50,6 +52,9 @@ class RecruitersImport implements ToModel, WithHeadingRow
         $gender = '';
         if ( $row['mujeres'] == 'Pref. Mujeres') $gender = 'Mujer';
         
+        //$stackCounter = 3;
+
+        
 
         return new Recruiter([
             //
@@ -66,7 +71,9 @@ class RecruitersImport implements ToModel, WithHeadingRow
 
             'remote' => $row['posibilidad_teletrabajo'],
 
-            'gender' => $gender
+            'gender' => $gender,
+
+            'stack_counter' => 3
             
         
             

@@ -146,6 +146,47 @@ return new class extends Migration
                 
             END;
         ');
+
+        DB::unprepared('DROP PROCEDURE IF EXISTS getMaxStackCounter;');
+
+        DB::unprepared('
+            CREATE PROCEDURE getMaxStackCounter()
+            BEGIN
+
+                SELECT MAX(stack_id) AS total FROM recruiters_stacks;
+                
+            END;
+        ');
+
+
+        DB::unprepared('DROP PROCEDURE IF EXISTS getRecruiterStackCounter;');
+
+        DB::unprepared('
+            CREATE PROCEDURE getRecruiterStackCounter(
+                IN id_recruiter INT
+            )
+            BEGIN
+
+                SELECT COUNT(recruiter_id) AS total  FROM recruiters_stacks
+                WHERE recruiter_id = id_recruiter  ;
+                
+            END;
+        ');
+
+        DB::unprepared('DROP PROCEDURE IF EXISTS storeRecruiterStackCounter;');
+
+        DB::unprepared('
+            CREATE PROCEDURE storeRecruiterStackCounter(
+                IN id_recruiter INT,
+                IN counter_stack INT
+            )
+            BEGIN
+
+                UPDATE recruiters SET stack_counter = counter_stack
+                WHERE id = id_recruiter;
+                
+            END;
+        ');
     }
 
     /**

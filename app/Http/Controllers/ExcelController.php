@@ -157,6 +157,16 @@ class ExcelController extends Controller
             if ($recruiterPivot->idioma == 'Inglés alto') {
                 $recruiterLanguage = DB::insert("CALL storeRecruiterLanguage($recruiterPivot->id, 1)");
             }
+            
+
+            $stackCounter = DB::select("CALL getRecruiterStackCounter($recruiterPivot->id)");
+            //dd($stackCounter);
+            $recruiterStackCounter = $stackCounter[0]->total;
+            if ( $recruiterStackCounter > 0) {
+                           
+                DB::update("CALL storeRecruiterStackCounter($recruiterPivot->id, $recruiterStackCounter)");
+            }
+            
                         
         }
 

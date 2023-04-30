@@ -36,6 +36,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('first_interview')->nullable();
             $table->unsignedTinyInteger('last_interview')->nullable();
             $table->string('gender')->nullable();
+            $table->integer('stack_counter')->nullable();
             
             $table->timestamps();
         });
