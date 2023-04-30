@@ -20,7 +20,7 @@ class EventFactory extends Factory
             'name' => 'DTD',
             'date' => '2023/05/04',
             'url' => $this->faker->url(),
-            'max' => 10,
+            'max' => 7,
             'min' => 4
         ];
     }
